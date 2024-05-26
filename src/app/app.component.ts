@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 
+// todo Хорошо бы в конце шлифануть package.json, как минимум использование angular material не оч релевантно
 @Component({
   selector: 'app-root',
   standalone: true,

@@ -1,1 +1,66 @@
 /* You can add global styles to this file, and also import other style files */
+
+@font-face{
+	font-family:'Philosopher';
+	src: url('assets/fonts/philosopher.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+body{
+    background: repeat url("assets/images/background.png");
+    background-size: cover;
+
+	/* Font */
+	font-size: 28px;
+    font-weight: 700;
+    font-family: Philosopher;
+}
+
+.btn {
+	text-transform: uppercase;
+	color: #fff;
+	border: none;
+
+	/* Auto layout */
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	padding: 16px 36px;
+	gap: 6px;
+	width: 210px;
+	height: 54px;
+
+	/* Linear */
+	background: linear-gradient(90deg, #654CFB 0%, #A347C4 100%);
+	border-radius: 100px;
+
+	/* Inside auto layout */
+	flex: none;
+	order: 1;
+	flex-grow: 0;
+
+	/* Font */
+	font-size: 20px;
+	font-weight: 600;
+	font-family: Philosopher;
+
+	&:hover {
+		cursor: pointer;
+	}
+}
+
+.main-title {
+	color: #13003B;
+	font-size: 70px;
+	font-weight: 700;
+	line-height: 80px;
+}
+
+.main-text {
+	color: #4D3A75;
+	font-size: 30px;
+	font-weight: 400;
+	line-height: 33px;
+}
