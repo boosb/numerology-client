@@ -1,0 +1,22 @@
+<div class="modal-wrapper">
+    <form [formGroup]="authForm" class="modal" (ngSubmit)="submit()">
+        <div class="modal__close" (click)="this.authService.closeDlg()"></div>
+        <div class="modal__title">{{ title }}</div>
+        <input 
+            class="modal__input-email" 
+            type="text"
+            formControlName="email"
+            placeholder="Email"
+        >
+        <input 
+            class="modal__input-pass" 
+            type="text"
+            formControlName="password"
+            placeholder="пароль"
+        >
+
+        <!-- тут надо вставть текст "Ссылка отправлена на почту" -->
+        <!-- тут надо вставть текст "Отправить ссылку повторно" -->
+        <button type="submit" class="btn">Продолжить</button>
+    </form>
+</div>

@@ -10,7 +10,7 @@
       </div>
 
       <div>
-        <button class="btn">Регистрация</button>
+        <app-main-button></app-main-button>
       </div>
     </div>
     <!-- Как будто лайны похожи, мб можно как-то вынести в отдельный компонент -->
@@ -23,7 +23,7 @@
           С нашими точными астрологическими прогнозами 
           и нумерологическими расчетами
         </div>
-        <button class="btn">Войти</button>
+        <button class="btn" (click)="showLogInDlg()">Войти</button>
       </div>
       <div class="first-line__img">
         <img src="../assets/images/hands.svg" alt="Numerology img one">
@@ -78,7 +78,7 @@
             с нашими детализированными астропрогнозами и 
             нумерологическими анализами.
           </div>
-          <button class="btn extended-btn withe-btn">Зарегестрироваться</button>
+          <button class="btn extended-btn withe-btn" (click)="showRegistrationDlg()">Зарегестрироваться</button>
         </div>
       </div>
     </div>
@@ -93,3 +93,5 @@
     </div>
   </div>
 </div>
+
+<app-modal-auth *ngIf="authService.isShow$ | async"></app-modal-auth>
