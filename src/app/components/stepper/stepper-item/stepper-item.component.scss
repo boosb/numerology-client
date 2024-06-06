@@ -1,0 +1,19 @@
+.item-wrapper {
+    width: 312px;
+    height: 312px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    border-radius: 20px;
+
+    &__icon {
+        margin-bottom: 15px;
+    }
+
+    &__text {
+        text-transform: uppercase;
+    }
+}

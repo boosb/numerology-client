@@ -1,13 +1,18 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { IUser } from '../interfaces/user.interface';
+
+export const PAGES = {
+  MAIN: 'main',
+  SETTINGS: 'settings'
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppService {
-
-    user$ = new Subject<IUser>()
+    // todo можно еще реализовать, чтобы он слушал маршрут
+    page$ = new BehaviorSubject<string|null>(PAGES.MAIN);
 
     constructor(
 
@@ -15,7 +20,7 @@ export class AppService {
 
     }
 
-    setUser(user: IUser) {
-        this.user$.next(user);
+    setPage(page: string) {
+      this.page$.next(page);
     }
 }

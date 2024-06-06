@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, Subject, map, tap } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject, EMPTY, Observable, Subject, Subscription, catchError, map, of, tap } from 'rxjs';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { IUser } from '../interfaces/user.interface';
 
 @Injectable({
@@ -11,9 +11,21 @@ export class AuthService {
     private http: HttpClient
   ) {}
 
+  user$ = new BehaviorSubject<IUser|null>(null);
+
   isShow$ = new BehaviorSubject<boolean>(false);
 
   dlgType$ = new BehaviorSubject<string>('');
+
+  errorText$ = new BehaviorSubject<string>('');
+
+  setUser(user: IUser) {
+    this.user$.next(user);
+  }
+
+  isLoggedIn() {
+    return !!this.user$.value;
+  }
 
   showDlg() {
     this.isShow$.next(true);
@@ -21,18 +33,50 @@ export class AuthService {
 
   closeDlg() {
     this.isShow$.next(false);
+    this.setErrorText();
   }
 
   setType(type: string) {
     this.dlgType$.next(type);
-    console.log(this.dlgType$.value, ' >>> VALUE')
   }
 
-  login(user: IUser): Observable<IUser> {
-    return this.http.post<IUser>('http://localhost:3000/auth/log-in', user);
+  setErrorText(errorText: string = '') {
+    this.errorText$.next(errorText);
   }
 
-  registration(user: IUser): Observable<IUser> {
-    return this.http.post<IUser>('http://localhost:3000/user', user);
+  login(user: IUser): Observable<any> {
+    return this.http.post<IUser>('http://localhost:3000/auth/log-in', user).pipe(
+      map(user => {
+        console.log(user,  ' >>> USER')
+        this.setUser(user);
+        this.closeDlg();
+      }),
+      catchError(error => of(this.setErrorText(error.error.message)))
+    );
+  }
+
+  logout(userId: number): Observable<IUser> {
+    return this.http.post<IUser>('http://localhost:3000/auth/log-out', {userId});
+  }
+
+  registration(user: IUser): Observable<any> { // todo вынести в соответствующий сервис
+    return this.http.post<IUser>('http://localhost:3000/user', user).pipe(
+      catchError(error => of(this.setErrorText(error.error.message)))
+    );
+  }
+
+  getAllUsers(): Observable<IUser[]> { // todo вынести в соответствующий сервис
+    return this.http.get<IUser[]>('http://localhost:3000/user').pipe(
+      map((users) => {
+        console.log(users)
+        return users;
+      })
+    );
+  }
+
+  refreshToken(): Observable<IUser> {
+    return this.http.get<IUser>('http://localhost:3000/auth/refresh', {
+      withCredentials: true
+    });
   }
 }

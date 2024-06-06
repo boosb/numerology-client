@@ -3,4 +3,5 @@ export interface IUser {
     email: string
     password: string
     name?: string // todo пока что так
+    token?: string // access token
 }

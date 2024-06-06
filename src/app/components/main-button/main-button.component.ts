@@ -20,11 +20,19 @@ export class MainButtonComponent {
     private authService: AuthService,
     public appService: AppService
   ) {
-    appService.user$.subscribe(user => this.user = user);
+    authService.user$.subscribe(user => this.user = user);
   }
 
   showRegistrationDlg() {
     this.authService.setType(TYPES.refistration);
     this.authService.showDlg();
+  }
+
+  logout() {
+    if(!this.user || !this.user.id) {
+      return;
+    }
+    console.log('hello')
+    this.authService.logout(this.user.id).subscribe(user => this.authService.setUser(user));
   }
 }

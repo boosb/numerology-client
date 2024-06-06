@@ -1,7 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppService } from '../../services/app.service';
+import { catchError, map, of } from 'rxjs';
 
 export const TYPES = {
   refistration: 'refistration',
@@ -15,8 +16,10 @@ export const TYPES = {
   templateUrl: './modal-auth.component.html',
   styleUrl: './modal-auth.component.scss'
 })
-export class ModalAuthComponent {
+export class ModalAuthComponent implements OnInit {
   title: string = '';
+
+  errorText: string = '';
 
   authForm = new FormGroup({
     email: new FormControl(),
@@ -34,13 +37,15 @@ export class ModalAuthComponent {
   constructor(
     public authService: AuthService,
     public appService: AppService
-  ) {
-    this._setTtitle();
+  ) {}
+
+  ngOnInit(): void {
+    this._setTitle();
+    this.authService.errorText$.subscribe(errorText => this.errorText = errorText);
   }
 
   submit() {
     const { value } = this.authService.dlgType$;
-    console.log(value, ' >>> this.type')
     switch(value) {
       case TYPES.refistration:
         this._sendLink();
@@ -64,14 +69,10 @@ export class ModalAuthComponent {
     this.authService.login({
       email: this.authForm.value.email as string,
       password: this.authForm.value.password as string
-    }).subscribe(user => {
-      console.log(user,  ' >>> USER')
-      this.appService.setUser(user);
-      this.authService.closeDlg();
-    })
+    }).subscribe();
   }
 
-  _setTtitle() {
+  _setTitle() {
     const { value } = this.authService.dlgType$;
     console.log(value, ' >>> this.type----1111')
     switch(value) {

@@ -4,6 +4,9 @@
 <button class="btn special-btn" *ngIf="user">
     <!-- todo сюда впилим фото -->
 
+    <img class="avatar" src="../../../assets/images/test-ava.avif" alt="Avatar">
+
     {{ user.email }}
     <!-- todo сюда впилим иконку выхода -->
+    <img class="exit-icon" src="../../../assets/images/exit.svg" alt="Exit" (click)="logout()">
 </button>
