@@ -1,0 +1,16 @@
+.step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &__title {
+        font-size: 50px;
+        line-height: 56px;
+    }
+    &__content {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+}

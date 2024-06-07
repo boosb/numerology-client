@@ -1,4 +1,8 @@
-<div>{{ title }}</div>
+<div class="step">
+    <div class="step__title">{{ step.title }}</div>
 
-<app-stepper-item [text]="'Женский'" [icon]="'assets/images/stepper-icons/female.svg'"></app-stepper-item>
-<app-stepper-item [text]="'Мужской'" [icon]="'dsdsds'"></app-stepper-item>
+    <div class="step__content">
+        <app-stepper-item [text]="'Женский'" [icon]="iconConfig['FEMALE']"></app-stepper-item>
+        <app-stepper-item [text]="'Мужской'" [icon]="iconConfig['MALE']"></app-stepper-item>
+    </div>
+</div>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { TYPES } from '../modal-auth/modal-auth.component';
 import { AppService } from '../../services/app.service';
@@ -12,15 +12,21 @@ import { IUser } from '../../interfaces/user.interface';
   templateUrl: './main-button.component.html',
   styleUrl: './main-button.component.scss'
 })
-export class MainButtonComponent {
+export class MainButtonComponent implements OnInit, OnDestroy {
 
   public user: IUser | null = null;
 
   constructor(
     private authService: AuthService,
     public appService: AppService
-  ) {
-    authService.user$.subscribe(user => this.user = user);
+  ) {}
+
+  ngOnInit(): void {
+    this.authService.user$.subscribe(user => this.user = user);
+  }
+
+  ngOnDestroy(): void {
+    this.authService.user$.unsubscribe();
   }
 
   showRegistrationDlg() {

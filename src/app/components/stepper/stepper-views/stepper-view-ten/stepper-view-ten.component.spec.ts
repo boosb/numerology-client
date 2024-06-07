@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { StepperViewComponent } from './stepper-view.component';
+import { StepperViewTenComponent } from './stepper-view-ten.component';
 
-describe('StepperViewComponent', () => {
-  let component: StepperViewComponent;
-  let fixture: ComponentFixture<StepperViewComponent>;
+describe('StepperViewTenComponent', () => {
+  let component: StepperViewTenComponent;
+  let fixture: ComponentFixture<StepperViewTenComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [StepperViewComponent]
+      imports: [StepperViewTenComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(StepperViewComponent);
+    fixture = TestBed.createComponent(StepperViewTenComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

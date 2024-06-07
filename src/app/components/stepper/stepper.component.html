@@ -1,9 +1,22 @@
-<app-stepper-progress-bar></app-stepper-progress-bar>
+<div class="stepper">
+    <app-stepper-progress-bar [step]="step"></app-stepper-progress-bar>
 
-<app-stepper-view-one [title]="'Ваш пол'"></app-stepper-view-one>
+    <div class="stepper__content">    
+        <div #view></div>
+    </div>
 
-<div class="buttons-wrapper">
-    <button class="btn btn-next">Продолжить</button>
+    <div class="stepper__buttons">
+        <button 
+            class="btn stepper__btn-next" 
+            *ngIf="step.btnNext"
+            (click)="stepperService.nextStep()"
+        >Продолжить</button>
 
-    <button class="btn btn-skip">Пропустить</button>
+        <!-- TODO тут надо будет добаивть логику (по первому варианту данные должны быть заполнены, по второму не обязательно) -->
+        <button 
+            class="btn stepper__btn-skip" 
+            *ngIf="step.btnSkip"
+            (click)="stepperService.nextStep()"
+        >Пропустить</button>
+    </div>
 </div>

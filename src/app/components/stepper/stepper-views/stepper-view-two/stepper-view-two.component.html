@@ -1,1 +1,9 @@
-<p>stepper-view-two works!</p>
+<div class="step">
+    <div class="step__title">{{ step.title }}</div>
+
+    <div class="step__select-group">
+        <app-custom-select [key]="'day'"></app-custom-select>
+        <app-custom-select [key]="'month'"></app-custom-select>
+        <app-custom-select [key]="'year'"></app-custom-select>
+    </div>
+</div>

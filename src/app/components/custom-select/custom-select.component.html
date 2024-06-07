@@ -1,0 +1,4 @@
+<select class="custom-select">
+    <option hidden>{{ config.name }}</option>
+    <option *ngFor="let value of config.values" value="{{ value }}">{{ value }}</option>
+</select>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { AuthService } from './services/auth.service';
@@ -23,7 +23,7 @@ import { SettingPageComponent } from './components/setting-page/setting-page.com
       RouterOutlet
     ]
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
 
   page: string | null = null;
 
@@ -34,6 +34,10 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.appService.page$.subscribe(page => this.page = page);
+  }
+
+  ngOnDestroy(): void {
+    this.appService.page$.unsubscribe();
   }
 
   _isSettingPage() {

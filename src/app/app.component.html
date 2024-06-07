@@ -15,7 +15,9 @@
     </div>
 
     <app-main-page *ngIf="_isMainPage()"></app-main-page>
-    <app-setting-page *ngIf="_isSettingPage()"></app-setting-page>
+    <div class="setting-wrapper" *ngIf="_isSettingPage()">
+      <app-setting-page></app-setting-page>
+    </div>
 
     <div class="footer">
       <div class="footer__copyright">© 2024 Астропрогноз</div>

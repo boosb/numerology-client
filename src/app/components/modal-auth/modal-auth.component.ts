@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, HostListener, Input, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppService } from '../../services/app.service';
@@ -16,7 +16,7 @@ export const TYPES = {
   templateUrl: './modal-auth.component.html',
   styleUrl: './modal-auth.component.scss'
 })
-export class ModalAuthComponent implements OnInit {
+export class ModalAuthComponent implements OnInit, OnDestroy {
   title: string = '';
 
   errorText: string = '';
@@ -42,6 +42,10 @@ export class ModalAuthComponent implements OnInit {
   ngOnInit(): void {
     this._setTitle();
     this.authService.errorText$.subscribe(errorText => this.errorText = errorText);
+  }
+
+  ngOnDestroy(): void {
+    this.authService.errorText$.unsubscribe();
   }
 
   submit() {
@@ -85,5 +89,10 @@ export class ModalAuthComponent implements OnInit {
       default:
         break;
     }
+  }
+
+  @HostListener('window:keydown.esc', ['$event'])
+  onEscKeyDown(event: KeyboardEvent) {
+    this.authService.closeDlg();
   }
 }
