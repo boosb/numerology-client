@@ -1,5 +1,6 @@
 .stepper {
     min-height: 68vh;
+    width: 600px;
 
     &__buttons {
         display: flex;
@@ -14,5 +15,29 @@
     &__btn-skip {
         background: #FFFFFF;
         color: #000;
+    }
+}
+
+.step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+
+
+    &__title {
+        font-size: 50px;
+        line-height: 56px;
+    }
+    &__content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-top: 40px;
+        margin-bottom: 40px;
+    }
+    &__item {
+        margin: 5px;
     }
 }

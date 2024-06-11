@@ -8,11 +8,12 @@ import { IStepperConfigItem } from '../../../../interfaces/stepper-config-item.i
 @Component({
   selector: 'app-stepper-view-one',
   standalone: true,
-  imports: [
-    StepperItemComponent
-  ],
+  imports: [StepperItemComponent],
   templateUrl: './stepper-view-one.component.html',
-  styleUrl: './stepper-view-one.component.scss'
+  styleUrls: [
+    './stepper-view-one.component.scss',
+    '../../stepper.component.scss'
+  ]
 })
 export class StepperViewOneComponent {
   iconConfig: IIconConfig = IconConfig;

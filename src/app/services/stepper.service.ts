@@ -8,7 +8,7 @@ import { StepperConfig } from '../components/stepper/stepper.config';
 export class StepperService {
   constructor() {}
 
-  stepId$ = new BehaviorSubject<number>(1);
+  stepId$ = new BehaviorSubject<number>(5);
 
   setStepId(id: number) {
     this.stepId$.next(id);

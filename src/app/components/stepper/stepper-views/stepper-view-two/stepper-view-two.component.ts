@@ -8,7 +8,10 @@ import { IStepperConfigItem } from '../../../../interfaces/stepper-config-item.i
   standalone: true,
   imports: [CustomSelectComponent],
   templateUrl: './stepper-view-two.component.html',
-  styleUrl: './stepper-view-two.component.scss'
+  styleUrls: [
+    './stepper-view-two.component.scss',
+    '../../stepper.component.scss'
+  ]
 })
 export class StepperViewTwoComponent {
   step: IStepperConfigItem = this.stepperService.getCurrentStep();
