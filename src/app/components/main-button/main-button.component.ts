@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { TYPES } from '../modal-auth/modal-auth.component';
-import { AppService } from '../../services/app.service';
 import { CommonModule } from '@angular/common';
 import { IUser } from '../../interfaces/user.interface';
 
@@ -17,8 +16,7 @@ export class MainButtonComponent implements OnInit, OnDestroy {
   public user: IUser | null = null;
 
   constructor(
-    private authService: AuthService,
-    public appService: AppService
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {

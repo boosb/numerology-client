@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpErrorResponse } from '@angular/common/http';
 import { Observable, catchError, switchMap, throwError } from 'rxjs';
-
 import { AuthService } from '../services/auth.service';
-import { AppService } from '../services/app.service';
 
 @Injectable()
 export class RefreshInterceptor implements HttpInterceptor {
@@ -11,7 +9,6 @@ export class RefreshInterceptor implements HttpInterceptor {
 
     constructor(
         private authService: AuthService,
-        private appService: AppService
     ) {}
 
     private isRefreshing = false;

@@ -1,0 +1,25 @@
+li {
+    list-style-type: none;
+    position: relative;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 21px;
+    margin-bottom: 11px;
+    &::before {
+        position: absolute;
+        content:url('../../../../../assets/images/star-li.svg');
+        top: 0px;
+        left: -30px;
+    }
+}
+
+.wrapper {
+    padding: 40px;
+    background-color: #fff;
+    border-radius: 20px;
+    margin: 40px 0;
+}
+
+.sub-title {
+    text-align: center;
+}

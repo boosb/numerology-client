@@ -1,6 +1,6 @@
 .progress-bar {
     margin-bottom: 40px;
-    width: 675px;
+    width: var(--stepper-progress-bar-width);
     &__content {
         display: flex;
         justify-content: space-between;
@@ -31,7 +31,7 @@
     &__empity-line {
         position: absolute;
         height: 6px;
-        width: 675px;
+        width: var(--stepper-progress-bar-width);
         border-radius: 10px;
         background-color: #fff;
     }

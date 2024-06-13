@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { IStepperConfigItem } from '../../../../interfaces/stepper-config-item.interface';
-import { StepperService } from '../../../../services/stepper.service';
 import { CustomSelectComponent } from '../../../custom-select/custom-select.component';
 
 @Component({
@@ -13,10 +11,4 @@ import { CustomSelectComponent } from '../../../custom-select/custom-select.comp
     '../../stepper.component.scss'
   ]
 })
-export class StepperViewThreeComponent {
-  step: IStepperConfigItem = this.stepperService.getCurrentStep();
-
-  constructor(
-    private stepperService: StepperService
-  ) {}
-}
+export class StepperViewThreeComponent {}

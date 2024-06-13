@@ -45,19 +45,20 @@ export const IconConfig: IIconConfig = {
     STEP_15_ICON_4: 'assets/images/stepper-icons/step-15/step-15_icon-4.svg',
 
     // Stepper (zodiac-signs)
-    ARIES: 'assets/images/stepper-icons/zodiac-signs/aries.svg',
-    AQUARIUS: 'assets/images/stepper-icons/zodiac-signs/aquarius.svg',
-    CANCER: 'assets/images/stepper-icons/zodiac-signs/cancer.svg',
-    CAPRICOM: 'assets/images/stepper-icons/zodiac-signs/capricom.svg',
-    GEMINI: 'assets/images/stepper-icons/zodiac-signs/gemini.svg',
-    LEO: 'assets/images/stepper-icons/zodiac-signs/leo.svg',
-    LIBRA: 'assets/images/stepper-icons/zodiac-signs/libra.svg',
-    PISCES: 'assets/images/stepper-icons/zodiac-signs/pisces.svg',
-    SAGITTARIUS: 'assets/images/stepper-icons/zodiac-signs/sagittarius.svg',
-    SCORPIO: 'assets/images/stepper-icons/zodiac-signs/scorpio.svg',
-    TAURUS: 'assets/images/stepper-icons/zodiac-signs/taurus.svg',
-    VIRGO: 'assets/images/stepper-icons/zodiac-signs/virgo.svg',
+    ARIES: 'assets/images/stepper-icons/zodiac-signs/zodiac-signs_aries.svg',
+    AQUARIUS: 'assets/images/stepper-icons/zodiac-signs/zodiac-signs_aquarius.svg',
+    CANCER: 'assets/images/stepper-icons/zodiac-signs/zodiac-signs_cancer.svg',
+    CAPRICOM: 'assets/images/stepper-icons/zodiac-signs/zodiac-signs_capricom.svg',
+    GEMINI: 'assets/images/stepper-icons/zodiac-signs/zodiac-signs_gemini.svg',
+    LEO: 'assets/images/stepper-icons/zodiac-signs/zodiac-signs_leo.svg',
+    LIBRA: 'assets/images/stepper-icons/zodiac-signs/zodiac-signs_libra.svg',
+    PISCES: 'assets/images/stepper-icons/zodiac-signs/zodiac-signs_pisces.svg',
+    SAGITTARIUS: 'assets/images/stepper-icons/zodiac-signs/zodiac-signs_sagittarius.svg',
+    SCORPIO: 'assets/images/stepper-icons/zodiac-signs/zodiac-signs_scorpio.svg',
+    TAURUS: 'assets/images/stepper-icons/zodiac-signs/zodiac-signs_taurus.svg',
+    VIRGO: 'assets/images/stepper-icons/zodiac-signs/zodiac-signs_virgo.svg',
 
     // Common
     BACK_ARROW: 'assets/images/back-arrow.svg',
+    STAR_LI: 'assets/images/star-li.svg',
 }

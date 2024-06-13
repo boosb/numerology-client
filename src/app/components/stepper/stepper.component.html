@@ -1,7 +1,8 @@
 <div class="stepper">
     <app-stepper-progress-bar class="stepper__progress-bar" [step]="step"></app-stepper-progress-bar>
 
-    <div class="stepper__content">    
+    <div class="step" [ngStyle]="{'width': step.width}">
+        <div class="step__title spec-title">{{ step.title }}</div>
         <div #view></div>
     </div>
 
@@ -18,5 +19,12 @@
             *ngIf="step.btnSkip"
             (click)="stepperService.nextStep()"
         >Пропустить</button>
+
+        <!-- (click)="stepperService.getDailyForecast()" -->
+        <button 
+            class="btn stepper__btn-daily-forecast" 
+            *ngIf="step.btnDailyForecast"
+            routerLink="/daily-forecast"
+        >Получить расшифровку</button>
     </div>
 </div>

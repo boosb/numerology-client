@@ -14,10 +14,22 @@
       </div>
     </div>
 
+    <!-- Основная страница -->
+     <!--
     <app-main-page *ngIf="_isMainPage()"></app-main-page>
+  -->
+    <!-- Страница первоначальных настроек -->
+    <!--
     <div class="setting-wrapper" *ngIf="_isSettingPage()">
       <app-setting-page></app-setting-page>
     </div>
+  -->
+
+    <!-- Страница прогноза 
+    <app-daily-forecast-page *ngIf="_isDailyForecast()"></app-daily-forecast-page>
+-->
+
+    <router-outlet></router-outlet>
 
     <div class="footer">
       <div class="footer__copyright">© 2024 Астропрогноз</div>

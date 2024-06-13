@@ -7,6 +7,10 @@
 	font-style: normal;
 }
 
+:root {
+	--stepper-progress-bar-width: 675px;
+}
+
 body{
     background: repeat url("assets/images/background.png");
     background-size: cover;

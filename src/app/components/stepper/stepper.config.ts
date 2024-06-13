@@ -8,6 +8,7 @@ import { StepperViewFourteenComponent } from "./stepper-views/stepper-view-fourt
 import { StepperViewNineComponent } from "./stepper-views/stepper-view-nine/stepper-view-nine.component";
 import { StepperViewOneComponent } from "./stepper-views/stepper-view-one/stepper-view-one.component";
 import { StepperViewSevenComponent } from "./stepper-views/stepper-view-seven/stepper-view-seven.component";
+import { StepperViewSeventeenComponent } from "./stepper-views/stepper-view-seventeen/stepper-view-seventeen.component";
 import { StepperViewSixComponent } from "./stepper-views/stepper-view-six/stepper-view-six.component";
 import { StepperViewSixteenComponent } from "./stepper-views/stepper-view-sixteen/stepper-view-sixteen.component";
 import { StepperViewTenComponent } from "./stepper-views/stepper-view-ten/stepper-view-ten.component";
@@ -57,7 +58,7 @@ export const StepperConfig: IStepperConfig = {
         id: 5,
         title: 'Ваше семейное положение?',
         component: StepperViewFiveComponent,
-        btnNext: false,
+        btnNext: true,
         btnSkip: true,
         width: '675px'
     },
@@ -75,7 +76,7 @@ export const StepperConfig: IStepperConfig = {
         component: StepperViewSevenComponent,
         btnNext: true,
         btnSkip: true,
-        width: '675px'
+        width: '690px'
     },
     8: {
         id: 8,
@@ -100,7 +101,7 @@ export const StepperConfig: IStepperConfig = {
         component: StepperViewTenComponent,
         btnNext: true,
         btnSkip: true,
-        width: '900px'
+        width: '1150px'
     },
     11: {
         id: 11,
@@ -151,4 +152,14 @@ export const StepperConfig: IStepperConfig = {
         width: '675px'
     },
     // todo и тут еще надо впилить хитровыебанный лоудер
+    // пока решил скипнуть лоудер
+    17: {
+        id: 17,
+        title: 'Ваша карта рождения готова',
+        component: StepperViewSeventeenComponent,
+        btnNext: false,
+        btnSkip: false,
+        btnDailyForecast: true,
+        width: '1150px'
+    },
 };

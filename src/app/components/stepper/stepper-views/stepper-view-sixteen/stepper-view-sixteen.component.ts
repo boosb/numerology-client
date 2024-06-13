@@ -5,7 +5,10 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './stepper-view-sixteen.component.html',
-  styleUrl: './stepper-view-sixteen.component.scss'
+  styleUrls: [
+    '../../stepper.component.scss',
+    './stepper-view-sixteen.component.scss'
+  ]
 })
 export class StepperViewSixteenComponent {
 

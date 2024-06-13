@@ -1,11 +1,15 @@
 import { Component } from '@angular/core';
+import { StepperItemComponent } from '../../stepper-item/stepper-item.component';
 
 @Component({
   selector: 'app-stepper-view-thirteen',
   standalone: true,
-  imports: [],
+  imports: [StepperItemComponent],
   templateUrl: './stepper-view-thirteen.component.html',
-  styleUrl: './stepper-view-thirteen.component.scss'
+  styleUrls: [
+    './stepper-view-thirteen.component.scss',
+    '../../stepper.component.scss'
+  ]
 })
 export class StepperViewThirteenComponent {
 

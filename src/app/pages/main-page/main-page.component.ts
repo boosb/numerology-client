@@ -1,14 +1,12 @@
 import { Component } from '@angular/core';
-import { TYPES } from '../modal-auth/modal-auth.component';
+import { TYPES } from '../../components/modal-auth/modal-auth.component';
 import { AuthService } from '../../services/auth.service';
-import { AppService, PAGES } from '../../services/app.service';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-main-page',
   standalone: true,
   imports: [
-    RouterOutlet,
     RouterLink
   ],
   templateUrl: './main-page.component.html',
@@ -17,7 +15,6 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 export class MainPageComponent {
   constructor(
     private authService: AuthService,
-    private appService: AppService
   ) {}
 
   showRegistrationDlg() {
@@ -28,10 +25,5 @@ export class MainPageComponent {
   showLogInDlg() {
     this.authService.setType(TYPES.login);
     this.authService.showDlg();
-  }
-
-  // todo test method
-  onSettings() {
-    this.appService.setPage(PAGES.SETTINGS);
   }
 }

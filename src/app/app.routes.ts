@@ -1,16 +1,15 @@
 import { Routes } from '@angular/router';
 import { AuthService } from './services/auth.service';
-import { AppComponent } from './app.component';
-import { AppService } from './services/app.service';
-import { SettingPageComponent } from './components/setting-page/setting-page.component';
+import { SettingPageComponent } from './pages/setting-page/setting-page.component';
+import { DailyForecastPageComponent } from './pages/daily-forecast-page/daily-forecast-page.component';
+import { MainPageComponent } from './pages/main-page/main-page.component';
 
 export const routes: Routes = [
     {
         path: '',
-        component: AppComponent,
+        component: MainPageComponent,
         providers: [
             AuthService,
-            AppService
         ]
     },
     {
@@ -18,7 +17,11 @@ export const routes: Routes = [
         component: SettingPageComponent,
         providers: [
             AuthService,
-            AppService
         ]
+    },
+    {
+        path: 'daily-forecast',
+        component: DailyForecastPageComponent,
+        providers: [   ]
     },
 ];

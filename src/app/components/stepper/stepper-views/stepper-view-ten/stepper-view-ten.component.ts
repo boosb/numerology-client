@@ -1,12 +1,18 @@
 import { Component } from '@angular/core';
+import { StepperItemComponent } from '../../stepper-item/stepper-item.component';
+import { IIconConfig } from '../../../../interfaces/icon-config.interface';
+import { IconConfig } from '../../icon.config';
 
 @Component({
   selector: 'app-stepper-view-ten',
   standalone: true,
-  imports: [],
+  imports: [StepperItemComponent],
   templateUrl: './stepper-view-ten.component.html',
-  styleUrl: './stepper-view-ten.component.scss'
+  styleUrls: [
+    './stepper-view-ten.component.scss',
+    '../../stepper.component.scss'
+  ]
 })
 export class StepperViewTenComponent {
-
+  iconConfig: IIconConfig = IconConfig;
 }

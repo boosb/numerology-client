@@ -5,5 +5,6 @@ export interface IStepperConfigItem {
     component: any;
     btnNext: boolean;
     btnSkip: boolean;
+    btnDailyForecast?: boolean;
     width?: string // Ширина шага, дефолтная 675px
 }

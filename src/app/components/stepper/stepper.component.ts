@@ -1,22 +1,18 @@
 import { AfterViewInit, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
-import { StepperItemComponent } from './stepper-item/stepper-item.component';
 import { StepperProgressBarComponent } from './stepper-progress-bar/stepper-progress-bar.component';
-import { StepperViewOneComponent } from './stepper-views/stepper-view-one/stepper-view-one.component';
-import { StepperViewTwoComponent } from './stepper-views/stepper-view-two/stepper-view-two.component';
 import { StepperConfig } from './stepper.config';
 import { StepperService } from '../../services/stepper.service';
 import { CommonModule } from '@angular/common';
 import { IStepperConfigItem } from '../../interfaces/stepper-config-item.interface';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-stepper',
   standalone: true,
   imports: [
-    //StepperItemComponent,
     CommonModule,
-    StepperProgressBarComponent,
-    //StepperViewOneComponent,
-    //StepperViewTwoComponent
+    RouterLink,
+    StepperProgressBarComponent
   ],
   templateUrl: './stepper.component.html',
   styleUrl: './stepper.component.scss'
@@ -31,7 +27,7 @@ export class StepperComponent implements OnInit, AfterViewInit, OnDestroy {
 
   constructor(
     private cdRef: ChangeDetectorRef,
-    public stepperService: StepperService
+    public stepperService: StepperService,
   ) {}
 
   ngOnInit(): void {
@@ -60,16 +56,7 @@ export class StepperComponent implements OnInit, AfterViewInit, OnDestroy {
       return;
     }
     this.viewRef.clear();
-    const componentRef = this._getCreatedComponent(stepId);
-    //this._loadDataComponent(componentRef); // todo пока непонятно нужен ли мне, посмотрим
-    
+    const componentRef = this._getCreatedComponent(stepId);    
     this.cdRef.detectChanges(); 
   }
-
- /* _loadDataComponent(componentRef: any) {
-    if(!componentRef) {
-      return;
-    }
-    Object.assign(componentRef.instance, this.step.data);
-  }*/
 }

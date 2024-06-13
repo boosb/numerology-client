@@ -1,8 +1,6 @@
-import { Component, HostListener, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AppService } from '../../services/app.service';
-import { catchError, map, of } from 'rxjs';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 export const TYPES = {
   refistration: 'refistration',
@@ -36,7 +34,6 @@ export class ModalAuthComponent implements OnInit, OnDestroy {
   
   constructor(
     public authService: AuthService,
-    public appService: AppService
   ) {}
 
   ngOnInit(): void {
