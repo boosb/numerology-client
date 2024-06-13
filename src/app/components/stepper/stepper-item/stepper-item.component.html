@@ -1,4 +1,10 @@
 <div class="item-wrapper" [ngStyle]="style">
-    <img class="item-wrapper__icon" src="{{ icon }}" alt="Icon">
+    <img 
+        *ngIf="!!icon"
+        class="item-wrapper__icon" 
+        src="{{ icon }}" 
+        alt="Icon"
+    >
+
     <div class="item-wrapper__text">{{ text }}</div>
 </div>

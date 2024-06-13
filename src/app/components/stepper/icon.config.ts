@@ -14,6 +14,50 @@ export const IconConfig: IIconConfig = {
     ICON_5: 'assets/images/stepper-icons/icon-5.svg',
     ICON_6: 'assets/images/stepper-icons/icon-6.svg',
 
+    // Stepper (Step 6)
+    STEP_6_ICON_1: 'assets/images/stepper-icons/ok.svg',
+    STEP_6_ICON_2: 'assets/images/stepper-icons/no.svg',
+
+    // Stepper (Step 7)
+    STEP_7_ICON_1: 'assets/images/stepper-icons/step-7/step-7_icon-1.svg',
+    STEP_7_ICON_2: 'assets/images/stepper-icons/step-7/step-7_icon-2.svg',
+    STEP_7_ICON_3: 'assets/images/stepper-icons/step-7/step-7_icon-3.svg',
+    STEP_7_ICON_4: 'assets/images/stepper-icons/step-7/step-7_icon-4.svg',
+    STEP_7_ICON_5: 'assets/images/stepper-icons/step-7/step-7_icon-5.svg',
+    STEP_7_ICON_6: 'assets/images/stepper-icons/step-7/step-7_icon-6.svg',
+
+    // Stepper (Step 8)
+    STEP_8_ICON_1: 'assets/images/stepper-icons/step-8/step-8_icon-1.svg',
+    STEP_8_ICON_2: 'assets/images/stepper-icons/step-8/step-8_icon-2.svg',
+    STEP_8_ICON_3: 'assets/images/stepper-icons/step-8/step-8_icon-3.svg',
+    STEP_8_ICON_4: 'assets/images/stepper-icons/step-8/step-8_icon-4.svg',
+
+    // Stepper (Step 14)
+    STEP_14_ICON_1: 'assets/images/stepper-icons/step-14/step-14_icon-1.svg',
+    STEP_14_ICON_2: 'assets/images/stepper-icons/step-14/step-14_icon-2.svg',
+    STEP_14_ICON_3: 'assets/images/stepper-icons/step-14/step-14_icon-3.svg',
+    STEP_14_ICON_4: 'assets/images/stepper-icons/step-14/step-14_icon-4.svg',
+
+    // Stepper (Step 15)
+    STEP_15_ICON_1: 'assets/images/stepper-icons/step-15/step-15_icon-1.svg',
+    STEP_15_ICON_2: 'assets/images/stepper-icons/step-15/step-15_icon-2.svg',
+    STEP_15_ICON_3: 'assets/images/stepper-icons/step-15/step-15_icon-3.svg',
+    STEP_15_ICON_4: 'assets/images/stepper-icons/step-15/step-15_icon-4.svg',
+
+    // Stepper (zodiac-signs)
+    ARIES: 'assets/images/stepper-icons/zodiac-signs/aries.svg',
+    AQUARIUS: 'assets/images/stepper-icons/zodiac-signs/aquarius.svg',
+    CANCER: 'assets/images/stepper-icons/zodiac-signs/cancer.svg',
+    CAPRICOM: 'assets/images/stepper-icons/zodiac-signs/capricom.svg',
+    GEMINI: 'assets/images/stepper-icons/zodiac-signs/gemini.svg',
+    LEO: 'assets/images/stepper-icons/zodiac-signs/leo.svg',
+    LIBRA: 'assets/images/stepper-icons/zodiac-signs/libra.svg',
+    PISCES: 'assets/images/stepper-icons/zodiac-signs/pisces.svg',
+    SAGITTARIUS: 'assets/images/stepper-icons/zodiac-signs/sagittarius.svg',
+    SCORPIO: 'assets/images/stepper-icons/zodiac-signs/scorpio.svg',
+    TAURUS: 'assets/images/stepper-icons/zodiac-signs/taurus.svg',
+    VIRGO: 'assets/images/stepper-icons/zodiac-signs/virgo.svg',
+
     // Common
     BACK_ARROW: 'assets/images/back-arrow.svg',
 }

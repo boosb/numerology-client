@@ -1,1 +1,36 @@
-<p>stepper-view-seven works!</p>
+<div class="step">
+    <div class="step__title spec-title">{{ step.title }}</div>
+
+    <div class="step__content">
+        <app-stepper-item 
+            [text]="'Финансы'" 
+            [icon]="iconConfig['STEP_7_ICON_1']"
+            [size]="{'width': 200, 'height': 200}"
+        ></app-stepper-item>
+        <app-stepper-item 
+            [text]="'Карьера'" 
+            [icon]="iconConfig['STEP_7_ICON_2']"
+            [size]="{'width': 200, 'height': 200}"
+        ></app-stepper-item>
+        <app-stepper-item 
+            [text]="'Любовь'" 
+            [icon]="iconConfig['STEP_7_ICON_3']"
+            [size]="{'width': 200, 'height': 200}"
+        ></app-stepper-item>
+        <app-stepper-item 
+            [text]="'Здоровье'" 
+            [icon]="iconConfig['STEP_7_ICON_4']"
+            [size]="{'width': 200, 'height': 200}"
+        ></app-stepper-item>
+        <app-stepper-item 
+            [text]="'Семейная жизнь'" 
+            [icon]="iconConfig['STEP_7_ICON_5']"
+            [size]="{'width': 200, 'height': 200}"
+        ></app-stepper-item>
+        <app-stepper-item 
+            [text]="'Отношения с друзьями'" 
+            [icon]="iconConfig['STEP_7_ICON_6']"
+            [size]="{'width': 200, 'height': 200}"
+        ></app-stepper-item>
+    </div>
+</div>

@@ -4,6 +4,7 @@ import { Component, Input } from '@angular/core';
 interface ISize {
   width: number;
   height: number;
+  fontSize?: number;
 }
 
 @Component({
@@ -14,19 +15,21 @@ interface ISize {
   styleUrl: './stepper-item.component.scss'
 })
 export class StepperItemComponent {
-  @Input() text: string = '';
+  @Input() text: string;
 
-  @Input() icon: string = '';
+  @Input() icon: string;
 
   @Input() size: ISize = {
     'width': 312,
-    'height': 312
+    'height': 312,
+    'fontSize': 20
   };
 
   get style() {
     return {
-      'width': `${this.size.width}px`, 
-      'height': `${this.size.height}px`
+      'width': `${this.size.width || 312}px`, 
+      'height': `${this.size.height || 312}px`,
+      'font-size': `${this.size.fontSize || 20}px`,
     };
   }
 }

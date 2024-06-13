@@ -65,4 +65,11 @@ export class StepperComponent implements OnInit, AfterViewInit, OnDestroy {
     
     this.cdRef.detectChanges(); 
   }
+
+ /* _loadDataComponent(componentRef: any) {
+    if(!componentRef) {
+      return;
+    }
+    Object.assign(componentRef.instance, this.step.data);
+  }*/
 }

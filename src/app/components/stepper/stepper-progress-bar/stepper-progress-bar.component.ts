@@ -27,6 +27,6 @@ export class StepperProgressBarComponent {
   ) {}
 
   getProgressBarWidthVH() {
-    return `${ 100 / this.totalCountStep * this.step.id }vh`;
+    return `${ 100 / this.totalCountStep * this.step.id }vh`; // todo посмотреть. могут быть проблемы и надо будет менять на px
   }
 }
