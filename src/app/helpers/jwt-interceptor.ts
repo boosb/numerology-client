@@ -6,8 +6,8 @@ import { AuthService } from '../services/auth.service';
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
     constructor(
-        private authService: AuthService
-    ) {}
+        public authService: AuthService
+    ) { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         let currentUser = this.authService.user$.value;
@@ -18,6 +18,7 @@ export class JwtInterceptor implements HttpInterceptor {
                 }
             });
         }
+        console.log(request,' >>>> request')
         return next.handle(request);
     }
 }

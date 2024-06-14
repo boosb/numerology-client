@@ -3,6 +3,7 @@ import { BehaviorSubject, EMPTY, Observable, Subject, Subscription, catchError, 
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { IUser } from '../interfaces/user.interface';
 
+// todo как будто хочется разбить на два сервиса (аус и сервис модалки)
 @Injectable({
   providedIn: 'root'
 })
@@ -19,7 +20,7 @@ export class AuthService {
 
   errorText$ = new BehaviorSubject<string>('');
 
-  setUser(user: IUser) {
+  setUser(user: IUser|null) {
     this.user$.next(user);
   }
 
@@ -55,8 +56,11 @@ export class AuthService {
     );
   }
 
-  logout(userId: number): Observable<IUser> {
-    return this.http.post<IUser>('http://localhost:3000/auth/log-out', {userId});
+  logout(userId: number): Observable<any> {
+    return this.http.post<IUser>('http://localhost:3000/auth/log-out', {userId}).pipe(
+      map(() => this.setUser(null)),
+      catchError(error => of(this.setErrorText(error.error.message)))
+    );
   }
 
   registration(user: IUser): Observable<any> { // todo вынести в соответствующий сервис

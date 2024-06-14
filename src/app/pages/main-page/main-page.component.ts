@@ -1,12 +1,15 @@
 import { Component } from '@angular/core';
-import { TYPES } from '../../components/modal-auth/modal-auth.component';
+import { ModalAuthComponent, TYPES } from '../../components/modal-auth/modal-auth.component';
 import { AuthService } from '../../services/auth.service';
 import { RouterLink } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-main-page',
   standalone: true,
   imports: [
+    CommonModule,
+    ModalAuthComponent,
     RouterLink
   ],
   templateUrl: './main-page.component.html',
@@ -14,7 +17,7 @@ import { RouterLink } from '@angular/router';
 })
 export class MainPageComponent {
   constructor(
-    private authService: AuthService,
+    public authService: AuthService,
   ) {}
 
   showRegistrationDlg() {

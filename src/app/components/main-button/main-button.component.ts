@@ -8,6 +8,7 @@ import { IUser } from '../../interfaces/user.interface';
   selector: 'app-main-button',
   standalone: true,
   imports: [CommonModule],
+ // providers: [AuthService],
   templateUrl: './main-button.component.html',
   styleUrl: './main-button.component.scss'
 })
@@ -36,7 +37,7 @@ export class MainButtonComponent implements OnInit, OnDestroy {
     if(!this.user || !this.user.id) {
       return;
     }
-    console.log('hello')
-    this.authService.logout(this.user.id).subscribe(user => this.authService.setUser(user));
+
+    this.authService.logout(this.user.id).subscribe();
   }
 }

@@ -1,0 +1,15 @@
+.daily-forecast-item {
+    border-bottom: 1.5px solid #C0C0C0;
+
+    &__title {
+        font-size: 20px;
+        font-weight: 400;
+        margin-bottom: 10px;
+    }
+
+    &__value {
+        text-transform: uppercase;
+        color: #A347C4;
+        margin-bottom: 20px;
+    }
+}

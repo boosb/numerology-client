@@ -42,7 +42,7 @@ export class ModalAuthComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.authService.errorText$.unsubscribe();
+    //this.authService.errorText$.unsubscribe();
   }
 
   submit() {
@@ -63,7 +63,7 @@ export class ModalAuthComponent implements OnInit, OnDestroy {
     this.authService.registration({
       email: this.authForm.value.email as string,
       password: this.authForm.value.password as string
-    }).subscribe()
+    }).subscribe();
   }
 
   _login() {
@@ -75,7 +75,6 @@ export class ModalAuthComponent implements OnInit, OnDestroy {
 
   _setTitle() {
     const { value } = this.authService.dlgType$;
-    console.log(value, ' >>> this.type----1111')
     switch(value) {
       case TYPES.refistration:
         this.title = 'Регистрация';
