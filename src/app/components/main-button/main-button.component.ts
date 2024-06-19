@@ -3,12 +3,12 @@ import { AuthService } from '../../services/auth.service';
 import { TYPES } from '../modal-auth/modal-auth.component';
 import { CommonModule } from '@angular/common';
 import { IUser } from '../../interfaces/user.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main-button',
   standalone: true,
   imports: [CommonModule],
- // providers: [AuthService],
   templateUrl: './main-button.component.html',
   styleUrl: './main-button.component.scss'
 })
@@ -17,7 +17,8 @@ export class MainButtonComponent implements OnInit, OnDestroy {
   public user: IUser | null = null;
 
   constructor(
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -34,10 +35,14 @@ export class MainButtonComponent implements OnInit, OnDestroy {
   }
 
   logout() {
-    if(!this.user || !this.user.id) {
+    if(!this.user) {
       return;
     }
 
-    this.authService.logout(this.user.id).subscribe();
+    this.authService.logout().subscribe();
+  }
+
+  onProfile() {
+    this.router.navigateByUrl('/profile');
   }
 }

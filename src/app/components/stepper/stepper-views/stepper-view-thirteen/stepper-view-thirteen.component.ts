@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { StepperItemComponent } from '../../stepper-item/stepper-item.component';
+import { StepperViewItemComponent } from '../stepper-view-item/stepper-view-item.component';
 
 @Component({
   selector: 'app-stepper-view-thirteen',
@@ -11,6 +12,6 @@ import { StepperItemComponent } from '../../stepper-item/stepper-item.component'
     '../../stepper.component.scss'
   ]
 })
-export class StepperViewThirteenComponent {
+export class StepperViewThirteenComponent extends StepperViewItemComponent {
 
 }

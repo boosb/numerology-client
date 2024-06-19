@@ -1,5 +1,5 @@
 <div class="step__content">
-    <app-custom-select class="step__item" [key]="'day'"></app-custom-select>
-    <app-custom-select class="step__item" [key]="'month'"></app-custom-select>
-    <app-custom-select class="step__item" [key]="'year'"></app-custom-select>
+    <form [formGroup]="form" action="">
+        <input type="date" class="custom-input-date" formControlName="dateBirth" (change)="onDateBirth()">
+    </form>
 </div>

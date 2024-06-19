@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
+import { IStepperConfigItem } from '../../../../interfaces/stepper-config-item.interface';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { StepperService } from '../../../../services/stepper.service';
 
 @Component({
   selector: 'app-stepper-view-sixteen',
   standalone: true,
-  imports: [],
+  imports: [ReactiveFormsModule],
   templateUrl: './stepper-view-sixteen.component.html',
   styleUrls: [
     '../../stepper.component.scss',
@@ -11,5 +14,25 @@ import { Component } from '@angular/core';
   ]
 })
 export class StepperViewSixteenComponent {
+  // todo ваще 4 и 16 шаг похожи, мб оформить наследование по типу StepperViewItemComponent (мб можно подогнать сюда шаги 2 и 3)
+  private step: IStepperConfigItem = this.stepperService.getCurrentStep();
 
+  form = new FormGroup({
+    name: new FormControl(),
+  });
+
+  get name() {
+    return this.form.controls.name as FormControl;
+  }
+
+  constructor(
+    private stepperService: StepperService
+  ) {}
+
+  onNameChange() {
+    const {name} = this.form.value;
+    const {fieldForUpdate} = this.step;
+
+    this.stepperService.dataForSave[fieldForUpdate] = name;
+  }
 }

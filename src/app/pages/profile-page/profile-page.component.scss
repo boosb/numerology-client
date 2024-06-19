@@ -58,7 +58,12 @@
     }
 
     &__main-btn {
-        width: 430px;
+        width: 530px;
+        margin: 0 20px;
+    }
+
+    &__buttons {
+        display: flex;
     }
 }
 

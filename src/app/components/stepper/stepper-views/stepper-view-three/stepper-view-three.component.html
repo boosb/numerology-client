@@ -1,5 +1,10 @@
 <div class="step__content">
-    <app-custom-select class="step__item" [key]="'hour'"></app-custom-select>
-    <div class="step__item"> : </div>
-    <app-custom-select class="step__item" [key]="'minute'"></app-custom-select>
+    <form [formGroup]="form" action="">
+        <input 
+            type="time" 
+            class="custom-input-time" 
+            formControlName="time" 
+            (change)="onTimeBirth()"
+        >
+    </form>
 </div>

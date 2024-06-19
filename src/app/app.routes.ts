@@ -4,6 +4,7 @@ import { SettingPageComponent } from './pages/setting-page/setting-page.componen
 import { DailyForecastPageComponent } from './pages/daily-forecast-page/daily-forecast-page.component';
 import { MainPageComponent } from './pages/main-page/main-page.component';
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
+import { AuthGuard } from './helpers/auth.guard';
 
 export const routes: Routes = [
     {
@@ -13,13 +14,24 @@ export const routes: Routes = [
     {
         path: 'settings',
         component: SettingPageComponent,
+
+        // todo пока что просто добавил гуард, в дальнейшем мб добавить вариативности
+        canActivate: [AuthGuard]
     },
     {
-        path: 'daily-forecast',
+        path: 'forecast',
         component: DailyForecastPageComponent,
+
+        // todo пока что просто добавил гуард, в дальнейшем мб добавить вариативности
+        canActivate: [AuthGuard]
     },
     {
         path: 'profile',
         component: ProfilePageComponent,
+
+        // todo пока что просто добавил гуард, в дальнейшем мб добавить вариативности
+        canActivate: [AuthGuard]
     },
+
+    //todo добавить **
 ];

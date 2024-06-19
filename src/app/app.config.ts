@@ -1,4 +1,4 @@
-import { ApplicationConfig, importProvidersFrom } from '@angular/core';
+import { APP_INITIALIZER, ApplicationConfig, importProvidersFrom } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { HTTP_INTERCEPTORS, HttpClientModule, provideHttpClient, withFetch, withInterceptors, withInterceptorsFromDi } from '@angular/common/http';
@@ -6,6 +6,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JwtInterceptor } from './helpers/jwt-interceptor';
 import { RefreshInterceptor } from './helpers/refresh-interceptor';
 import { AuthService } from './services/auth.service';
+import { appInitializer } from './helpers/app.initializer';
+import { UserService } from './services/user.service';
+import { ForecastService } from './services/forecast.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -19,7 +22,6 @@ export const appConfig: ApplicationConfig = {
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,
-     // deps: [AuthService],
       multi: true,
     },
 
@@ -29,6 +31,14 @@ export const appConfig: ApplicationConfig = {
       useClass: RefreshInterceptor,
       multi: true,
     },
+    { 
+      provide: APP_INITIALIZER, 
+      useFactory: appInitializer, 
+      multi: true, 
+      deps: [AuthService] 
+    },
     AuthService,
+    UserService,
+    ForecastService
   ]
 };

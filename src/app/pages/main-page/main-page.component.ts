@@ -29,4 +29,9 @@ export class MainPageComponent {
     this.authService.setType(TYPES.login);
     this.authService.showDlg();
   }
+
+  test() {
+    this.authService.refreshToken()
+            .subscribe();
+  }
 }

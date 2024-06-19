@@ -10,7 +10,7 @@
         <button 
             class="btn stepper__btn-next" 
             *ngIf="step.btnNext"
-            (click)="stepperService.nextStep()"
+            (click)="onNextStep()"
         >Продолжить</button>
 
         <!-- TODO тут надо будет добаивть логику (по первому варианту данные должны быть заполнены, по второму не обязательно) -->
@@ -20,11 +20,11 @@
             (click)="stepperService.nextStep()"
         >Пропустить</button>
 
-        <!-- (click)="stepperService.getDailyForecast()" -->
+        <!-- (click)="stepperService.getDailyForecast()" todo swap routerLink on function-->
         <button 
             class="btn stepper__btn-daily-forecast" 
             *ngIf="step.btnDailyForecast"
-            routerLink="/daily-forecast"
+            routerLink="/forecast"
         >Получить расшифровку</button>
     </div>
 </div>

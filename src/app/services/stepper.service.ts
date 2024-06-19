@@ -8,7 +8,10 @@ import { StepperConfig } from '../components/stepper/stepper.config';
 export class StepperService {
   constructor() {}
 
-  stepId$ = new BehaviorSubject<number>(17);
+  stepId$ = new BehaviorSubject<number>(1);
+
+  // todo ну и нужно впилить валидацию на каждый шаг
+  dataForSave: any = {};
 
   setStepId(id: number) {
     this.stepId$.next(id);

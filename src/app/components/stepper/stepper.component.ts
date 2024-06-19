@@ -5,6 +5,8 @@ import { StepperService } from '../../services/stepper.service';
 import { CommonModule } from '@angular/common';
 import { IStepperConfigItem } from '../../interfaces/stepper-config-item.interface';
 import { RouterLink } from '@angular/router';
+import { UserService } from '../../services/user.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-stepper',
@@ -28,6 +30,8 @@ export class StepperComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(
     private cdRef: ChangeDetectorRef,
     public stepperService: StepperService,
+    private authService: AuthService,
+    private userService: UserService
   ) {}
 
   ngOnInit(): void {
@@ -58,5 +62,25 @@ export class StepperComponent implements OnInit, AfterViewInit, OnDestroy {
     this.viewRef.clear();
     const componentRef = this._getCreatedComponent(stepId);    
     this.cdRef.detectChanges(); 
+  }
+
+  onNextStep() {
+    const currentUser = this.authService.user$.value;
+    if(!currentUser) {
+
+      // todo ну мб ошибку какую-нибудь выкинуть
+      return;
+    }
+
+    // todo валидация на все шаги
+    const saveObj = {
+      ...currentUser, 
+      ...this.stepperService.dataForSave
+    };
+
+    console.log(saveObj, ' >>> saveObj')
+
+    this.userService.updateUser(saveObj).subscribe();
+    this.stepperService.nextStep();
   }
 }

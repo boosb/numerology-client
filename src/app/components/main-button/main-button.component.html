@@ -1,7 +1,7 @@
 <button class="btn" (click)="showRegistrationDlg()" *ngIf="!user">Регистрация</button>
 
 <!-- todo сюда надо добавить метод, чтобы при клике переходили на старинцу настроек -->
-<button class="btn special-btn" *ngIf="user">
+<button class="btn special-btn" *ngIf="user" (click)="onProfile()">
     <!-- todo сюда впилим фото -->
 
     <img class="avatar" src="../../../assets/images/test-ava.avif" alt="Avatar">

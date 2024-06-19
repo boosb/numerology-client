@@ -1,7 +1,24 @@
-<div class="daily-forecast">
+<div class="daily-forecast wrapper" *ngIf="forecastService.isDaily()">
     <div class="main-title">Ежедневный прогноз</div>
 
     <div class="daily-forecast__items">
         <app-daily-forecast-item [title]="'Цифра дня'" [value]="'22'"></app-daily-forecast-item>
     </div>
+</div>
+
+
+<div class="no-cash wrapper" *ngIf="forecastService.isNoCash()">
+    <div class="content">
+        <img class="icon" src="../../../assets/images/warning-one.svg" alt="">
+        <div>Пополните баланс, чтобы получить прогноз</div>
+    </div>
+    <button class="btn">Пополнить</button>
+</div>
+
+<div class="no-data wrapper" *ngIf="forecastService.isNoData()">
+    <div class="content">
+        <img class="icon" src="../../../assets/images/warning-two.svg" alt="">
+        <div>Вы не ответили на вопросы</div>
+    </div>
+    <button class="btn" (click)="onSettings()">Ответить</button>
 </div>

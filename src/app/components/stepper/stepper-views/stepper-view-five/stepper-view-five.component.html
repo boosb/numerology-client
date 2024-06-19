@@ -3,30 +3,36 @@
         [text]="'В браке'" 
         [icon]="iconConfig['ICON_1']"
         [size]="{'width': 200, 'height': 200}"
+        (itemClick)="setTest($event)"
     ></app-stepper-item>
     <app-stepper-item 
         [text]="'Помолвлен(а)'" 
         [icon]="iconConfig['ICON_2']"
         [size]="{'width': 200, 'height': 200}"
+        (itemClick)="setTest($event)"
     ></app-stepper-item>
     <app-stepper-item 
         [text]="'В отношениях'" 
         [icon]="iconConfig['ICON_3']"
         [size]="{'width': 200, 'height': 200}"
+        (itemClick)="setTest($event)"
     ></app-stepper-item>
     <app-stepper-item 
         [text]="'Запутано'"
         [icon]="iconConfig['ICON_4']"
         [size]="{'width': 200, 'height': 200}"
+        (itemClick)="setTest($event)"
     ></app-stepper-item>
     <app-stepper-item
         [text]="'Не в отношениях'" 
         [icon]="iconConfig['ICON_5']"
         [size]="{'width': 200, 'height': 200}"
+        (itemClick)="setTest($event)"
     ></app-stepper-item>
     <app-stepper-item 
         [text]="'В разводе'" 
         [icon]="iconConfig['ICON_6']"
         [size]="{'width': 200, 'height': 200}"
+        (itemClick)="setTest($event)"
     ></app-stepper-item>
 </div>

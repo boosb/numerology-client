@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 interface ISize {
   width: number;
@@ -25,11 +25,17 @@ export class StepperItemComponent {
     'fontSize': 20
   };
 
+  @Output() itemClick = new EventEmitter();
+
   get style() {
     return {
       'width': `${this.size.width || 312}px`, 
       'height': `${this.size.height || 312}px`,
       'font-size': `${this.size.fontSize || 20}px`,
     };
+  }
+
+  public getText() {
+    this.itemClick.emit(this.text);
   }
 }

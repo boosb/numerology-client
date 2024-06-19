@@ -1,3 +1,11 @@
 <div class="step__content">
-    <input type="text" class="custom-input-text" placeholder="введите имя">
+    <form [formGroup]="form" action="">
+        <input 
+            type="text" 
+            class="custom-input-text" 
+            placeholder="введите имя"
+            formControlName="name"
+            (change)="onNameChange()"
+        >
+    </form>
 </div>

@@ -6,5 +6,6 @@ export interface IStepperConfigItem {
     btnNext: boolean;
     btnSkip: boolean;
     btnDailyForecast?: boolean;
-    width?: string // Ширина шага, дефолтная 675px
+    width?: string; // Ширина шага, дефолтная 675px
+    fieldForUpdate: string; // поле юзера в БД для обновление (не может быть пустым, так как каждый step нужен для заполнения какого-то поля в БД)
 }

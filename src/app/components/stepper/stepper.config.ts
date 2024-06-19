@@ -28,7 +28,8 @@ export const StepperConfig: IStepperConfig = {
         component: StepperViewOneComponent,
         btnNext: true,
         btnSkip: false,
-        width: '675px'
+        width: '675px',
+        fieldForUpdate: 'gender'
     },
     2: {
         id: 2,
@@ -36,7 +37,8 @@ export const StepperConfig: IStepperConfig = {
         component: StepperViewTwoComponent,
         btnNext: true,
         btnSkip: false,
-        width: '675px'
+        width: '675px',
+        fieldForUpdate: 'dateBirth'
     },
     3: {
         id: 3,
@@ -44,7 +46,8 @@ export const StepperConfig: IStepperConfig = {
         component: StepperViewThreeComponent,
         btnNext: true,
         btnSkip: true,
-        width: '675px'
+        width: '675px',
+        fieldForUpdate: 'timeBirth'
     },
     4: {
         id: 4,
@@ -52,7 +55,8 @@ export const StepperConfig: IStepperConfig = {
         component: StepperViewFourComponent,
         btnNext: true,
         btnSkip: false,
-        width: '675px'
+        width: '675px',
+        fieldForUpdate: 'placeBirth'
     },
     5: {
         id: 5,
@@ -60,7 +64,8 @@ export const StepperConfig: IStepperConfig = {
         component: StepperViewFiveComponent,
         btnNext: true,
         btnSkip: true,
-        width: '675px'
+        width: '675px',
+        fieldForUpdate: 'familyStatus'
     },
     6: {
         id: 6,
@@ -68,7 +73,8 @@ export const StepperConfig: IStepperConfig = {
         component: StepperViewSixComponent,
         btnNext: true,
         btnSkip: false,
-        width: '675px'
+        width: '675px',
+        fieldForUpdate: 'isCompiledBirthChart'
     },
     7: {
         id: 7,
@@ -76,7 +82,8 @@ export const StepperConfig: IStepperConfig = {
         component: StepperViewSevenComponent,
         btnNext: true,
         btnSkip: true,
-        width: '690px'
+        width: '690px',
+        fieldForUpdate: 'importantTopics'
     },
     8: {
         id: 8,
@@ -84,7 +91,8 @@ export const StepperConfig: IStepperConfig = {
         component: StepperViewEightComponent,
         btnNext: true,
         btnSkip: true,
-        width: '900px'
+        width: '900px',
+        fieldForUpdate: 'element'
     },
     9: {
         id: 9,
@@ -93,7 +101,8 @@ export const StepperConfig: IStepperConfig = {
         component: StepperViewNineComponent,
         btnNext: true,
         btnSkip: true,
-        width: '900px'
+        width: '900px',
+        fieldForUpdate: 'characterTraits'
     },
     10: {
         id: 10,
@@ -101,7 +110,8 @@ export const StepperConfig: IStepperConfig = {
         component: StepperViewTenComponent,
         btnNext: true,
         btnSkip: true,
-        width: '1150px'
+        width: '1150px',
+        fieldForUpdate: 'goodZodiacSigns'
     },
     11: {
         id: 11,
@@ -109,7 +119,8 @@ export const StepperConfig: IStepperConfig = {
         component: StepperViewElevenComponent,
         btnNext: true,
         btnSkip: true,
-        width: '900px'
+        width: '900px',
+        fieldForUpdate: 'understandingEnvironment'
     },
     12: {
         id: 12,
@@ -117,7 +128,8 @@ export const StepperConfig: IStepperConfig = {
         component: StepperViewTwelveComponent,
         btnNext: true,
         btnSkip: true,
-        width: '900px'
+        width: '900px',
+        fieldForUpdate: 'loveLanguage'
     },
     13: {
         id: 13,
@@ -125,7 +137,8 @@ export const StepperConfig: IStepperConfig = {
         component: StepperViewThirteenComponent,
         btnNext: true,
         btnSkip: true,
-        width: '900px'
+        width: '900px',
+        fieldForUpdate: 'lifeAspect'
     },
     14: {
         id: 14,
@@ -133,7 +146,8 @@ export const StepperConfig: IStepperConfig = {
         component: StepperViewFourteenComponent,
         btnNext: true,
         btnSkip: true,
-        width: '900px'
+        width: '900px',
+        fieldForUpdate: 'favoriteActivity'
     },
     15: {
         id: 15,
@@ -141,7 +155,8 @@ export const StepperConfig: IStepperConfig = {
         component: StepperViewFifteenComponent,
         btnNext: true,
         btnSkip: true,
-        width: '900px'
+        width: '900px',
+        fieldForUpdate: 'wantsLive'
     },
     16: {
         id: 16,
@@ -149,7 +164,8 @@ export const StepperConfig: IStepperConfig = {
         component: StepperViewSixteenComponent,
         btnNext: true,
         btnSkip: true,
-        width: '675px'
+        width: '675px',
+        fieldForUpdate: 'name'
     },
     // todo и тут еще надо впилить хитровыебанный лоудер
     // пока решил скипнуть лоудер
@@ -160,6 +176,7 @@ export const StepperConfig: IStepperConfig = {
         btnNext: false,
         btnSkip: false,
         btnDailyForecast: true,
-        width: '1150px'
+        width: '1150px',
+        fieldForUpdate: '' // todo а вот тут эта фигня не нужна
     },
 };

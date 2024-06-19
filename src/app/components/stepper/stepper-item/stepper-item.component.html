@@ -1,4 +1,4 @@
-<div class="item-wrapper" [ngStyle]="style">
+<div class="item-wrapper" [ngStyle]="style" (click)="getText()">
     <img 
         *ngIf="!!icon"
         class="item-wrapper__icon" 

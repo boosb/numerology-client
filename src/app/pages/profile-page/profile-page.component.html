@@ -1,7 +1,7 @@
 <div class="profile">
     <div class="profile__header">
         <div class="profile__title">Профиль</div>
-        <button class="btn profile__btn-edit">Редактировать</button>
+        <button class="btn profile__btn-edit" (click)="onSettings()">Редактировать</button>
     </div>
 
     <div class="profile__content">
@@ -37,5 +37,8 @@
         </div>
     </div>
 
-    <button  class="btn profile__main-btn">Получить ежедневный прогноз</button>
+    <div class="profile__buttons">
+        <button class="btn profile__main-btn" (click)="onForecastPage()">Получить ежедневный прогноз - 10 т.</button>
+        <button class="btn profile__main-btn" (click)="onForecastPage()">Получить еженедельный прогноз - 100 т.</button>
+    </div>
 </div>
