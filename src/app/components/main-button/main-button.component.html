@@ -1,12 +1,11 @@
 <button class="btn" (click)="showRegistrationDlg()" *ngIf="!user">Регистрация</button>
 
-<!-- todo сюда надо добавить метод, чтобы при клике переходили на старинцу настроек -->
 <button class="btn special-btn" *ngIf="user" (click)="onProfile()">
     <!-- todo сюда впилим фото -->
 
     <img class="avatar" src="../../../assets/images/test-ava.avif" alt="Avatar">
 
     {{ user.email }}
-    <!-- todo сюда впилим иконку выхода -->
+    
     <img class="exit-icon" src="../../../assets/images/exit.svg" alt="Exit" (click)="logout()">
 </button>

@@ -9,8 +9,17 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 120px;
+
     &__logo {
         display: flex;
+    }
+
+    &__buttons {
+        display: flex;
+    }
+
+    &__btn {
+        margin: 0 5px;
     }
 }
 
