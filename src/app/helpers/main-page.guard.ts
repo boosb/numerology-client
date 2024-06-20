@@ -5,7 +5,7 @@ import { AuthService } from "../services/auth.service";
 @Injectable({ 
     providedIn: 'root' 
 })
-export class AuthGuard implements CanActivate {
+export class MainPageGuard implements CanActivate {
 
     constructor(
         private router: Router,
@@ -13,12 +13,12 @@ export class AuthGuard implements CanActivate {
     ) {}
     
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        // todo ну и как будто нужна проверка на подтвержденный емаил
+        // если пользователь авторизован, то перенаправляем его на страницу профиля
         if (this.authService.currentUser) {
-            return true;
+            this.router.navigate(['/profile'], { queryParams: { returnUrl: state.url } });
+            return false;
         }
 
-        this.router.navigate([''], { queryParams: { returnUrl: state.url } });
-        return false;
+        return true;
     }
 }

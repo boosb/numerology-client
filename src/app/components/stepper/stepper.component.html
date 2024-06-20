@@ -25,11 +25,10 @@
             (click)="stepperService.nextStep()"
         >Пропустить</button>
 
-        <!-- (click)="stepperService.getDailyForecast()" todo swap routerLink on function-->
         <button 
             class="btn stepper__btn-daily-forecast" 
             *ngIf="step.btnDailyForecast"
-            routerLink="/forecast"
+            (click)="buyForecast()"
         >Получить расшифровку</button>
     </div>
 </div>

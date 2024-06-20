@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { UserService } from './user.service';
 import { IUser } from '../interfaces/user.interface';
+import { AuthService } from './auth.service';
 
 export const forecastConst = {
     DAILY: 'daily',
@@ -22,7 +23,8 @@ export class ForecastService {
     }
 
     constructor(
-        private userService: UserService
+        private userService: UserService,
+        private authService: AuthService
     ) {}
 
     setForecastType(type: string) {
@@ -46,7 +48,9 @@ export class ForecastService {
     }
 
     // todo при покупке прогноза так же должен создаваться соотвествующий объект в БД, так что надо еще сюда добавить взаимодействие с беком
-    buyForecast(currentUser: IUser, forecastType: string) {
+    // todo так же нужно сохранять купленный прогноз на определеннное время. И выдавать его (уже сохраненный прогноз) без новой покупки.
+    buyForecast(forecastType: string) {
+        const { currentUser } = this.authService;
         if(!currentUser || !currentUser.balance) {
             return;
         }

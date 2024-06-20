@@ -42,11 +42,7 @@ export class ProfilePageComponent implements OnInit, OnDestroy {
   }
 
   buyForecast(type: string) {
-    if(!this.user) {
-      return;
-    }
-
-    this.forecastService.buyForecast(this.user, type);
+    this.forecastService.buyForecast(type);
     this.router.navigateByUrl('/forecast');
   }
 }

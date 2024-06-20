@@ -5,11 +5,13 @@ import { ForecastPageComponent } from './pages/forecast-page/forecast-page.compo
 import { MainPageComponent } from './pages/main-page/main-page.component';
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 import { AuthGuard } from './helpers/auth.guard';
+import { MainPageGuard } from './helpers/main-page.guard';
 
 export const routes: Routes = [
     {
         path: '',
         component: MainPageComponent,
+        canActivate: [MainPageGuard]
     },
     {
         path: 'settings',

@@ -67,7 +67,10 @@ export class AuthService {
 
   logout(): Observable<any> {
     return this.http.post<IUser>('http://localhost:3000/auth/log-out', {}, {withCredentials: true}).pipe(
-      map(() => this.setUser(null)),
+      map(() => {
+        this.setUser(null);
+        this.router.navigateByUrl('/');
+      }),
       catchError(error => of(this.setErrorText(error.error.message)))
     );
   }

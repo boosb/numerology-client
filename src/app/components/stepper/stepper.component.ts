@@ -4,17 +4,17 @@ import { StepperConfig } from './stepper.config';
 import { StepperService } from '../../services/stepper.service';
 import { CommonModule } from '@angular/common';
 import { IStepperConfigItem } from '../../interfaces/stepper-config-item.interface';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { AuthService } from '../../services/auth.service';
 import { Subscription } from 'rxjs';
+import { ForecastService, forecastConst } from '../../services/forecast.service';
 
 @Component({
   selector: 'app-stepper',
   standalone: true,
   imports: [
     CommonModule,
-    RouterLink,
     StepperProgressBarComponent
   ],
   templateUrl: './stepper.component.html',
@@ -34,7 +34,9 @@ export class StepperComponent implements OnInit, AfterViewInit, OnDestroy {
     private cdRef: ChangeDetectorRef,
     public stepperService: StepperService,
     private authService: AuthService,
-    private userService: UserService
+    private userService: UserService,
+    private forecastService: ForecastService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -84,5 +86,11 @@ export class StepperComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this.userService.updateUser(saveObj).subscribe();
     this.stepperService.nextStep();
+  }
+
+  buyForecast() {
+    // todo пока что покупаем только "ежедневный" прогноз
+    this.forecastService.buyForecast(forecastConst.DAILY);
+    this.router.navigateByUrl('/forecast');
   }
 }
