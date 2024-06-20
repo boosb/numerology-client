@@ -1,11 +1,12 @@
 export interface IUser {
+   // [key: string]: any;
 
     // main data
     id?: number // todo пока что так
     email: string
     password: string
     token?: string // access token
-    balance?: number // todo нужен ли здесь? (by default for two forecasts)
+    balance?: number // todo нужен ли здесь? (by default for two forecasts) хочется сделать обязательным, так как баланс есть всегда, вопрост только какой
 
     name?: string // todo пока что так (important field)
     gender?: string // important field

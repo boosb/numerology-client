@@ -3,7 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 import { UserService } from './user.service';
 import { IUser } from '../interfaces/user.interface';
 
-const forecastConst = {
+export const forecastConst = {
     DAILY: 'daily',
     WEEKLY: 'weekly',
     NO_CASH: 'no-cash',
@@ -45,23 +45,71 @@ export class ForecastService {
         return this.forecastType === forecastConst.NO_CASH;
     }
 
-    // todo как будто сюда надо добавить тип прогноза, по типу определять его цену. И уже от этого отталкиваться
-    // пока сделаю более общий вариант покупки
     // todo так же надо добавить валидацию на покупку
-    buyForecast(currentUser: IUser) {
-        if(!currentUser.balance) {
+    buyForecast(currentUser: IUser, forecastType: string) {
+        if(!currentUser || !currentUser.balance) {
             return;
         }
-        const newBalance = currentUser.balance - 10;
 
-        console.log(newBalance, ' >>>> newBalance')
-        // todo валидация на все шаги
+        // устанавливаем тип прогноза
+        this.setForecastType(forecastType);
+
+        // производим валидацию данных
+        const isValidation = this._purchaseValidation(currentUser.balance);
+        if(!isValidation) {
+            return;
+        }
+
+        // покупаем прогноз, если прошли все проверки
+        this._buyForecast(currentUser);
+    }
+
+    _getForecastValue() {
+        const { DAILY, WEEKLY } = forecastConst;
+        switch(this.forecastType) {
+            case DAILY:
+                return 10;
+            case WEEKLY:
+                return 100;
+            default:
+                return 0;
+        }
+    }
+
+    _buyForecast(currentUser: IUser) {
+        const newBalance = this._getNewBalance(currentUser);
+
         const saveObj = {
             ...currentUser, 
             balance: newBalance
         };
   
         this.userService.updateUser(saveObj).subscribe();
-        this.setForecastType(forecastConst.DAILY)
+    }
+
+    _getNewBalance(currentUser: IUser) {
+        const { balance } = currentUser;
+        const forecastValue = this._getForecastValue();
+        return balance ? balance - forecastValue : 0;
+    }
+
+    _purchaseValidation(balance: number) {
+        const { NO_CASH, NO_DATA } = forecastConst;
+
+        // если стоимость проноза больше остатка средств
+        const forecastValue = this._getForecastValue();
+        if(forecastValue > balance) {
+            this.setForecastType(NO_CASH);
+            return false;
+        }
+
+        // должна быть проверка на заполнение данных 
+        const isFilled = this.userService.isMainDataFilled();
+        if(!isFilled) {
+            this.setForecastType(NO_DATA);
+            return false;
+        }
+
+        return true;
     }
 }

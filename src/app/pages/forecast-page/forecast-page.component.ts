@@ -10,10 +10,10 @@ import { IUser } from '../../interfaces/user.interface';
   selector: 'app-daily-forecast-page',
   standalone: true,
   imports: [CommonModule, DailyForecastItemComponent],
-  templateUrl: './daily-forecast-page.component.html',
-  styleUrl: './daily-forecast-page.component.scss'
+  templateUrl: './forecast-page.component.html',
+  styleUrl: './forecast-page.component.scss'
 })
-export class DailyForecastPageComponent implements OnInit, OnDestroy {
+export class ForecastPageComponent implements OnInit, OnDestroy {
 
   // todo можно так же передать инпутом из profile-page (подумать)
   public user: IUser | null = this.authService.user$.value;

@@ -2,7 +2,12 @@
     <app-stepper-progress-bar class="stepper__progress-bar" [step]="step"></app-stepper-progress-bar>
 
     <div class="step" [ngStyle]="{'width': step.width}">
-        <div class="step__title spec-title">{{ step.title }}</div>
+        <div class="step__title-wrapper">
+            <div class="step__title spec-title">{{ step.title }}</div>
+            <div class="tooltip" *ngIf="step.important">
+                <img class="tooltip__icon" src="../../../assets/images/warning-one.svg" alt="Обязательный вопрос">
+            </div>
+        </div>
         <div #view></div>
     </div>
 

@@ -24,4 +24,26 @@ export class UserService {
       //catchError(error => of(this.setErrorText(error.error.message)))
     );
   }
+
+  isMainDataFilled() {
+    const fieldNames = ['gender', 'dateBirth', 'familyStatus', 'goodZodiacSigns', 'favoriteActivity', 'name'];
+    const currentUser = this.authService.user$.value;
+    let result = true;
+
+    // todo хочется инкапсулировать этот функционал в соответствующем геттере
+    if(!currentUser) {
+      return;
+    }
+
+    fieldNames.forEach(name => {
+      const userField = currentUser[name as keyof IUser];
+      console.log(userField, ' >>>> userField');
+
+      if(!userField) {
+        result = false;
+      }
+    });
+
+    return result;
+  }
 }

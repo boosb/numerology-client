@@ -4,7 +4,7 @@ import { IUser } from '../../interfaces/user.interface';
 import { Router } from '@angular/router';
 import { StepperService } from '../../services/stepper.service';
 import { CommonModule } from '@angular/common';
-import { ForecastService } from '../../services/forecast.service';
+import { ForecastService, forecastConst } from '../../services/forecast.service';
 
 @Component({
   selector: 'app-profile-page',
@@ -15,6 +15,8 @@ import { ForecastService } from '../../services/forecast.service';
 })
 export class ProfilePageComponent implements OnInit, OnDestroy {
   public user: IUser | null = this.authService.user$.value;
+
+  public forecastTypes = forecastConst;
 
   constructor(
     public authService: AuthService,
@@ -37,15 +39,12 @@ export class ProfilePageComponent implements OnInit, OnDestroy {
     this.router.navigateByUrl('/settings');
   }
 
-  //todo пока что один метод на все, потом надо дабвить вариативность в зависимости от типа прогноза
-  onForecastPage() {
-    console.log('hi-111')
+  buyForecast(type: string) {
     if(!this.user) {
       return;
     }
-    this.forecastService.buyForecast(this.user);
+
+    this.forecastService.buyForecast(this.user, type);
     this.router.navigateByUrl('/forecast');
   }
-
-  
 }

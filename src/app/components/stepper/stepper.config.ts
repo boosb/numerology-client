@@ -29,7 +29,8 @@ export const StepperConfig: IStepperConfig = {
         btnNext: true,
         btnSkip: false,
         width: '675px',
-        fieldForUpdate: 'gender'
+        fieldForUpdate: 'gender',
+        important: true
     },
     2: {
         id: 2,
@@ -38,7 +39,8 @@ export const StepperConfig: IStepperConfig = {
         btnNext: true,
         btnSkip: false,
         width: '675px',
-        fieldForUpdate: 'dateBirth'
+        fieldForUpdate: 'dateBirth',
+        important: true
     },
     3: {
         id: 3,
@@ -47,7 +49,8 @@ export const StepperConfig: IStepperConfig = {
         btnNext: true,
         btnSkip: true,
         width: '675px',
-        fieldForUpdate: 'timeBirth'
+        fieldForUpdate: 'timeBirth',
+        important: false
     },
     4: {
         id: 4,
@@ -56,7 +59,8 @@ export const StepperConfig: IStepperConfig = {
         btnNext: true,
         btnSkip: false,
         width: '675px',
-        fieldForUpdate: 'placeBirth'
+        fieldForUpdate: 'placeBirth',
+        important: false
     },
     5: {
         id: 5,
@@ -65,7 +69,8 @@ export const StepperConfig: IStepperConfig = {
         btnNext: true,
         btnSkip: true,
         width: '675px',
-        fieldForUpdate: 'familyStatus'
+        fieldForUpdate: 'familyStatus',
+        important: true
     },
     6: {
         id: 6,
@@ -74,7 +79,8 @@ export const StepperConfig: IStepperConfig = {
         btnNext: true,
         btnSkip: false,
         width: '675px',
-        fieldForUpdate: 'isCompiledBirthChart'
+        fieldForUpdate: 'isCompiledBirthChart',
+        important: false
     },
     7: {
         id: 7,
@@ -83,7 +89,8 @@ export const StepperConfig: IStepperConfig = {
         btnNext: true,
         btnSkip: true,
         width: '690px',
-        fieldForUpdate: 'importantTopics'
+        fieldForUpdate: 'importantTopics',
+        important: false
     },
     8: {
         id: 8,
@@ -92,7 +99,8 @@ export const StepperConfig: IStepperConfig = {
         btnNext: true,
         btnSkip: true,
         width: '900px',
-        fieldForUpdate: 'element'
+        fieldForUpdate: 'element',
+        important: false
     },
     9: {
         id: 9,
@@ -102,7 +110,8 @@ export const StepperConfig: IStepperConfig = {
         btnNext: true,
         btnSkip: true,
         width: '900px',
-        fieldForUpdate: 'characterTraits'
+        fieldForUpdate: 'characterTraits',
+        important: false
     },
     10: {
         id: 10,
@@ -111,7 +120,8 @@ export const StepperConfig: IStepperConfig = {
         btnNext: true,
         btnSkip: true,
         width: '1150px',
-        fieldForUpdate: 'goodZodiacSigns'
+        fieldForUpdate: 'goodZodiacSigns',
+        important: true
     },
     11: {
         id: 11,
@@ -120,7 +130,8 @@ export const StepperConfig: IStepperConfig = {
         btnNext: true,
         btnSkip: true,
         width: '900px',
-        fieldForUpdate: 'understandingEnvironment'
+        fieldForUpdate: 'understandingEnvironment',
+        important: false
     },
     12: {
         id: 12,
@@ -129,7 +140,8 @@ export const StepperConfig: IStepperConfig = {
         btnNext: true,
         btnSkip: true,
         width: '900px',
-        fieldForUpdate: 'loveLanguage'
+        fieldForUpdate: 'loveLanguage',
+        important: false
     },
     13: {
         id: 13,
@@ -138,7 +150,8 @@ export const StepperConfig: IStepperConfig = {
         btnNext: true,
         btnSkip: true,
         width: '900px',
-        fieldForUpdate: 'lifeAspect'
+        fieldForUpdate: 'lifeAspect',
+        important: false
     },
     14: {
         id: 14,
@@ -147,7 +160,8 @@ export const StepperConfig: IStepperConfig = {
         btnNext: true,
         btnSkip: true,
         width: '900px',
-        fieldForUpdate: 'favoriteActivity'
+        fieldForUpdate: 'favoriteActivity',
+        important: true
     },
     15: {
         id: 15,
@@ -156,7 +170,8 @@ export const StepperConfig: IStepperConfig = {
         btnNext: true,
         btnSkip: true,
         width: '900px',
-        fieldForUpdate: 'wantsLive'
+        fieldForUpdate: 'wantsLive',
+        important: false
     },
     16: {
         id: 16,
@@ -165,7 +180,8 @@ export const StepperConfig: IStepperConfig = {
         btnNext: true,
         btnSkip: true,
         width: '675px',
-        fieldForUpdate: 'name'
+        fieldForUpdate: 'name',
+        important: true
     },
     // todo и тут еще надо впилить хитровыебанный лоудер
     // пока решил скипнуть лоудер
@@ -177,6 +193,7 @@ export const StepperConfig: IStepperConfig = {
         btnSkip: false,
         btnDailyForecast: true,
         width: '1150px',
-        fieldForUpdate: '' // todo а вот тут эта фигня не нужна
+        fieldForUpdate: '', // todo а вот тут эта фигня не нужна
+        important: false
     },
 };

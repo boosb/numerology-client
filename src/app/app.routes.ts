@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { AuthService } from './services/auth.service';
 import { SettingPageComponent } from './pages/setting-page/setting-page.component';
-import { DailyForecastPageComponent } from './pages/daily-forecast-page/daily-forecast-page.component';
+import { ForecastPageComponent } from './pages/forecast-page/forecast-page.component';
 import { MainPageComponent } from './pages/main-page/main-page.component';
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 import { AuthGuard } from './helpers/auth.guard';
@@ -20,7 +20,7 @@ export const routes: Routes = [
     },
     {
         path: 'forecast',
-        component: DailyForecastPageComponent,
+        component: ForecastPageComponent,
 
         // todo пока что просто добавил гуард, в дальнейшем мб добавить вариативности
         canActivate: [AuthGuard]

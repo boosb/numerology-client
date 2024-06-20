@@ -14,6 +14,7 @@ export class AuthService {
     private router: Router
   ) {}
 
+  // todo добавить геттер currentUser
   user$ = new BehaviorSubject<IUser|null>(null);
 
   isShow$ = new BehaviorSubject<boolean>(false);
@@ -95,11 +96,12 @@ export class AuthService {
       );
   }
 
+  // todo чет вкинул метод, но не оч разобрался
   private startRefreshTokenTimer() {
     // parse json object from base64 encoded jwt token
     if(this.user$.value && this.user$.value.token) {
       const jwtToken = JSON.parse(atob(this.user$.value.token.split('.')[1]));
-      console.log(jwtToken, ' >>> jwtToken')
+
       // set a timeout to refresh the token a minute before it expires
       const expires = new Date(jwtToken.exp * 1000);
       const timeout = expires.getTime() - Date.now() - (60 * 1000);
