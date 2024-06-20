@@ -27,23 +27,17 @@ export class UserService {
 
   isMainDataFilled() {
     const fieldNames = ['gender', 'dateBirth', 'familyStatus', 'goodZodiacSigns', 'favoriteActivity', 'name'];
-    const currentUser = this.authService.user$.value;
-    let result = true;
+    const { currentUser } = this.authService;
 
-    // todo хочется инкапсулировать этот функционал в соответствующем геттере
     if(!currentUser) {
       return;
     }
 
-    fieldNames.forEach(name => {
+    const isNoData = fieldNames.find(name => {
       const userField = currentUser[name as keyof IUser];
-      console.log(userField, ' >>>> userField');
-
-      if(!userField) {
-        result = false;
-      }
+      return !userField;
     });
 
-    return result;
+    return isNoData ? false : true;
   }
 }

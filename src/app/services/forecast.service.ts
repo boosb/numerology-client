@@ -45,7 +45,7 @@ export class ForecastService {
         return this.forecastType === forecastConst.NO_CASH;
     }
 
-    // todo так же надо добавить валидацию на покупку
+    // todo при покупке прогноза так же должен создаваться соотвествующий объект в БД, так что надо еще сюда добавить взаимодействие с беком
     buyForecast(currentUser: IUser, forecastType: string) {
         if(!currentUser || !currentUser.balance) {
             return;

@@ -17,7 +17,7 @@ import { Subscription } from 'rxjs';
 export class ProfilePageComponent implements OnInit, OnDestroy {
   private userSubs: Subscription;
 
-  public user: IUser | null = this.authService.user$.value;
+  public user: IUser | null = this.authService.currentUser;
 
   public forecastTypes = forecastConst;
 

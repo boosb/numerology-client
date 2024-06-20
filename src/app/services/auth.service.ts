@@ -9,28 +9,31 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AuthService {
+  user$ = new BehaviorSubject<IUser|null>(null);
+
+  isShow$ = new BehaviorSubject<boolean>(false);
+  
+  dlgType$ = new BehaviorSubject<string>('');
+
+  errorText$ = new BehaviorSubject<string>('');
+  
+  refreshTokenTimeout: any;
+
+  get currentUser() {
+    return this.user$.value;
+  }
+    
   constructor(
     private http: HttpClient,
     private router: Router
   ) {}
-
-  // todo добавить геттер currentUser
-  user$ = new BehaviorSubject<IUser|null>(null);
-
-  isShow$ = new BehaviorSubject<boolean>(false);
-
-  dlgType$ = new BehaviorSubject<string>('');
-
-  errorText$ = new BehaviorSubject<string>('');
-
-  refreshTokenTimeout: any;
 
   setUser(user: IUser|null) {
     this.user$.next(user);
   }
 
   isLoggedIn() {
-    return !!this.user$.value;
+    return !!this.currentUser;
   }
 
   showDlg() {
@@ -99,13 +102,13 @@ export class AuthService {
   // todo чет вкинул метод, но не оч разобрался
   private startRefreshTokenTimer() {
     // parse json object from base64 encoded jwt token
-    if(this.user$.value && this.user$.value.token) {
-      const jwtToken = JSON.parse(atob(this.user$.value.token.split('.')[1]));
+    if(this.currentUser && this.currentUser.token) {
+      const jwtToken = JSON.parse(atob(this.currentUser.token.split('.')[1]));
 
       // set a timeout to refresh the token a minute before it expires
       const expires = new Date(jwtToken.exp * 1000);
       const timeout = expires.getTime() - Date.now() - (60 * 1000);
       this.refreshTokenTimeout = setTimeout(() => this.refreshToken().subscribe(), timeout);
     }
-}
+  }
 }

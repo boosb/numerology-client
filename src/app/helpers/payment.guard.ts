@@ -6,14 +6,14 @@ import { AuthService } from "../services/auth.service";
     providedIn: 'root' 
 })
 export class PaymentGuard implements CanActivate {
-
+     // todo нужен ли?!
     constructor(
         private router: Router,
         private authService: AuthService
     ) {}
     
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        const currentUser = this.authService.user$.value;
+        const { currentUser } = this.authService;
         if (currentUser) {
             return true;
         }

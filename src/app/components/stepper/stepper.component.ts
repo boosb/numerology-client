@@ -68,8 +68,7 @@ export class StepperComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   onNextStep() {
-    const currentUser = this.authService.user$.value;
-    if(!currentUser) {
+    if(!this.authService.currentUser) {
 
       // todo ну мб ошибку какую-нибудь выкинуть
       return;
@@ -77,7 +76,7 @@ export class StepperComponent implements OnInit, AfterViewInit, OnDestroy {
 
     // todo валидация на все шаги
     const saveObj = {
-      ...currentUser, 
+      ...this.authService.currentUser, 
       ...this.stepperService.dataForSave
     };
 
