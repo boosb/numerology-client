@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { StepperService } from '../../services/stepper.service';
 import { CommonModule } from '@angular/common';
 import { ForecastService, forecastConst } from '../../services/forecast.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-profile-page',
@@ -14,6 +15,8 @@ import { ForecastService, forecastConst } from '../../services/forecast.service'
   styleUrl: './profile-page.component.scss'
 })
 export class ProfilePageComponent implements OnInit, OnDestroy {
+  private userSubs: Subscription;
+
   public user: IUser | null = this.authService.user$.value;
 
   public forecastTypes = forecastConst;
@@ -26,12 +29,11 @@ export class ProfilePageComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    //this.user = this.authService.user$.value;
-    this.authService.user$.subscribe(user => this.user = user);
+    this.userSubs = this.authService.user$.subscribe(user => this.user = user);
   }
 
   ngOnDestroy(): void {
-    //this.authService.user$.unsubscribe();
+    this.userSubs.unsubscribe();
   }
 
   onSettings() {

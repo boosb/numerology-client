@@ -7,6 +7,7 @@ import { IStepperConfigItem } from '../../interfaces/stepper-config-item.interfa
 import { RouterLink } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { AuthService } from '../../services/auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-stepper',
@@ -23,6 +24,8 @@ export class StepperComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('view', { read: ViewContainerRef })
   private viewRef: ViewContainerRef;
 
+  private stepIdSubs: Subscription;
+
   private stepId: number;
 
   public step: IStepperConfigItem;
@@ -35,7 +38,7 @@ export class StepperComponent implements OnInit, AfterViewInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.stepperService.stepId$.subscribe(stepId => {
+    this.stepIdSubs = this.stepperService.stepId$.subscribe(stepId => {
       this.stepId = stepId;
       this.step = this.stepperService.getCurrentStep();
       this.changeView(stepId);
@@ -47,7 +50,7 @@ export class StepperComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.stepperService.stepId$.unsubscribe();
+    this.stepIdSubs.unsubscribe();
   }
 
   _getCreatedComponent(stepId: number) {

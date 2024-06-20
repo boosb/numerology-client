@@ -5,6 +5,7 @@ import { ForecastService } from '../../services/forecast.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { IUser } from '../../interfaces/user.interface';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-daily-forecast-page',
@@ -14,6 +15,7 @@ import { IUser } from '../../interfaces/user.interface';
   styleUrl: './forecast-page.component.scss'
 })
 export class ForecastPageComponent implements OnInit, OnDestroy {
+  private userSubs: Subscription;
 
   // todo можно так же передать инпутом из profile-page (подумать)
   public user: IUser | null = this.authService.user$.value;
@@ -25,13 +27,11 @@ export class ForecastPageComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.user, ' >>> USER-TEST-1')
-    this.authService.user$.subscribe(user => this.user = user);
+    this.userSubs = this.authService.user$.subscribe(user => this.user = user);
   }
 
   ngOnDestroy(): void {
-    // todo неправильно оформлена отписка, исправить!
-    //this.authService.user$.unsubscribe();
+    this.userSubs.unsubscribe();
   }
 
   onSettings() {

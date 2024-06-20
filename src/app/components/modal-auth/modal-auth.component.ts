@@ -1,6 +1,7 @@
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 export const TYPES = {
   refistration: 'refistration',
@@ -16,6 +17,8 @@ export const TYPES = {
 })
 export class ModalAuthComponent implements OnInit, OnDestroy {
   title: string = '';
+
+  private errorTextSubs: Subscription;
 
   errorText: string = '';
 
@@ -38,11 +41,11 @@ export class ModalAuthComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this._setTitle();
-    this.authService.errorText$.subscribe(errorText => this.errorText = errorText);
+    this.errorTextSubs = this.authService.errorText$.subscribe(errorText => this.errorText = errorText);
   }
 
   ngOnDestroy(): void {
-    //this.authService.errorText$.unsubscribe();
+    this.errorTextSubs.unsubscribe();
   }
 
   submit() {

@@ -4,6 +4,7 @@ import { TYPES } from '../modal-auth/modal-auth.component';
 import { CommonModule } from '@angular/common';
 import { IUser } from '../../interfaces/user.interface';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-main-button',
@@ -14,6 +15,8 @@ import { Router } from '@angular/router';
 })
 export class MainButtonComponent implements OnInit, OnDestroy {
 
+  private userSubs: Subscription;
+
   public user: IUser | null = null;
 
   constructor(
@@ -22,11 +25,11 @@ export class MainButtonComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.authService.user$.subscribe(user => this.user = user);
+    this.userSubs = this.authService.user$.subscribe(user => this.user = user);
   }
 
   ngOnDestroy(): void {
-    this.authService.user$.unsubscribe();
+    this.userSubs.unsubscribe();
   }
 
   showRegistrationDlg() {
