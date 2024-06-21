@@ -1,7 +1,11 @@
 <div class="progress-bar">
     <div class="progress-bar__content">
         <div class="progress-bar__btn-back" (click)="stepperService.previousStep()">
-            <img class="progress-bar__back-arrow" src="{{iconConfig['BACK_ARROW']}}" alt="back-arrow">
+            <img 
+                class="progress-bar__back-arrow" 
+                [src]="imgService.getImg(imgService.paths['BACK_ARROW'])" 
+                alt="back-arrow"
+            >
             <span class="progress-bar__text">Назад</span>
         </div>
     

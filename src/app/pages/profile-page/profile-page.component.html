@@ -6,32 +6,36 @@
 
     <div class="profile__content">
         <div class="profile__avatar">
-
-            <!--
-            <img class="avatar" src="../../../assets/images/test-ava.avif" alt="Avatar">
-        -->
+            <img class="avatar" [src]="imgService.getDefaultUserAvatar()" alt="Avatar">
+            <div class="avatar__edit-btn">
+                <img 
+                    class="avatar__edit-icon" 
+                    [src]="imgService.getImg(imgService.paths['EDIT_ICON'])" 
+                    alt=""
+                > 
+            </div>
         </div>
         <div class="profile__main-data">
             <div class="profile__data-item">
                 <div class="profile__item-name">Ваше имя</div>
-                <div class="profile__item-value">Иван</div>
+                <div class="profile__item-value">{{ user?.name || 'Не указано' }}</div>
             </div>
 
             <div class="profile__data-item">
                 <div class="profile__item-name">Дата рождения</div>
-                <div class="profile__item-value">16.07.1992</div>
+                <div class="profile__item-value">{{ (user?.dateBirth | date: 'dd. MM. yyyy') || 'Не указано' }}</div>
             </div>
             <div class="profile__data-item">
                 <div class="profile__item-name">Пол</div>
-                <div class="profile__item-value">Мужской</div>
+                <div class="profile__item-value">{{ user?.gender || 'Не указано' }}</div>
             </div>
             <div class="profile__data-item">
                 <div class="profile__item-name">Место рождения</div>
-                <div class="profile__item-value">Москва</div>
+                <div class="profile__item-value">{{ user?.placeBirth || 'Не указано' }}</div>
             </div>
             <div class="profile__data-item">
                 <div class="profile__item-name">Семейное положение</div>
-                <div class="profile__item-value">Не указано</div>
+                <div class="profile__item-value">{{ user?.familyStatus || 'Не указано' }}</div>
             </div>
 
         </div>

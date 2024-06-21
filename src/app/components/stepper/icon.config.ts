@@ -57,8 +57,4 @@ export const IconConfig: IIconConfig = {
     SCORPIO: 'assets/images/stepper-icons/zodiac-signs/zodiac-signs_scorpio.svg',
     TAURUS: 'assets/images/stepper-icons/zodiac-signs/zodiac-signs_taurus.svg',
     VIRGO: 'assets/images/stepper-icons/zodiac-signs/zodiac-signs_virgo.svg',
-
-    // Common
-    BACK_ARROW: 'assets/images/back-arrow.svg',
-    STAR_LI: 'assets/images/star-li.svg',
 }

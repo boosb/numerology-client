@@ -6,6 +6,7 @@ import { StepperService } from '../../services/stepper.service';
 import { CommonModule } from '@angular/common';
 import { ForecastService, forecastConst } from '../../services/forecast.service';
 import { Subscription } from 'rxjs';
+import { ImgService } from '../../services/img.service';
 
 @Component({
   selector: 'app-profile-page',
@@ -23,6 +24,7 @@ export class ProfilePageComponent implements OnInit, OnDestroy {
 
   constructor(
     public authService: AuthService,
+    public imgService: ImgService,
     private stepperService: StepperService,
     private forecastService: ForecastService,
     private router: Router

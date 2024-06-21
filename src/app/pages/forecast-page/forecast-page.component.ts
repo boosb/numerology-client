@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { IUser } from '../../interfaces/user.interface';
 import { Subscription } from 'rxjs';
+import { ImgService } from '../../services/img.service';
 
 @Component({
   selector: 'app-daily-forecast-page',
@@ -22,6 +23,7 @@ export class ForecastPageComponent implements OnInit, OnDestroy {
 
   constructor(
     public forecastService: ForecastService,
+    public imgService: ImgService,
     private authService: AuthService,
     private router: Router
   ) {}

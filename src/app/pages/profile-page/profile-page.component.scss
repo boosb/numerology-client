@@ -29,6 +29,8 @@
     &__avatar {
         min-width: 180px;
         min-height: 180px;
+        width: 180px;
+        height: 180px;
         border-radius: 50%;
         border: 1px solid #A347C4;
         margin-right: 40px;
@@ -68,6 +70,33 @@
 }
 
 .avatar {
+    position: relative;
+    left: 10px;
+    top: 10px;
+
+    min-width: 160px;
+    min-height: 160px;
     width: 160px;
     height: 160px;
+    border-radius: 50%;
+
+    &__edit-btn {
+        cursor: pointer;
+        position: relative;
+        bottom: 20px;
+        left: 145px;
+    
+        min-width: 36px;
+        min-height: 36px;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background-color: #A347C4;
+    }
+
+    &__edit-icon {
+        position: relative;
+        left: 11px;
+        top: 3px;
+    }
 }

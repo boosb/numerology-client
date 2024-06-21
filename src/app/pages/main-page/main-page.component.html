@@ -11,14 +11,20 @@
     <button class="btn" (click)="showLogInDlg()">Войти</button>
   </div>
   <div class="first-line__img">
-    <img src="../assets/images/hands.svg" alt="Numerology img one">
+    <img 
+      [src]="imgService.getImg(imgService.paths['HANDS'])" 
+      alt="Numerology img one"
+    >
   </div>
 </div>
 
 <div class="second-line withe-bg">
   <div class="second-line__wrapper">
     <div class="second-line__img">
-      <img src="../assets/images/lotus-pose.svg" alt="Numerology img lotus pose">
+      <img 
+        [src]="imgService.getImg(imgService.paths['LOTUS_POSE'])" 
+        alt="Numerology img lotus pose"
+      >
     </div>
     <div class="second-line__info">
       <div class="second-line__title main-title">
@@ -44,14 +50,20 @@
     <button class="btn extended-btn">Получить прогноз-2</button>
   </div>
   <div class="first-line__img">
-    <img src="../assets/images/lotus-pose-two.svg" alt="Numerology img lotus pose">
+    <img 
+      [src]="imgService.getImg(imgService.paths['LOTUS_POSE_TWO'])"  
+      alt="Numerology img lotus pose"
+    >
   </div>
 </div>
 
 <div class="second-line special-bg withe-text">
   <div class="second-line__wrapper">
     <div class="second-line__img">
-      <img src="../assets/images/hands-two.svg" alt="Numerology img two">
+      <img 
+        [src]="imgService.getImg(imgService.paths['HANDS_TWO'])" 
+        alt="Numerology img two"
+      >
     </div>
     <div class="second-line__info">
       <div class="second-line__title main-title withe-text">

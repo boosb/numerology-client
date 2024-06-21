@@ -9,7 +9,7 @@
 
 <div class="no-cash wrapper" *ngIf="forecastService.isNoCash()">
     <div class="content">
-        <img class="icon" src="../../../assets/images/warning-one.svg" alt="">
+        <img class="icon" [src]="imgService.getImg(imgService.paths['WARNING_ONE'])" alt="">
         <div>Пополните баланс, чтобы получить прогноз</div>
     </div>
     <button class="btn">Пополнить</button>
@@ -17,7 +17,7 @@
 
 <div class="no-data wrapper" *ngIf="forecastService.isNoData()">
     <div class="content">
-        <img class="icon" src="../../../assets/images/warning-two.svg" alt="">
+        <img class="icon" [src]="imgService.getImg(imgService.paths['WARNING_TWO'])" alt="">
         <div>Вы не ответили на вопросы</div>
     </div>
     <button class="btn" (click)="onSettings()">Ответить</button>

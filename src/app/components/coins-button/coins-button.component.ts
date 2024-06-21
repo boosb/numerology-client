@@ -4,6 +4,7 @@ import { IUser } from '../../interfaces/user.interface';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { ImgService } from '../../services/img.service';
 
 @Component({
   selector: 'app-coins-button',
@@ -19,6 +20,7 @@ export class CoinsButtonComponent implements OnInit, OnDestroy {
   public user: IUser | null = null;
 
   constructor(
+    public imgService: ImgService,
     private authService: AuthService,
     private router: Router
   ) {}

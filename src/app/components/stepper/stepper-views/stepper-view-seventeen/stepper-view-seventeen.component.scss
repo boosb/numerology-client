@@ -7,6 +7,7 @@ li {
     margin-bottom: 11px;
     &::before {
         position: absolute;
+        // todo как бы этот путь не стал проблемой
         content:url('../../../../../assets/images/star-li.svg');
         top: 0px;
         left: -30px;

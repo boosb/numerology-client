@@ -38,6 +38,6 @@ export class UserService {
       return !userField;
     });
 
-    return isNoData ? false : true;
+    return !isNoData;
   }
 }

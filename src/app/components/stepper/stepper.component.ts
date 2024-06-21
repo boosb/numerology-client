@@ -9,6 +9,11 @@ import { UserService } from '../../services/user.service';
 import { AuthService } from '../../services/auth.service';
 import { Subscription } from 'rxjs';
 import { ForecastService, forecastConst } from '../../services/forecast.service';
+import { ImgService } from '../../services/img.service';
+
+// todo надо добавить валидацию на каждый шаг!!! 1) Если данные вопроса уже есть в БД (для обязытельных), то даем возможность пропустить
+// 2) убрать кнопку продолжить у всех шагов с "итемами" и делать переход по клику на итем
+// 3) необязательные вопросы можем пропускать всегда
 
 @Component({
   selector: 'app-stepper',
@@ -31,8 +36,9 @@ export class StepperComponent implements OnInit, AfterViewInit, OnDestroy {
   public step: IStepperConfigItem;
 
   constructor(
-    private cdRef: ChangeDetectorRef,
     public stepperService: StepperService,
+    public imgService: ImgService,
+    private cdRef: ChangeDetectorRef,
     private authService: AuthService,
     private userService: UserService,
     private forecastService: ForecastService,

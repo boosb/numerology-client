@@ -1,9 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { StepperService } from '../../../services/stepper.service';
-import { IIconConfig } from '../../../interfaces/icon-config.interface';
-import { IconConfig } from '../icon.config';
 import { IStepperConfigItem } from '../../../interfaces/stepper-config-item.interface';
 import { CommonModule } from '@angular/common';
+import { ImgService } from '../../../services/img.service';
 
 @Component({
   selector: 'app-stepper-progress-bar',
@@ -18,12 +17,11 @@ export class StepperProgressBarComponent {
   
   @Input() public step: IStepperConfigItem;
 
-  public iconConfig: IIconConfig = IconConfig;
-
   public totalCountStep: number = this.stepperService.getTotalCountStep();
 
   constructor(
-    public stepperService: StepperService
+    public stepperService: StepperService,
+    public imgService: ImgService
   ) {}
 
   getProgressBarWidthVH() {

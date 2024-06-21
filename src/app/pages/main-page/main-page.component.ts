@@ -3,6 +3,7 @@ import { ModalAuthComponent, TYPES } from '../../components/modal-auth/modal-aut
 import { AuthService } from '../../services/auth.service';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { ImgService } from '../../services/img.service';
 
 @Component({
   selector: 'app-main-page',
@@ -18,6 +19,7 @@ import { CommonModule } from '@angular/common';
 export class MainPageComponent {
   constructor(
     public authService: AuthService,
+    public imgService: ImgService
   ) {}
 
   showRegistrationDlg() {

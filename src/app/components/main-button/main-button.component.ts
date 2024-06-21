@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { IUser } from '../../interfaces/user.interface';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { ImgService } from '../../services/img.service';
 
 @Component({
   selector: 'app-main-button',
@@ -20,6 +21,7 @@ export class MainButtonComponent implements OnInit, OnDestroy {
   public user: IUser | null = null;
 
   constructor(
+    public imgService: ImgService,
     private authService: AuthService,
     private router: Router
   ) {}

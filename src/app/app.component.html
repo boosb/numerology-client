@@ -2,7 +2,7 @@
   <div>
     <div class="header">
       <div class="header__logo">
-        <img src="../assets/images/logo.svg" alt="logo">
+        <img [src]="imgService.getImg(imgService.paths['LOGO'])" alt="logo">
         <div>
           <div>Астро</div>
           <div>прогноз</div>
