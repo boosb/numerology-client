@@ -45,6 +45,7 @@
         text-align: center;
         margin-right: 15px;
     }
+
     &__content {
         display: flex;
         justify-content: center;
@@ -53,8 +54,16 @@
         margin-top: 40px;
         margin-bottom: 40px;
     }
+
     &__item {
         margin: 5px;
+    }
+
+    &__error {
+        color: red;
+        font-size: 18px;
+        font-weight: 500;
+        margin-bottom: 10px;
     }
 }
 

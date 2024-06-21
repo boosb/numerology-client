@@ -76,22 +76,7 @@ export class StepperComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   onNextStep() {
-    if(!this.authService.currentUser) {
-
-      // todo ну мб ошибку какую-нибудь выкинуть
-      return;
-    }
-
-    // todo валидация на все шаги
-    const saveObj = {
-      ...this.authService.currentUser, 
-      ...this.stepperService.dataForSave
-    };
-
-    console.log(saveObj, ' >>> saveObj')
-
-    this.userService.updateUser(saveObj).subscribe();
-    this.stepperService.nextStep();
+    this.stepperService.nextStep(null);
   }
 
   buyForecast() {

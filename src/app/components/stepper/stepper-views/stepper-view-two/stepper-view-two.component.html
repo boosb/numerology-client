@@ -1,5 +1,10 @@
 <div class="step__content">
     <form [formGroup]="form" action="">
-        <input type="date" class="custom-input-date" formControlName="dateBirth" (change)="onDateBirth()">
+        <input 
+            type="date" 
+            [ngClass]="{ 'custom-input-date': true, 'custom-input-date__error': isExistError() }"
+            formControlName="dateBirth" 
+            (change)="onDateBirth()"
+        >
     </form>
 </div>

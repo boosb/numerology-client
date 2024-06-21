@@ -13,6 +13,10 @@
             </div>
         </div>
         <div #view></div>
+
+        <div class="step__error">
+           <!-- TODO Сюда надо добавить парсер ошибок (вынести представление ошибок в отдельный компонент) -->
+        </div>
     </div>
 
     <div class="stepper__buttons">
@@ -26,7 +30,7 @@
         <button 
             class="btn stepper__btn-skip" 
             *ngIf="step.btnSkip"
-            (click)="stepperService.nextStep()"
+            (click)="stepperService.moveNextStep()"
         >Пропустить</button>
 
         <button 
