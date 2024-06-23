@@ -3,6 +3,7 @@ import { IStepperConfigItem } from '../../../../interfaces/stepper-config-item.i
 import { StepperService } from '../../../../services/stepper.service';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { ErrorService } from '../../../../services/erros.service';
 
 @Component({
   selector: 'app-stepper-view-two',
@@ -31,27 +32,19 @@ export class StepperViewTwoComponent implements OnInit {
   }
 
   constructor(
-    private stepperService: StepperService
+    private stepperService: StepperService,
+    public errorService: ErrorService
   ) {}
 
   ngOnInit(): void {
-    this._setErrors();
+    this.errorService.setErrors(this.dateBirth.errors);
   }
 
   onDateBirth() {
     const dateBirth = this.form.value.dateBirth;
     const { fieldForUpdate } = this.step;
 
-    this._setErrors();
+    this.errorService.setErrors(this.dateBirth.errors);
     this.stepperService.dataForSave[fieldForUpdate] = dateBirth;
-  }
-
-  // todo на данный момент выделяет даже если пользователь никак не взаимодействовал, потом надо исправить
-  isExistError() {
-    return this.stepperService.errors;
-  }
-
-  _setErrors() {
-    this.stepperService.errors = this.dateBirth.errors;
   }
 }

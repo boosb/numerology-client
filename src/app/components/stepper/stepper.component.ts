@@ -10,6 +10,7 @@ import { AuthService } from '../../services/auth.service';
 import { Subscription } from 'rxjs';
 import { ForecastService, forecastConst } from '../../services/forecast.service';
 import { ImgService } from '../../services/img.service';
+import { ErrorComponent } from '../error/error.component';
 
 // todo надо добавить валидацию на каждый шаг!!! 1) Если данные вопроса уже есть в БД (для обязытельных), то даем возможность пропустить
 // 2) убрать кнопку продолжить у всех шагов с "итемами" и делать переход по клику на итем
@@ -20,7 +21,8 @@ import { ImgService } from '../../services/img.service';
   standalone: true,
   imports: [
     CommonModule,
-    StepperProgressBarComponent
+    StepperProgressBarComponent,
+    ErrorComponent
   ],
   templateUrl: './stepper.component.html',
   styleUrl: './stepper.component.scss'

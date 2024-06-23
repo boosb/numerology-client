@@ -2,7 +2,7 @@
     <form [formGroup]="form" action="">
         <input 
             type="date" 
-            [ngClass]="{ 'custom-input-date': true, 'custom-input-date__error': isExistError() }"
+            [ngClass]="{ 'custom-input-date': true, 'custom-input-date__error': errorService.isShow$ | async}"
             formControlName="dateBirth" 
             (change)="onDateBirth()"
         >

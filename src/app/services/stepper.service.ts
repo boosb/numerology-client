@@ -4,33 +4,22 @@ import { StepperConfig } from '../components/stepper/stepper.config';
 import { AuthService } from './auth.service';
 import { UserService } from './user.service';
 import { ValidationErrors } from '@angular/forms';
+import { ErrorService } from './erros.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StepperService {
-  constructor(
-    private authService: AuthService,
-    private userService: UserService
-  ) {}
-
   stepId$ = new BehaviorSubject<number>(1);
 
   // todo ну и нужно впилить валидацию на каждый шаг
   dataForSave: any = {};
-
-  // ошибка валидации
-  //validateErrorText$ = new BehaviorSubject<string>('');
-
-  errors: ValidationErrors | null
-
-  /*get errorText() {
-    return this.validateErrorText$.value;
-  }*/
-/*
-  setValidateErrorText(text: string) {
-    this.validateErrorText$.next(text);
-  }*/
+  
+  constructor(
+    private authService: AuthService,
+    private userService: UserService,
+    private errorService: ErrorService
+  ) {}
 
   setStepId(id: number) {
     this.stepId$.next(id);
@@ -42,17 +31,18 @@ export class StepperService {
   }
 
   nextStep(itemText: string | null) {
-    // перед переходом проверяем данные
-    const isValidate = this._validateData(itemText);
-    if(!isValidate) {
+    this.errorService.setIsShow(true);
+
+    if(this.errorService.errors) {
       return;
     }
 
     this._saveData(itemText);
-    this.moveNextStep();
+    this.moveNextStep(false);
+    this.errorService.setIsShow(false);
   }
   
-  previousStep() {
+  movePreviousStep() {
     const { value } = this.stepId$;
     const stepNumber = value - 1;
 
@@ -61,9 +51,6 @@ export class StepperService {
     }
 
     this.stepId$.next(stepNumber);
-
-    // после переходо отчищаем ошибку 
-   // this.setValidateErrorText('');
   }
 
   getTotalCountStep() {
@@ -86,41 +73,11 @@ export class StepperService {
     this.userService.updateUser(saveObj).subscribe();
   }
 
-  moveNextStep() {
+  moveNextStep(isSkip: boolean) {
+    if(isSkip) {
+      this.errorService.setErrors(null);
+    }
     const { value } = this.stepId$;
     this.stepId$.next(value + 1);
-
-    // после переходо отчищаем ошибку 
-    //this.setValidateErrorText('');
-  }
-
-  _validateData(itemText: string | null) {
-    const step = this.getCurrentStep();
-    const isExistData = !!this.dataForSave[step.fieldForUpdate];
-    console.log(this.errors, ' >>>>> SUPER_PUPER_TEST');
-    switch(step.id) {
-      // для всех шагов с stepper-view-item
-      case 1:
-      case 5:
-      case 6:
-      case 7: 
-      case 8:
-      case 9:
-      case 10:
-      case 11:
-      case 12:
-      case 13:
-      case 14:
-      case 15:
-        return !!itemText;
-      case 2:
-        //this.setValidateErrorText(isExistData ? '' : 'Введите дату рождения');
-        return !this.errors;
-      case 4:
-        
-        return !this.errors;
-      default:
-        return true;
-    }
   }
 }
