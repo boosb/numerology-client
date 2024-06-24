@@ -2,7 +2,7 @@
     <form [formGroup]="form" action="">
         <input 
             type="text" 
-            class="custom-input-text" 
+            [ngClass]="{ 'custom-input-text': true, 'custom-input-text__error': errorService.isShow$ | async}"
             placeholder="введите имя"
             formControlName="name"
             (change)="onNameChange()"

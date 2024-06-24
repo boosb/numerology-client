@@ -5,6 +5,7 @@ import { AuthService } from './auth.service';
 import { UserService } from './user.service';
 import { ValidationErrors } from '@angular/forms';
 import { ErrorService } from './erros.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -12,13 +13,17 @@ import { ErrorService } from './erros.service';
 export class StepperService {
   stepId$ = new BehaviorSubject<number>(1);
 
-  // todo ну и нужно впилить валидацию на каждый шаг
   dataForSave: any = {};
+
+  get stepId() {
+    return this.stepId$.value;
+  }
   
   constructor(
     private authService: AuthService,
     private userService: UserService,
-    private errorService: ErrorService
+    private errorService: ErrorService,
+    private router: Router
   ) {}
 
   setStepId(id: number) {
@@ -26,8 +31,7 @@ export class StepperService {
   }
 
   getCurrentStep() {
-    const { value } = this.stepId$;
-    return StepperConfig[value];
+    return StepperConfig[this.stepId];
   }
 
   nextStep(itemText: string | null) {
@@ -39,18 +43,20 @@ export class StepperService {
 
     this._saveData(itemText);
     this.moveNextStep(false);
-    this.errorService.setIsShow(false);
   }
   
   movePreviousStep() {
-    const { value } = this.stepId$;
-    const stepNumber = value - 1;
+    const stepNumber = this.stepId - 1;
 
     if(stepNumber < 1) {
+      this.router.navigateByUrl('/profile');
       return;
     }
 
-    this.stepId$.next(stepNumber);
+    this.setStepId(stepNumber);
+
+    // после смены view прячем ошибки
+    this.errorService.setIsShow(false);
   }
 
   getTotalCountStep() {
@@ -77,7 +83,9 @@ export class StepperService {
     if(isSkip) {
       this.errorService.setErrors(null);
     }
-    const { value } = this.stepId$;
-    this.stepId$.next(value + 1);
+    this.setStepId(this.stepId + 1);
+
+    // после смены view прячем ошибки
+    this.errorService.setIsShow(false);
   }
 }

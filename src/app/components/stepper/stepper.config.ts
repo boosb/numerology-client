@@ -67,7 +67,7 @@ export const StepperConfig: IStepperConfig = {
         title: 'Ваше семейное положение?',
         component: StepperViewFiveComponent,
         btnNext: false,
-        btnSkip: true,
+        btnSkip: false,
         width: '675px',
         fieldForUpdate: 'familyStatus',
         important: true
@@ -77,7 +77,7 @@ export const StepperConfig: IStepperConfig = {
         title: 'Составляли ли вы карту рождения раньше?',
         component: StepperViewSixComponent,
         btnNext: false,
-        btnSkip: false,
+        btnSkip: true,
         width: '675px',
         fieldForUpdate: 'isCompiledBirthChart',
         important: false
@@ -88,7 +88,7 @@ export const StepperConfig: IStepperConfig = {
         component: StepperViewSevenComponent,
         btnNext: false,
         btnSkip: true,
-        width: '690px',
+        width: '720px',
         fieldForUpdate: 'importantTopics',
         important: false
     },
@@ -118,8 +118,8 @@ export const StepperConfig: IStepperConfig = {
         title: 'С какими знаками зодиака вы лучше всего ладите? Выберите максимум три.',
         component: StepperViewTenComponent,
         btnNext: false,
-        btnSkip: true,
-        width: '1150px',
+        btnSkip: false,
+        width: '1160px',
         fieldForUpdate: 'goodZodiacSigns',
         important: true
     },
@@ -158,7 +158,7 @@ export const StepperConfig: IStepperConfig = {
         title: 'Какое ваше любимое занятие?',
         component: StepperViewFourteenComponent,
         btnNext: false,
-        btnSkip: true,
+        btnSkip: false,
         width: '900px',
         fieldForUpdate: 'favoriteActivity',
         important: true
@@ -178,7 +178,7 @@ export const StepperConfig: IStepperConfig = {
         title: 'Ваше имя?',
         component: StepperViewSixteenComponent,
         btnNext: true,
-        btnSkip: true,
+        btnSkip: false,
         width: '675px',
         fieldForUpdate: 'name',
         important: true

@@ -11,8 +11,6 @@ import { StepperService } from '../../../../services/stepper.service';
   styleUrl: './stepper-view-item.component.scss'
 })
 export class StepperViewItemComponent {
-  private step: IStepperConfigItem = this.stepperService.getCurrentStep(); // todo как буд-то надо удалить, но пока не рискнул
-
   constructor(
     private stepperService: StepperService
   ) {}

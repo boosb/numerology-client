@@ -23,6 +23,7 @@ export class StepperViewFourComponent implements OnInit {
 
   form = new FormGroup({
     placeBirth: new FormControl<string>('', [
+      Validators.required,
       Validators.minLength(4),
       Validators.maxLength(30),
     ]),

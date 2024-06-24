@@ -29,7 +29,10 @@ export class ErrorComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.errorsSubs = this.errorService.errors$.subscribe(errors => {
       this.errors = errors;
-      console.log(this.errors, ' >>> this.errors')
+console.log(errors, ' >>> ERRR')
+      if(!errors) {
+        this.errorService.setIsShow(false);
+      }
     });
   }
 }

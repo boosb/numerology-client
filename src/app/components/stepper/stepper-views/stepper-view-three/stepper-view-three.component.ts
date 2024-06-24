@@ -4,12 +4,16 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { IStepperConfigItem } from '../../../../interfaces/stepper-config-item.interface';
 import { StepperService } from '../../../../services/stepper.service';
 import { ErrorService } from '../../../../services/erros.service';
-import { ValidateExistDate } from '../../../../helpers/exist-data.validate';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-stepper-view-three',
   standalone: true,
-  imports: [CustomSelectComponent, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    CustomSelectComponent, 
+    ReactiveFormsModule
+  ],
   templateUrl: './stepper-view-three.component.html',
   styleUrls: [
     './stepper-view-three.component.scss',
@@ -21,10 +25,7 @@ export class StepperViewThreeComponent implements OnInit {
 
   form = new FormGroup({
     time: new FormControl<Date|null>(null, [
-
-      // todo надо поменять (поле НЕ обязательное, но нельзя "продолжить" без данных, можно пропустить)
-      Validators.required,
-      ValidateExistDate
+      Validators.required
     ]),
   });
 

@@ -1,8 +1,8 @@
 <div class="step__content">
     <form [formGroup]="form" action="">
         <input 
-            type="time" 
-            class="custom-input-time" 
+            type="time"
+            [ngClass]="{ 'custom-input-time': true, 'custom-input-time__error': errorService.isShow$ | async}"
             formControlName="time" 
             (change)="onTimeBirth()"
         >

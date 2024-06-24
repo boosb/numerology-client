@@ -1,5 +1,11 @@
 <div class="error" *ngIf="errorService.isShow$ | async">
-    <span *ngIf="errors?.required">Обязательное поле</span>
-    <span *ngIf="errors?.minlength">Значение должно быть больше или равно test-1</span>
-    <span *ngIf="errors?.maxlength">Разрешаются только цифры</span>
+    <span *ngIf="errors?.required">
+        Поле не заполнено
+    </span>
+    <span *ngIf="errors?.minlength">
+        Значение должно быть больше или равно {{ errors?.minlength.requiredLength }}
+    </span>
+    <span *ngIf="errors?.maxlength">
+        Значение должно быть меньше или равно {{ errors?.maxlength.requiredLength }}
+    </span>
 </div>
