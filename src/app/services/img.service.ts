@@ -25,6 +25,9 @@ export class ImgService {
 
         BACK_ARROW: 'assets/images/back-arrow.svg',
         STAR_LI: 'assets/images/star-li.svg',
+
+        EYE: 'assets/images/eye.svg',
+        EYE_OFF: 'assets/images/eye-off.svg',
     }
 
     private genders: any = {

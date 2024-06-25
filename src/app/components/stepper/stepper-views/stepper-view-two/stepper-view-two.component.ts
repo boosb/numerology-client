@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { IStepperConfigItem } from '../../../../interfaces/stepper-config-item.interface';
 import { StepperService } from '../../../../services/stepper.service';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -18,7 +18,7 @@ import { ErrorService } from '../../../../services/erros.service';
     '../../stepper.component.scss'
   ]
 })
-export class StepperViewTwoComponent implements OnInit {
+export class StepperViewTwoComponent {
   private step: IStepperConfigItem = this.stepperService.getCurrentStep();
 
   form = new FormGroup({
@@ -32,19 +32,14 @@ export class StepperViewTwoComponent implements OnInit {
   }
 
   constructor(
-    private stepperService: StepperService,
-    public errorService: ErrorService
+    public errorService: ErrorService,
+    private stepperService: StepperService
   ) {}
-
-  ngOnInit(): void {
-    this.errorService.setErrors(this.dateBirth.errors);
-  }
 
   onDateBirth() {
     const dateBirth = this.form.value.dateBirth;
     const { fieldForUpdate } = this.step;
 
-    this.errorService.setErrors(this.dateBirth.errors);
     this.stepperService.dataForSave[fieldForUpdate] = dateBirth;
   }
 }

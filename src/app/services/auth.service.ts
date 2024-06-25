@@ -56,7 +56,6 @@ export class AuthService {
   login(user: IUser): Observable<any> {
     return this.http.post<IUser>('http://localhost:3000/auth/log-in', user, {withCredentials: true}).pipe(
       map(user => {
-        console.log(user,  ' >>> USER')
         this.setUser(user);
         this.closeDlg();
         this.router.navigateByUrl('/profile');
@@ -83,10 +82,7 @@ export class AuthService {
 
   getAllUsers(): Observable<IUser[]> { // todo вынести в соответствующий сервис
     return this.http.get<IUser[]>('http://localhost:3000/user').pipe(
-      map((users) => {
-        console.log(users)
-        return users;
-      })
+      map((users) => users)
     );
   }
 

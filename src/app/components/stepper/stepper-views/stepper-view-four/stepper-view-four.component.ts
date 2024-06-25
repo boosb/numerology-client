@@ -1,9 +1,9 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IStepperConfigItem } from '../../../../interfaces/stepper-config-item.interface';
 import { StepperService } from '../../../../services/stepper.service';
-import { ErrorService } from '../../../../services/erros.service';
 import { CommonModule } from '@angular/common';
+import { ErrorService } from '../../../../services/erros.service';
 
 @Component({
   selector: 'app-stepper-view-four',
@@ -18,7 +18,7 @@ import { CommonModule } from '@angular/common';
     '../../stepper.component.scss'
   ]
 })
-export class StepperViewFourComponent implements OnInit {
+export class StepperViewFourComponent {
   private step: IStepperConfigItem = this.stepperService.getCurrentStep();
 
   form = new FormGroup({
@@ -34,19 +34,14 @@ export class StepperViewFourComponent implements OnInit {
   }
   
   constructor(
-    private stepperService: StepperService,
-    public errorService: ErrorService
+    public errorService: ErrorService,
+    private stepperService: StepperService
   ) {}
-
-  ngOnInit(): void {
-    this.errorService.setErrors(this.placeBirth.errors);
-  }
 
   onPlaceBirthChange() {
     const {placeBirth} = this.form.value;
     const {fieldForUpdate} = this.step;
 
-    this.errorService.setErrors(this.placeBirth.errors);
     this.stepperService.dataForSave[fieldForUpdate] = placeBirth;
   }
 }

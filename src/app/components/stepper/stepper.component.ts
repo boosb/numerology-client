@@ -1,16 +1,15 @@
-import { AfterViewInit, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ComponentRef, OnDestroy, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { StepperProgressBarComponent } from './stepper-progress-bar/stepper-progress-bar.component';
 import { StepperConfig } from './stepper.config';
 import { StepperService } from '../../services/stepper.service';
 import { CommonModule } from '@angular/common';
 import { IStepperConfigItem } from '../../interfaces/stepper-config-item.interface';
-import { Router, RouterLink } from '@angular/router';
-import { UserService } from '../../services/user.service';
-import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ForecastService, forecastConst } from '../../services/forecast.service';
 import { ImgService } from '../../services/img.service';
 import { ErrorComponent } from '../error/error.component';
+import { ErrorService } from '../../services/erros.service';
 
 // todo надо добавить валидацию на каждый шаг!!! 1) Если данные вопроса уже есть в БД (для обязытельных), то даем возможность пропустить
 // 2) убрать кнопку продолжить у всех шагов с "итемами" и делать переход по клику на итем
@@ -37,14 +36,15 @@ export class StepperComponent implements OnInit, AfterViewInit, OnDestroy {
 
   public step: IStepperConfigItem;
 
+  private componentRef: any;
+
   constructor(
     public stepperService: StepperService,
     public imgService: ImgService,
     private cdRef: ChangeDetectorRef,
-    private authService: AuthService,
-    private userService: UserService,
     private forecastService: ForecastService,
-    private router: Router
+    private router: Router,
+    private errorService: ErrorService
   ) {}
 
   ngOnInit(): void {
@@ -73,12 +73,16 @@ export class StepperComponent implements OnInit, AfterViewInit, OnDestroy {
       return;
     }
     this.viewRef.clear();
-    const componentRef = this._getCreatedComponent(stepId);    
+    this.componentRef = this._getCreatedComponent(stepId);  
     this.cdRef.detectChanges(); 
   }
 
   onNextStep() {
-    this.stepperService.nextStep(null);
+    const { form } = this.componentRef.instance;
+    this.errorService.enabledShowError(
+      form.controls, 
+      () => this.stepperService.nextStep(null)
+    );
   }
 
   buyForecast() {

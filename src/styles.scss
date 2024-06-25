@@ -78,5 +78,8 @@ body{
     outline: none;
     margin-bottom: 25px;
     font-size: 22px;
-    //text-transform: uppercase;
+    
+	&__error {
+        border: 1px solid red;
+    }
 }

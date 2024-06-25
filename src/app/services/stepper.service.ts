@@ -3,7 +3,6 @@ import { BehaviorSubject } from 'rxjs';
 import { StepperConfig } from '../components/stepper/stepper.config';
 import { AuthService } from './auth.service';
 import { UserService } from './user.service';
-import { ValidationErrors } from '@angular/forms';
 import { ErrorService } from './erros.service';
 import { Router } from '@angular/router';
 
@@ -35,12 +34,6 @@ export class StepperService {
   }
 
   nextStep(itemText: string | null) {
-    this.errorService.setIsShow(true);
-
-    if(this.errorService.errors) {
-      return;
-    }
-
     this._saveData(itemText);
     this.moveNextStep(false);
   }
@@ -54,9 +47,6 @@ export class StepperService {
     }
 
     this.setStepId(stepNumber);
-
-    // после смены view прячем ошибки
-    this.errorService.setIsShow(false);
   }
 
   getTotalCountStep() {
@@ -80,12 +70,11 @@ export class StepperService {
   }
 
   moveNextStep(isSkip: boolean) {
-    if(isSkip) {
-      this.errorService.setErrors(null);
-    }
     this.setStepId(this.stepId + 1);
 
-    // после смены view прячем ошибки
-    this.errorService.setIsShow(false);
+    // если скипаем шаг, то отчищаем данные в errorServise
+    if(isSkip) {
+      this.errorService.cleanFullData();
+    }
   }
 }

@@ -3,22 +3,40 @@
         <div class="modal__close" (click)="authService.closeDlg()"></div>
         <div class="modal__title">{{ title }}</div>
         <input 
-            class="modal__input-email custom-input-text" 
             type="text"
+            [ngClass]="{ 
+                'modal__input-email': true, 
+                'custom-input-text': true, 
+                'custom-input-text__error': errorService.getBorderRed('email')
+            }"
             formControlName="email"
             placeholder="Email"
         >
-        <input 
-            class="modal__input-pass custom-input-text" 
-            type="text"
-            formControlName="password"
-            placeholder="пароль"
-        >
 
-        <div class="modal__error">{{ errorText }}</div>
+        <div class="modal__input-pass-wrapper">
+            <input 
+                [attr.type]="passwordType" 
+                [ngClass]="{ 
+                    'modal__input-pass': true, 
+                    'custom-input-text': true, 
+                    'custom-input-text__error': errorService.getBorderRed('password')
+                }"
+                formControlName="password"
+                placeholder="Пароль"
+            >
+            <img 
+                class="modal__pass-icon" 
+                [src]="imgService.getImg(passwordIconPath)" 
+                alt="" 
+                (click)="onToggleShowPass()"
+            >
+        </div>
 
-        <!-- тут надо вставть текст "Ссылка отправлена на почту" -->
-        <!-- тут надо вставть текст "Отправить ссылку повторно" -->
+        <div class="modal__error">{{ serverErrorText }}</div>
+        <app-error></app-error>
+
+        <!-- TODO тут надо вставть текст "Ссылка отправлена на почту" -->
+        <!-- TODO тут надо вставть текст "Отправить ссылку повторно" -->
         <button type="submit" class="btn">Продолжить</button>
     </form>
 </div>

@@ -10,7 +10,7 @@
 .modal {
     position: absolute;
     width: 500px;
-    height: 290px;
+    height: 330px;
     background-color: #FFFFFF;
     top: 50%;
     left: 50%;
@@ -60,9 +60,22 @@
         margin-top: 25px;
     }
 
+    &__input-pass-wrapper {
+        position: relative;
+    }
+
     &__input-email,
     &__input-pass {
         width: 300px;
+    }
+
+    &__pass-icon {
+        position: absolute; 
+        right: 20px;
+        top: 10px; 
+        cursor: pointer;
+        width: 36px;
+        height: 36px;
     }
 
     &__error {

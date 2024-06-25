@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CustomSelectComponent } from '../../../custom-select/custom-select.component';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IStepperConfigItem } from '../../../../interfaces/stepper-config-item.interface';
 import { StepperService } from '../../../../services/stepper.service';
-import { ErrorService } from '../../../../services/erros.service';
 import { CommonModule } from '@angular/common';
+import { ErrorService } from '../../../../services/erros.service';
 
 @Component({
   selector: 'app-stepper-view-three',
@@ -20,7 +20,7 @@ import { CommonModule } from '@angular/common';
     '../../stepper.component.scss'
   ]
 })
-export class StepperViewThreeComponent implements OnInit {
+export class StepperViewThreeComponent {
   private step: IStepperConfigItem = this.stepperService.getCurrentStep();
 
   form = new FormGroup({
@@ -34,19 +34,14 @@ export class StepperViewThreeComponent implements OnInit {
   }
 
   constructor(
-    private stepperService: StepperService,
-    public errorService: ErrorService
+    public errorService: ErrorService,
+    private stepperService: StepperService
   ) {}
-
-  ngOnInit(): void {
-    this.errorService.setErrors(this.time.errors);
-  }
 
   onTimeBirth() {
     const {time} = this.form.value;
     const {fieldForUpdate} = this.step;
 
-    this.errorService.setErrors(this.time.errors);
     this.stepperService.dataForSave[fieldForUpdate] = time;
   }
 }

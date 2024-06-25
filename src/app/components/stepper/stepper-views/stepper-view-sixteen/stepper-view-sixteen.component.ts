@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { IStepperConfigItem } from '../../../../interfaces/stepper-config-item.interface';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { StepperService } from '../../../../services/stepper.service';
-import { ErrorService } from '../../../../services/erros.service';
 import { CommonModule } from '@angular/common';
+import { ErrorService } from '../../../../services/erros.service';
 
 @Component({
   selector: 'app-stepper-view-sixteen',
@@ -18,7 +18,7 @@ import { CommonModule } from '@angular/common';
     './stepper-view-sixteen.component.scss'
   ]
 })
-export class StepperViewSixteenComponent implements OnInit {
+export class StepperViewSixteenComponent {
   // todo ваще 4 и 16 шаг похожи, мб оформить наследование по типу StepperViewItemComponent (мб можно подогнать сюда шаги 2 и 3)
   private step: IStepperConfigItem = this.stepperService.getCurrentStep();
 
@@ -35,19 +35,14 @@ export class StepperViewSixteenComponent implements OnInit {
   }
 
   constructor(
-    private stepperService: StepperService,
-    public errorService: ErrorService
+    public errorService: ErrorService,
+    private stepperService: StepperService
   ) {}
-
-  ngOnInit(): void {
-    this.errorService.setErrors(this.name.errors);
-  }
 
   onNameChange() {
     const {name} = this.form.value;
     const {fieldForUpdate} = this.step;
 
-    this.errorService.setErrors(this.name.errors);
     this.stepperService.dataForSave[fieldForUpdate] = name;
   }
 }
