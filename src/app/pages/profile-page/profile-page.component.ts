@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { ForecastService, forecastConst } from '../../services/forecast.service';
 import { Subscription } from 'rxjs';
 import { ImgService } from '../../services/img.service';
+import { IForecast } from '../../interfaces/forecast.interface';
 
 @Component({
   selector: 'app-profile-page',
@@ -18,7 +19,11 @@ import { ImgService } from '../../services/img.service';
 export class ProfilePageComponent implements OnInit, OnDestroy {
   private userSubs: Subscription;
 
+  private forecastSubs: Subscription;
+
   public user: IUser | null = this.authService.currentUser;
+
+  public forecast: IForecast | null = this.forecastService.currentForecast;
 
   public forecastTypes = forecastConst;
 
@@ -31,11 +36,18 @@ export class ProfilePageComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.userSubs = this.authService.user$.subscribe(user => this.user = user);
+    this.userSubs = this.authService.user$.subscribe(user => {
+      this.user = user;
+      if(user) {
+        this.forecastService.getForecast(user.id).subscribe();
+      }
+    });
+    this.forecastSubs = this.forecastService.forecast$.subscribe(forecast => this.forecast = forecast);
   }
 
   ngOnDestroy(): void {
     this.userSubs.unsubscribe();
+    this.forecastSubs.unsubscribe();
   }
 
   onSettings() {

@@ -17,10 +17,7 @@ export class UserService {
 
   updateUser(user: IUser): Observable<any> {
     return this.http.patch<IUser>(`http://localhost:3000/user/${ user.id }`, user, {withCredentials: true}).pipe(
-      map(user => {
-        console.log(user,  ' >>> USER')
-        this.authService.setUser(user);
-      }),
+      map(user => this.authService.setUser(user)),
       //catchError(error => of(this.setErrorText(error.error.message)))
     );
   }

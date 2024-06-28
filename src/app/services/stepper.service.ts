@@ -34,7 +34,14 @@ export class StepperService {
   }
 
   nextStep(itemText: string | null) {
-    this._saveData(itemText);
+    const step = this.getCurrentStep();
+    
+    // если получили текст из item, то записываем его в объект для сохранения
+    if(itemText) {
+      this.dataForSave[step.fieldForUpdate] = itemText;
+    }
+    // todo на данный момент логика такова, что если пользователь нричего не выбирает на шаге который можно пропустить, то в БД остаются старые данные, а не перезаписывается новый null
+    this._saveData();
     this.moveNextStep(false);
   }
   
@@ -54,10 +61,7 @@ export class StepperService {
     return stepKeys.length;
   }
 
-  _saveData(itemText: string | null) {
-    const step = this.getCurrentStep();
-    this.dataForSave[step.fieldForUpdate] = itemText;
-
+  _saveData() {
     // todo валидация на все шаги
     const saveObj = {
       ...this.authService.currentUser, 

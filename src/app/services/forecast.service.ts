@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, catchError, map } from 'rxjs';
 import { UserService } from './user.service';
 import { IUser } from '../interfaces/user.interface';
 import { AuthService } from './auth.service';
+import { HttpClient } from '@angular/common/http';
+import { IForecast } from '../interfaces/forecast.interface';
 
 export const forecastConst = {
     DAILY: 'daily',
@@ -17,18 +19,29 @@ export const forecastConst = {
 export class ForecastService {
     // todo должны быть варианты "daily", "weekly", "no-data", "no-cash"
     forecastType$ = new BehaviorSubject<string>(forecastConst.NO_CASH);
+
+    forecast$ = new BehaviorSubject<IForecast|null>(null);
     
     get forecastType() {
         return this.forecastType$.value;
     }
 
+    get currentForecast() {
+        return this.forecast$.value;
+    }
+
     constructor(
+        private http: HttpClient,
         private userService: UserService,
         private authService: AuthService
     ) {}
 
     setForecastType(type: string) {
         this.forecastType$.next(type);
+    }
+
+    setForecast(forecast: IForecast | null) {
+        this.forecast$.next(forecast);
     }
 
     isDaily() {
@@ -51,7 +64,7 @@ export class ForecastService {
     // todo так же нужно сохранять купленный прогноз на определеннное время. И выдавать его (уже сохраненный прогноз) без новой покупки.
     buyForecast(forecastType: string) {
         const { currentUser } = this.authService;
-        if(!currentUser || !currentUser.balance) {
+        if(!currentUser) {
             return;
         }
 
@@ -81,13 +94,19 @@ export class ForecastService {
     }
 
     _buyForecast(currentUser: IUser) {
+        console.log(currentUser, ' >>>> currentUser')
         const newBalance = this._getNewBalance(currentUser);
 
         const saveObj = {
             ...currentUser, 
             balance: newBalance
         };
-  
+
+        this.createForecast({
+            userId: currentUser.id, // todo убрать в интерфейсе ? (здесь выдает ошибку, поэтому пока что поставил)
+            forecastId: 1
+        }).subscribe();
+        console.log(saveObj, ' >>>> saveObj')
         this.userService.updateUser(saveObj).subscribe();
     }
 
@@ -115,5 +134,18 @@ export class ForecastService {
         }
 
         return true;
+    }
+
+    createForecast(forecast: IForecast) {
+        return this.http.post<IForecast>('http://localhost:3000/forecast', forecast, {withCredentials: true})
+            .pipe(
+                map(forecast => this.setForecast(forecast))
+                // todo сюда можно добавить обработку ошибок, пока нет необходимости
+            );
+    }
+
+    getForecast(userId: number) {
+        console.log('HI')
+        return this.http.get<IForecast>(`http://localhost:3000/forecast/${userId}`);
     }
 }

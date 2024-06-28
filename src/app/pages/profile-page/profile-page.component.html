@@ -41,8 +41,14 @@
         </div>
     </div>
 
+    <!-- Сюда добавить логику чтобы не всегда покупать прогноз, а при наличии (отталкиваться от даты покупки) показывать купленный (существующий) -->
     <div class="profile__buttons">
-        <button class="btn profile__main-btn" (click)="buyForecast(forecastTypes.DAILY)">Получить ежедневный прогноз - 10 т.</button>
-        <button class="btn profile__main-btn" (click)="buyForecast(forecastTypes.WEEKLY)">Получить еженедельный прогноз - 100 т.</button>
+        <button class="btn profile__main-btn" (click)="buyForecast(forecastTypes.DAILY)">
+            {{ forecast ? 'Посмотреть ежедневный прогноз' : 'Получить ежедневный прогноз - 10 т.' }}
+        </button>
+
+        <button class="btn profile__main-btn" (click)="buyForecast(forecastTypes.WEEKLY)">
+            Получить еженедельный прогноз - 100 т.
+        </button>
     </div>
 </div>

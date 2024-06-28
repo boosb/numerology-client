@@ -40,6 +40,10 @@ export class StepperViewTwoComponent {
     const dateBirth = this.form.value.dateBirth;
     const { fieldForUpdate } = this.step;
 
+    console.log(dateBirth, ' >>> dateBirth')
+
+    // todo важно расширить валидацию данных, а то при вводе кракозябры в момент обновления сервер выдает ошибку 
+    // "смещение часового пояса вне диапазона"
     this.stepperService.dataForSave[fieldForUpdate] = dateBirth;
   }
 }
