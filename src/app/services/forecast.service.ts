@@ -18,16 +18,22 @@ export const forecastConst = {
 })
 export class ForecastService {
     // todo должны быть варианты "daily", "weekly", "no-data", "no-cash"
-    forecastType$ = new BehaviorSubject<string>(forecastConst.NO_CASH);
+    forecastType$ = new BehaviorSubject<string>(forecastConst.NO_CASH); // todo при разделении прогнозов данное поле может стать рудиментом
 
-    forecast$ = new BehaviorSubject<IForecast|null>(null);
+    dailyForecast$ = new BehaviorSubject<IForecast|null>(null);
+
+    weeklyForecast$ = new BehaviorSubject<IForecast|null>(null);
     
     get forecastType() {
         return this.forecastType$.value;
     }
 
-    get currentForecast() {
-        return this.forecast$.value;
+    get currentDailyForecast() {
+        return this.dailyForecast$.value;
+    }
+
+    get currentWeeklyForecast() {
+        return this.weeklyForecast$.value;
     }
 
     constructor(
@@ -40,8 +46,12 @@ export class ForecastService {
         this.forecastType$.next(type);
     }
 
-    setForecast(forecast: IForecast | null) {
-        this.forecast$.next(forecast);
+    setDailyForecast(forecast: IForecast | null) {
+        this.dailyForecast$.next(forecast);
+    }
+
+    setWeeklyForecast(forecast: IForecast | null) {
+        this.weeklyForecast$.next(forecast);
     }
 
     isDaily() {
@@ -71,6 +81,12 @@ export class ForecastService {
         // устанавливаем тип прогноза
         this.setForecastType(forecastType);
 
+        // если прогноз уже существует, то отдаем его
+        const currentForecast = this._getCurrentForecast();
+        if(currentForecast) {
+            return;
+        }
+
         // производим валидацию данных
         const isValidation = this._purchaseValidation(currentUser.balance);
         if(!isValidation) {
@@ -90,6 +106,18 @@ export class ForecastService {
                 return 100;
             default:
                 return 0;
+        }
+    }
+
+    _getCurrentForecast() {
+        const { DAILY, WEEKLY } = forecastConst;
+        switch(this.forecastType) {
+            case DAILY:
+                return this.currentDailyForecast;
+            case WEEKLY:
+                return this.currentWeeklyForecast;
+            default:
+                return null;
         }
     }
 
@@ -139,13 +167,26 @@ export class ForecastService {
     createForecast(forecast: IForecast) {
         return this.http.post<IForecast>('http://localhost:3000/forecast', forecast, {withCredentials: true})
             .pipe(
-                map(forecast => this.setForecast(forecast))
+                map(forecast => this._parserForecasts([forecast]))
                 // todo сюда можно добавить обработку ошибок, пока нет необходимости
             );
     }
 
     getForecast(userId: number) {
-        console.log('HI')
-        return this.http.get<IForecast>(`http://localhost:3000/forecast/${userId}`);
+        return this.http.get<IForecast[]>(`http://localhost:3000/forecast/${userId}`)
+            .pipe(
+                map(forecasts => {
+                    console.log(forecasts,  ' >>>> forecasts')
+                    this._parserForecasts(forecasts)
+                })
+            );
+    }
+
+    _parserForecasts(forecasts: IForecast[]) {
+        const dailyForecast = forecasts.find(forecast => forecast.forecastId === 1);
+        const weeklyForecast = forecasts.find(forecast => forecast.forecastId === 2);
+
+        this.setDailyForecast(dailyForecast || null);
+        this.setWeeklyForecast(weeklyForecast || null);
     }
 }

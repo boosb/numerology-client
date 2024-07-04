@@ -1,0 +1,36 @@
+<!-- TODO базовый каркас страницы оч похож, хорошо бы объединить -->
+<div class="buy">
+    <div class="buy__header">
+        <div class="buy__title">Пополнить баланс</div>
+    </div>
+
+    <form [formGroup]="form" action="">
+        <div class="buy__content">
+            <div class="buy__main-data">
+                <app-buy-page-item [localCoins]="10" [coins]="25"></app-buy-page-item>
+                <app-buy-page-item [localCoins]="50" [coins]="125"></app-buy-page-item>
+                <app-buy-page-item [localCoins]="100" [coins]="250"></app-buy-page-item>
+                <app-buy-page-item [localCoins]="500" [coins]="1250"></app-buy-page-item>
+                <app-buy-page-item [localCoins]="1000" [coins]="2500"></app-buy-page-item>
+            </div>
+    
+            <div class="buy__sub-text">Свое количество</div>
+            <div class="buy__input-wrapper">
+                <input 
+                    type="text"
+                    [ngClass]="{ 
+                        'buy__input-coins': true, 
+                        'custom-input-text': true,
+                    }"
+                    formControlName="coins"
+                    (keyup)="onChangeCoins()"
+                >
+                <div class="buy__sub-info" >{{ convertedCoins }} руб.</div>
+            </div>
+        </div>
+    
+        <div class="buy__buttons">
+            <button class="btn">Пополнить</button>
+        </div>
+    </form>
+</div>

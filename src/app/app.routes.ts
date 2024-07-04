@@ -6,6 +6,7 @@ import { MainPageComponent } from './pages/main-page/main-page.component';
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 import { AuthGuard } from './helpers/auth.guard';
 import { MainPageGuard } from './helpers/main-page.guard';
+import { BuyPageComponent } from './pages/buy-page/buy-page.component';
 
 export const routes: Routes = [
     {
@@ -30,6 +31,13 @@ export const routes: Routes = [
     {
         path: 'profile',
         component: ProfilePageComponent,
+
+        // todo пока что просто добавил гуард, в дальнейшем мб добавить вариативности
+        canActivate: [AuthGuard]
+    },
+    {
+        path: 'buy',
+        component: BuyPageComponent,
 
         // todo пока что просто добавил гуард, в дальнейшем мб добавить вариативности
         canActivate: [AuthGuard]

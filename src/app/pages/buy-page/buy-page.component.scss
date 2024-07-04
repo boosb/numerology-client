@@ -1,0 +1,55 @@
+.buy {
+    width: 1240px;
+    height: 550px;
+    background-color: #fff;
+    padding: 40px;
+    margin-bottom: 20px;
+    border-radius: 20px;
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 40px;
+    }
+
+    &__title {
+        font-size: 50px;
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 40px;
+    }
+
+    &__main-data {
+        display: flex;
+        margin-bottom: 40px;
+    }
+
+    &__buttons {
+        display: flex;
+    }
+
+    &__input-wrapper {
+        position: relative;
+    }
+
+    &__input-coins {
+        width: 1175px;
+    }
+
+    &__sub-info {
+        position: absolute; 
+        font-size: 18px;
+        right: 35px;
+        top: 17px;
+        color: #A347C4;
+    }
+
+    &__sub-text {
+        font-size: 20px;
+        font-weight: 400;
+        margin-bottom: 10px;
+    }
+}

@@ -33,8 +33,7 @@ export class CoinsButtonComponent implements OnInit, OnDestroy {
     this.userSubs.unsubscribe();
   }
 
-  onWallet() {
-    // todo переход на страницу пополнения кошелька
-    //this.router.navigateByUrl('/profile');
+  onBuy() {
+    this.router.navigateByUrl('/buy');
   }
 }

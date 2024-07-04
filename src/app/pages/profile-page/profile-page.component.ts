@@ -19,11 +19,11 @@ import { IForecast } from '../../interfaces/forecast.interface';
 export class ProfilePageComponent implements OnInit, OnDestroy {
   private userSubs: Subscription;
 
-  private forecastSubs: Subscription;
+  private dailyForecastSubs: Subscription;
 
   public user: IUser | null = this.authService.currentUser;
 
-  public forecast: IForecast | null = this.forecastService.currentForecast;
+  public dailyForecast: IForecast | null = this.forecastService.currentDailyForecast;
 
   public forecastTypes = forecastConst;
 
@@ -42,12 +42,12 @@ export class ProfilePageComponent implements OnInit, OnDestroy {
         this.forecastService.getForecast(user.id).subscribe();
       }
     });
-    this.forecastSubs = this.forecastService.forecast$.subscribe(forecast => this.forecast = forecast);
+    this.dailyForecastSubs = this.forecastService.dailyForecast$.subscribe(forecast => this.dailyForecast = forecast);
   }
 
   ngOnDestroy(): void {
     this.userSubs.unsubscribe();
-    this.forecastSubs.unsubscribe();
+    this.dailyForecastSubs.unsubscribe();
   }
 
   onSettings() {
