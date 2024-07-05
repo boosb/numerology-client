@@ -25,10 +25,6 @@ export class BuyPageComponent {
     return this.form.controls.coins as FormControl;
   }
 
-  onConvertCoins() {
-    //this.coins = 
-  }
-
   onChangeCoins() {
     const { coins } = this.form.value;
 
@@ -36,14 +32,11 @@ export class BuyPageComponent {
       return;
     }
 
-    const test = coins.replace(/[^+\d]/g, '');
+    this.form.setValue({
+      // убираем все символы кроме цифр и нули из начала
+      coins: coins.replace(/[^+\d]|^0+/g, ''),
+    });
 
-    
-  //  console.log(regex,' >>> regex')
-    this.convertedCoins = coins * 2.5;
-  }
-
-  test() {
-    const regex = /^[A-Za-z0-9 _-]+$/;
+    this.convertedCoins = Number(this.form.value.coins) * 2.5;
   }
 }
