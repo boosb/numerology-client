@@ -12,4 +12,8 @@
     <span *ngIf="errors?.email">
         Введите верный Email
     </span>
+
+    <span *ngIf="errors?.other">
+        {{ errors?.other.text }}
+    </span>
 </div>

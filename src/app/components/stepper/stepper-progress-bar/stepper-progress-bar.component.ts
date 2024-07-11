@@ -3,6 +3,7 @@ import { StepperService } from '../../../services/stepper.service';
 import { IStepperConfigItem } from '../../../interfaces/stepper-config-item.interface';
 import { CommonModule } from '@angular/common';
 import { ImgService } from '../../../services/img.service';
+import { DEFAULT_STEPPER_WIDTH } from '../stepper.config';
 
 @Component({
   selector: 'app-stepper-progress-bar',
@@ -25,6 +26,6 @@ export class StepperProgressBarComponent {
   ) {}
 
   getProgressBarWidthVH() {
-    return `${ 675 / this.totalCountStep * this.step.id }px`; // todo мб перенести 675 куда-нибудь в константы
+    return `${ DEFAULT_STEPPER_WIDTH / this.totalCountStep * this.step.id }px`;
   }
 }

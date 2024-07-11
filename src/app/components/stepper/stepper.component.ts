@@ -11,10 +11,6 @@ import { ImgService } from '../../services/img.service';
 import { ErrorComponent } from '../error/error.component';
 import { ErrorService } from '../../services/erros.service';
 
-// todo надо добавить валидацию на каждый шаг!!! 1) Если данные вопроса уже есть в БД (для обязытельных), то даем возможность пропустить
-// 2) убрать кнопку продолжить у всех шагов с "итемами" и делать переход по клику на итем
-// 3) необязательные вопросы можем пропускать всегда
-
 @Component({
   selector: 'app-stepper',
   standalone: true,

@@ -17,9 +17,7 @@ import { StepperViewThreeComponent } from "./stepper-views/stepper-view-three/st
 import { StepperViewTwelveComponent } from "./stepper-views/stepper-view-twelve/stepper-view-twelve.component";
 import { StepperViewTwoComponent } from "./stepper-views/stepper-view-two/stepper-view-two.component";
 
-// todo ВОПРОСЫ
-// 1) Почему в одном степе мы нажимаем "продолжить", а в другом ток делаем выбор и нас должно автоматом перебросить на след. степ и есть ток кнопка "пропустить"
-// разная логика в рамках одного приложения и одного элемента
+export const DEFAULT_STEPPER_WIDTH = 675;
 
 export const StepperConfig: IStepperConfig = {
     1: {
@@ -28,7 +26,7 @@ export const StepperConfig: IStepperConfig = {
         component: StepperViewOneComponent,
         btnNext: false,
         btnSkip: false,
-        width: '675px',
+        width: `${ DEFAULT_STEPPER_WIDTH }px`,
         fieldForUpdate: 'gender',
         important: true
     },
@@ -38,7 +36,7 @@ export const StepperConfig: IStepperConfig = {
         component: StepperViewTwoComponent,
         btnNext: true,
         btnSkip: false,
-        width: '675px',
+        width: `${ DEFAULT_STEPPER_WIDTH }px`,
         fieldForUpdate: 'dateBirth',
         important: true
     },
@@ -48,7 +46,7 @@ export const StepperConfig: IStepperConfig = {
         component: StepperViewThreeComponent,
         btnNext: true,
         btnSkip: true,
-        width: '675px',
+        width: `${ DEFAULT_STEPPER_WIDTH }px`,
         fieldForUpdate: 'timeBirth',
         important: false
     },
@@ -58,7 +56,7 @@ export const StepperConfig: IStepperConfig = {
         component: StepperViewFourComponent,
         btnNext: true,
         btnSkip: true,
-        width: '675px',
+        width: `${ DEFAULT_STEPPER_WIDTH }px`,
         fieldForUpdate: 'placeBirth',
         important: false
     },
@@ -68,7 +66,7 @@ export const StepperConfig: IStepperConfig = {
         component: StepperViewFiveComponent,
         btnNext: false,
         btnSkip: false,
-        width: '675px',
+        width: `${ DEFAULT_STEPPER_WIDTH }px`,
         fieldForUpdate: 'familyStatus',
         important: true
     },
@@ -78,7 +76,7 @@ export const StepperConfig: IStepperConfig = {
         component: StepperViewSixComponent,
         btnNext: false,
         btnSkip: true,
-        width: '675px',
+        width: `${ DEFAULT_STEPPER_WIDTH }px`,
         fieldForUpdate: 'isCompiledBirthChart',
         important: false
     },
@@ -179,12 +177,11 @@ export const StepperConfig: IStepperConfig = {
         component: StepperViewSixteenComponent,
         btnNext: true,
         btnSkip: false,
-        width: '675px',
+        width: `${ DEFAULT_STEPPER_WIDTH }px`,
         fieldForUpdate: 'name',
         important: true
     },
-    // todo и тут еще надо впилить хитровыебанный лоудер
-    // пока решил скипнуть лоудер
+    // todo и тут еще надо впилить хитровыебанный лоудер. пока решил скипнуть лоудер
     17: {
         id: 17,
         title: 'Ваша карта рождения готова',
@@ -193,7 +190,7 @@ export const StepperConfig: IStepperConfig = {
         btnSkip: false,
         btnDailyForecast: true,
         width: '1150px',
-        fieldForUpdate: '', // todo а вот тут эта фигня не нужна
+        fieldForUpdate: '',
         important: false
     },
 };

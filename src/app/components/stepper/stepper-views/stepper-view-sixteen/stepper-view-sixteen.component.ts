@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IStepperConfigItem } from '../../../../interfaces/stepper-config-item.interface';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { StepperService } from '../../../../services/stepper.service';
 import { CommonModule } from '@angular/common';
 import { ErrorService } from '../../../../services/erros.service';
@@ -26,7 +26,7 @@ export class StepperViewSixteenComponent {
     name: new FormControl<string>('', [
       Validators.required,
       Validators.minLength(4),
-      Validators.maxLength(30),
+      Validators.maxLength(30)
     ]),
   });
 

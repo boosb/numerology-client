@@ -62,13 +62,10 @@ export class StepperService {
   }
 
   _saveData() {
-    // todo валидация на все шаги
     const saveObj = {
       ...this.authService.currentUser, 
       ...this.dataForSave
     };
-
-    console.log(saveObj, ' >>> saveObj')
 
     this.userService.updateUser(saveObj).subscribe();
   }

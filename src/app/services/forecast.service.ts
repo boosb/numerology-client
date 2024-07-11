@@ -122,7 +122,6 @@ export class ForecastService {
     }
 
     _buyForecast(currentUser: IUser) {
-        console.log(currentUser, ' >>>> currentUser')
         const newBalance = this._getNewBalance(currentUser);
 
         const saveObj = {
@@ -134,7 +133,7 @@ export class ForecastService {
             userId: currentUser.id, // todo убрать в интерфейсе ? (здесь выдает ошибку, поэтому пока что поставил)
             forecastId: 1
         }).subscribe();
-        console.log(saveObj, ' >>>> saveObj')
+
         this.userService.updateUser(saveObj).subscribe();
     }
 
@@ -175,10 +174,7 @@ export class ForecastService {
     getForecast(userId: number) {
         return this.http.get<IForecast[]>(`http://localhost:3000/forecast/${userId}`)
             .pipe(
-                map(forecasts => {
-                    console.log(forecasts,  ' >>>> forecasts')
-                    this._parserForecasts(forecasts)
-                })
+                map(forecasts => this._parserForecasts(forecasts))
             );
     }
 
