@@ -7,9 +7,9 @@ export interface IUser {
     email: string
     password: string
     token?: string // access token
-    balance: number // todo нужен ли здесь? (by default for two forecasts) хочется сделать обязательным, так как баланс есть всегда, вопрост только какой
+    balance: number
 
-    name?: string // todo пока что так (important field)
+    name?: string
     gender?: string // important field
     dateBirth?: Date // important field
     goodZodiacSigns?: string // important field

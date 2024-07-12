@@ -10,7 +10,7 @@
 .modal {
     position: absolute;
     width: 500px;
-    height: 330px;
+    height: 390px;
     background-color: #FFFFFF;
     top: 50%;
     left: 50%;
@@ -82,5 +82,22 @@
         color: red;
         font-size: 14px;
         margin-bottom: 10px;
+    }
+
+    &__switcher {
+        display: flex;
+        margin: 10px 0;
+        font-weight: 400;
+        font-size: 17px;
+        color: #1E90FF;
+    }
+
+    &__splitter {
+        margin: 0 5px;
+    }
+
+    &__switcher-item:hover {
+        cursor: pointer;
+        text-decoration: underline;
     }
 }

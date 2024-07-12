@@ -1,4 +1,4 @@
-<!-- Как будто лайны похожи, мб можно как-то вынести в отдельный компонент -->
+<!-- todo Как будто лайны похожи, мб можно как-то вынести в отдельный компонент -->
 <div class="first-line">
   <div class="first-line__info">
     <div class="first-line__title main-title">
@@ -8,7 +8,7 @@
       С нашими точными астрологическими прогнозами 
       и нумерологическими расчетами
     </div>
-    <button class="btn" (click)="showLogInDlg()">Войти</button>
+    <button class="btn" (click)="modalService.showDlg(dlgTypes.login)">Войти</button>
   </div>
   <div class="first-line__img">
     <img 
@@ -33,7 +33,7 @@
       <div class="second-line__text main-text">
         Ежедневные прогнозы и персональные нумерологические советы
       </div>
-      <button class="btn extended-btn" (click)="test()">Получить прогноз</button>
+      <button class="btn extended-btn" (click)="modalService.showDlg(dlgTypes.login)">Получить прогноз</button>
     </div>
   </div>
 </div>
@@ -73,10 +73,9 @@
         с нашими детализированными астропрогнозами и 
         нумерологическими анализами.
       </div>
-      <button class="btn extended-btn white-btn" (click)="showRegistrationDlg()">Зарегистрироваться</button>
+      <button class="btn extended-btn white-btn" (click)="modalService.showDlg(dlgTypes.registration)">Зарегистрироваться</button>
     </div>
   </div>
 </div>
 
-<!-- TODO Временно впилил сюда, так как фигурирует еще в app.component. Хотелось бы сделать более лаконично -->
-<app-modal-auth *ngIf="authService.isShow$ | async"></app-modal-auth>
+<app-modal-auth *ngIf="modalService.isShow$ | async"></app-modal-auth>

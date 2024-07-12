@@ -1,4 +1,4 @@
-<button class="btn" (click)="showRegistrationDlg()" *ngIf="!user">Регистрация</button>
+<button class="btn" (click)="modalService.showDlg(dlgTypes.registration)" *ngIf="!user">Регистрация</button>
 
 <button class="btn special-btn" *ngIf="user" (click)="onProfile()">
     <!-- todo сюда впилим фото -->

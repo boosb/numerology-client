@@ -6,18 +6,13 @@ import { ErrorComponent } from '../error/error.component';
 import { ErrorService } from '../../services/erros.service';
 import { ImgService } from '../../services/img.service';
 import { CommonModule } from '@angular/common';
-
-export const TYPES = {
-  refistration: 'refistration',
-  login: 'login'
-}
+import { ModalService, TYPES } from '../../services/modal.service';
 
 export const PASS_TYPES = {
   pass: 'password',
   text: 'text'
 }
 
-/// todo ВОпрос знатокам! Лучше описать менеджмент внутри компонента для логина/регистрации или сделать два компонента для каждой цели?
 @Component({
   selector: 'app-modal-auth',
   standalone: true,
@@ -32,7 +27,11 @@ export const PASS_TYPES = {
 export class ModalAuthComponent implements OnInit, OnDestroy {
   title: string = '';
 
+  dlgTypes = TYPES;
+
   private errorTextSubs: Subscription;
+
+  private typeSubs: Subscription;
 
   serverErrorText: string = '';
 
@@ -59,28 +58,30 @@ export class ModalAuthComponent implements OnInit, OnDestroy {
   }
   
   constructor(
-    public authService: AuthService,
+    private authService: AuthService,
+    public modalService: ModalService,
     public errorService: ErrorService,
     public imgService: ImgService
   ) {}
 
   ngOnInit(): void {
-    this._setTitle();
-    this.errorTextSubs = this.authService.errorText$.subscribe(errorText => this.serverErrorText = errorText);
+    this.errorTextSubs = this.modalService.errorText$.subscribe(errorText => this.serverErrorText = errorText);
+    this.typeSubs = this.modalService.dlgType$.subscribe(dlgType => this.title = this.modalService.getTitle(dlgType));
   }
 
   ngOnDestroy(): void {
     this.errorTextSubs.unsubscribe();
+    this.typeSubs.unsubscribe();
   }
 
   submit() {
-    const { value } = this.authService.dlgType$;
+    const { value } = this.modalService.dlgType$;
 
     this.errorService.enabledShowError(
       this.authForm.controls,
       () => {
         switch(value) {
-          case TYPES.refistration:
+          case TYPES.registration:
             this._sendAuthLink();
             break;
           case TYPES.login:
@@ -107,23 +108,9 @@ export class ModalAuthComponent implements OnInit, OnDestroy {
     }).subscribe();
   }
 
-  _setTitle() {
-    const { value } = this.authService.dlgType$;
-    switch(value) {
-      case TYPES.refistration:
-        this.title = 'Регистрация';
-        break;
-      case TYPES.login:
-        this.title = 'Авторизация';
-        break;
-      default:
-        break;
-    }
-  }
-
   @HostListener('window:keydown.esc', ['$event'])
   onEscKeyDown(event: KeyboardEvent) {
-    this.authService.closeDlg();
+    this.modalService.closeDlg();
   }
 
   onToggleShowPass() {

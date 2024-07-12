@@ -1,6 +1,6 @@
 <div class="modal-wrapper">
     <form [formGroup]="authForm" class="modal" (ngSubmit)="submit()">
-        <div class="modal__close" (click)="authService.closeDlg()"></div>
+        <div class="modal__close" (click)="modalService.closeDlg()"></div>
         <div class="modal__title">{{ title }}</div>
         <input 
             type="text"
@@ -26,13 +26,20 @@
             >
             <img 
                 class="modal__pass-icon" 
-                [src]="imgService.getImg(passwordIconPath)" 
+                [src]="this.imgService.getImg(passwordIconPath)" 
                 alt="" 
                 (click)="onToggleShowPass()"
             >
         </div>
 
         <div class="modal__error">{{ serverErrorText }}</div>
+
+        <div class="modal__switcher">
+            <div class="modal__switcher-item" (click)="modalService.setType(dlgTypes.login)">Вход</div>
+            <div class="modal__splitter">/</div>
+            <div class="modal__switcher-item" (click)="modalService.setType(dlgTypes.registration)">Регистрация</div>
+        </div>
+
         <app-error></app-error>
 
         <!-- TODO тут надо вставть текст "Ссылка отправлена на почту" -->

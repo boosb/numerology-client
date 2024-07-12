@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { ModalAuthComponent, TYPES } from '../../components/modal-auth/modal-auth.component';
-import { AuthService } from '../../services/auth.service';
+import { ModalAuthComponent } from '../../components/modal-auth/modal-auth.component';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ImgService } from '../../services/img.service';
+import { ModalService, TYPES } from '../../services/modal.service';
 
 @Component({
   selector: 'app-main-page',
@@ -17,23 +17,11 @@ import { ImgService } from '../../services/img.service';
   styleUrl: './main-page.component.scss'
 })
 export class MainPageComponent {
+
+  public dlgTypes = TYPES;
+
   constructor(
-    public authService: AuthService,
+    public modalService: ModalService,
     public imgService: ImgService
   ) {}
-
-  showRegistrationDlg() {
-    this.authService.setType(TYPES.refistration);
-    this.authService.showDlg();
-  }
-
-  showLogInDlg() {
-    this.authService.setType(TYPES.login);
-    this.authService.showDlg();
-  }
-
-  test() {
-    this.authService.refreshToken()
-            .subscribe();
-  }
 }

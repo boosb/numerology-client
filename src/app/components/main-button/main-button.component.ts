@@ -1,11 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
-import { TYPES } from '../modal-auth/modal-auth.component';
 import { CommonModule } from '@angular/common';
 import { IUser } from '../../interfaces/user.interface';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ImgService } from '../../services/img.service';
+import { ModalService, TYPES } from '../../services/modal.service';
 
 @Component({
   selector: 'app-main-button',
@@ -20,8 +20,11 @@ export class MainButtonComponent implements OnInit, OnDestroy {
 
   public user: IUser | null = null;
 
+  public dlgTypes = TYPES;
+
   constructor(
     public imgService: ImgService,
+    public modalService: ModalService,
     private authService: AuthService,
     private router: Router
   ) {}
@@ -32,11 +35,6 @@ export class MainButtonComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.userSubs.unsubscribe();
-  }
-
-  showRegistrationDlg() {
-    this.authService.setType(TYPES.refistration);
-    this.authService.showDlg();
   }
 
   logout() {

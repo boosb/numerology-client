@@ -18,7 +18,6 @@ import { ImgService } from '../../services/img.service';
 export class ForecastPageComponent implements OnInit, OnDestroy {
   private userSubs: Subscription;
 
-  // todo можно так же передать инпутом из profile-page (подумать)
   public user: IUser | null = this.authService.currentUser;
 
   constructor(
