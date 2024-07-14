@@ -9,7 +9,6 @@ import { ForecastPageComponent } from './pages/forecast-page/forecast-page.compo
 import { CoinsButtonComponent } from './components/coins-button/coins-button.component';
 import { ImgService } from './services/img.service';
 
-// todo Хорошо бы в конце шлифануть package.json, как минимум использование angular material не оч релевантно
 @Component({
     selector: 'app-root',
     standalone: true,

@@ -5,6 +5,7 @@ import { IUser } from '../interfaces/user.interface';
 import { Router } from '@angular/router';
 import { IAuthUser } from '../interfaces/auth-user.interface';
 import { ModalService } from './modal.service';
+import { ErrorService } from './erros.service';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,8 @@ export class AuthService {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private modalService: ModalService
+    private modalService: ModalService,
+    private errorService: ErrorService
   ) {}
 
   setUser(user: IUser|null) {
@@ -39,7 +41,7 @@ export class AuthService {
         this.modalService.closeDlg();
         this.router.navigateByUrl('/profile');
       }),
-      catchError(error => of(this.modalService.setErrorText(error.error.message)))
+      catchError(error => of(this.errorService.setServerErrorText(error.error.message)))
     );
   }
 
@@ -49,19 +51,7 @@ export class AuthService {
         this.setUser(null);
         this.router.navigateByUrl('/');
       }),
-      catchError(error => of(this.modalService.setErrorText(error.error.message)))
-    );
-  }
-
-  registration(user: IAuthUser): Observable<any> { // todo вынести в соответствующий сервис
-    return this.http.post<IUser>('http://localhost:3000/user', user, {withCredentials: true}).pipe(
-      catchError(error => of(this.modalService.setErrorText(error.error.message)))
-    );
-  }
-
-  getAllUsers(): Observable<IUser[]> { // todo вынести в соответствующий сервис
-    return this.http.get<IUser[]>('http://localhost:3000/user').pipe(
-      map((users) => users)
+      catchError(error => of(this.errorService.setServerErrorText(error.error.message)))
     );
   }
 

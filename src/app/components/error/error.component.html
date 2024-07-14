@@ -16,4 +16,8 @@
     <span *ngIf="errors?.other">
         {{ errors?.other.text }}
     </span>
+
+    <span *ngIf="serverErrorText">
+        {{ serverErrorText }}
+    </span>
 </div>

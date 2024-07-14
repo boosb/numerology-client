@@ -13,7 +13,8 @@ export class MainPageGuard implements CanActivate {
     ) {}
     
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        // если пользователь авторизован, то перенаправляем его на страницу профиля
+        // todo если пользователь авторизован, то перенаправляем его на страницу профиля
+        // возможно где-то тут и можно выдавать пользователю инфу о необходимости подтвердить емеил, если не подтвержден
         if (this.authService.currentUser) {
             this.router.navigate(['/profile'], { queryParams: { returnUrl: state.url } });
             return false;

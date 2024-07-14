@@ -24,8 +24,6 @@ export const appConfig: ApplicationConfig = {
       useClass: JwtInterceptor,
       multi: true,
     },
-
-    // todo из просторов инета подшлядел, что этот объект вроде как почти что дубль верзнего (надо бы разобраться )
     {
       provide: HTTP_INTERCEPTORS,
       useClass: RefreshInterceptor,

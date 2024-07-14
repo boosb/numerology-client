@@ -32,18 +32,19 @@
             >
         </div>
 
-        <div class="modal__error">{{ serverErrorText }}</div>
-
         <div class="modal__switcher">
-            <div class="modal__switcher-item" (click)="modalService.setType(dlgTypes.login)">Вход</div>
+            <div class="modal__switcher-item" (click)="toggleState(dlgTypes.login)">Вход</div>
             <div class="modal__splitter">/</div>
-            <div class="modal__switcher-item" (click)="modalService.setType(dlgTypes.registration)">Регистрация</div>
+            <div class="modal__switcher-item" (click)="toggleState(dlgTypes.registration)">Регистрация</div>
         </div>
 
         <app-error></app-error>
+        
+        <div *ngIf="isSentConfirmationLink" class="modal__link">
+            Ссылка для подтверждения отправлена! Проверьте, пожалуйста, почту!
+        </div>
 
-        <!-- TODO тут надо вставть текст "Ссылка отправлена на почту" -->
-        <!-- TODO тут надо вставть текст "Отправить ссылку повторно" -->
+        <!-- TODO тут надо вставть текст "Отправить ссылку повторно" (реализовать функционал повторной отправки ссылки) -->
         <button type="submit" class="btn">Продолжить</button>
     </form>
 </div>

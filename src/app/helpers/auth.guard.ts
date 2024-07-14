@@ -13,8 +13,9 @@ export class AuthGuard implements CanActivate {
     ) {}
     
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        // todo ну и как будто нужна проверка на подтвержденный емаил
-        if (this.authService.currentUser) {
+        // todo если пользователь зарегался, но не подтвердил емеил, то ему надо где-то показывать инфу 
+        const { currentUser } = this.authService;
+        if (currentUser && currentUser.isConfirmed) {
             return true;
         }
 

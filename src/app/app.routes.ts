@@ -17,29 +17,21 @@ export const routes: Routes = [
     {
         path: 'settings',
         component: SettingPageComponent,
-
-        // todo пока что просто добавил гуард, в дальнейшем мб добавить вариативности
         canActivate: [AuthGuard]
     },
     {
         path: 'forecast',
         component: ForecastPageComponent,
-
-        // todo пока что просто добавил гуард, в дальнейшем мб добавить вариативности
         canActivate: [AuthGuard]
     },
     {
         path: 'profile',
         component: ProfilePageComponent,
-
-        // todo пока что просто добавил гуард, в дальнейшем мб добавить вариативности
         canActivate: [AuthGuard]
     },
     {
         path: 'buy',
         component: BuyPageComponent,
-
-        // todo пока что просто добавил гуард, в дальнейшем мб добавить вариативности
         canActivate: [AuthGuard]
     },
 

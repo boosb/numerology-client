@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
+import { ErrorService } from "./erros.service";
 
 export const TYPES = {
     registration: 'registration',
@@ -14,8 +15,10 @@ export class ModalService {
     isShow$ = new BehaviorSubject<boolean>(false);
     
     dlgType$ = new BehaviorSubject<string>('');
-  
-    errorText$ = new BehaviorSubject<string>('');
+
+    constructor(
+        private errorService: ErrorService
+    ) {}
 
     showDlg(dlgType: string) {
         this.setType(dlgType);
@@ -24,11 +27,7 @@ export class ModalService {
   
     closeDlg() {
         this.isShow$.next(false);
-        this.setErrorText();
-    }
-
-    setErrorText(errorText: string = '') {
-        this.errorText$.next(errorText);
+        this.errorService.cleanAllError();
     }
 
     getTitle(dlgType: string) {

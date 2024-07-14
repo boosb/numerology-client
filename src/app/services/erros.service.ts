@@ -1,4 +1,4 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { FormControl, ValidationErrors } from '@angular/forms';
 
@@ -8,12 +8,19 @@ import { FormControl, ValidationErrors } from '@angular/forms';
 export class ErrorService {
   errors$ = new BehaviorSubject<ValidationErrors | null>(null);
 
+  // текст ошибки, который пришел с сервера
+  serverErrorText$ = new BehaviorSubject<string | null>(null);
+
   isShow$ = new BehaviorSubject<boolean>(false);
 
-  fields = new Map(); // todo как будто мув из нативки. мб есть более лаконичный способ в angular
+  fields = new Map();
 
   get errors() {
     return this.errors$.value;
+  }
+
+  get serverErrorText() {
+    return this.serverErrorText$.value;
   }
 
   get isShow() {
@@ -28,16 +35,24 @@ export class ErrorService {
   }
 
   setErrors(errors: ValidationErrors | null) {
-    this.errors$.next(errors)
+    this.errors$.next(errors);
   }
 
-  setIsShow(isShow: boolean) {
-    this.isShow$.next(isShow);
+  setServerErrorText(errorText: string | null) {
+    this.serverErrorText$.next(errorText);
   }
 
+  setIsShow() {
+    if(this.serverErrorText || this.errors) {
+      this.isShow$.next(true);
+    } else {
+      this.isShow$.next(false);
+    }
+  }
+
+  // метод проверяет наличие ошибок в заполненных полях
+  // если есть ошибки устанавливает их, иначе выполняет callback
   async enabledShowError(fields: any, callback: Function) {
-    this.setIsShow(true);
-
     const isExistErrors = this._existErrors(fields);
     if(isExistErrors) {
       return;
@@ -45,14 +60,18 @@ export class ErrorService {
 
     await callback();
 
-    // после всех проверок и действий отчищаем данные 
-    this.cleanFullData();
+    // после всех проверок и действий очищаем данные 
+    this.cleanFieldError();
   }
 
-  cleanFullData() {
+  cleanAllError() {
+    this.setServerErrorText(null);
+    this.cleanFieldError();
+  }
+
+  cleanFieldError() {
     this.setErrors(null);
     this.fields.clear();
-    this.setIsShow(false);
   }
 
   _existErrors(fields: any) {

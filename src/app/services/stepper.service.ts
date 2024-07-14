@@ -75,7 +75,7 @@ export class StepperService {
 
     // если скипаем шаг, то отчищаем данные в errorServise
     if(isSkip) {
-      this.errorService.cleanFullData();
+      this.errorService.cleanFieldError();
     }
   }
 }

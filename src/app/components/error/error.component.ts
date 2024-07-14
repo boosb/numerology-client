@@ -15,23 +15,30 @@ export class ErrorComponent implements OnInit, OnDestroy {
 
   errorsSubs: Subscription;
 
+  serverErrorTextSubs: Subscription;
+
   errors: ValidationErrors | null;
+
+  serverErrorText: string | null;
 
   constructor(
     public errorService: ErrorService
   ) {}
 
-  ngOnDestroy(): void {
-    this.errorsSubs.unsubscribe();
-  }
-
   ngOnInit(): void {
     this.errorsSubs = this.errorService.errors$.subscribe(errors => {
       this.errors = errors;
-
-      if(!errors) {
-        this.errorService.setIsShow(false);
-      }
+      this.serverErrorText = null;
+      this.errorService.setIsShow();
     });
+    this.serverErrorTextSubs = this.errorService.serverErrorText$.subscribe(error => {
+      this.serverErrorText = error;
+      this.errorService.setIsShow();
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.errorsSubs.unsubscribe();
+    this.serverErrorTextSubs.unsubscribe();
   }
 }

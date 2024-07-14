@@ -7,6 +7,7 @@ import { ErrorService } from '../../services/erros.service';
 import { ImgService } from '../../services/img.service';
 import { CommonModule } from '@angular/common';
 import { ModalService, TYPES } from '../../services/modal.service';
+import { UserService } from '../../services/user.service';
 
 export const PASS_TYPES = {
   pass: 'password',
@@ -29,15 +30,15 @@ export class ModalAuthComponent implements OnInit, OnDestroy {
 
   dlgTypes = TYPES;
 
-  private errorTextSubs: Subscription;
+  typeSubs: Subscription;
 
-  private typeSubs: Subscription;
-
-  serverErrorText: string = '';
+  userSubs: Subscription;
 
   passwordType: string = PASS_TYPES.pass;
 
   passwordIconPath: string = this.imgService.paths['EYE_OFF'];
+
+  isSentConfirmationLink: boolean = false;
 
   authForm = new FormGroup({
     email: new FormControl<string>('', [
@@ -59,18 +60,19 @@ export class ModalAuthComponent implements OnInit, OnDestroy {
   
   constructor(
     private authService: AuthService,
+    private userService: UserService,
     public modalService: ModalService,
     public errorService: ErrorService,
     public imgService: ImgService
   ) {}
 
   ngOnInit(): void {
-    this.errorTextSubs = this.modalService.errorText$.subscribe(errorText => this.serverErrorText = errorText);
+    this.userSubs = this.authService.user$.subscribe(user => this.isSentConfirmationLink = !!user);
     this.typeSubs = this.modalService.dlgType$.subscribe(dlgType => this.title = this.modalService.getTitle(dlgType));
   }
 
   ngOnDestroy(): void {
-    this.errorTextSubs.unsubscribe();
+    this.userSubs.unsubscribe();
     this.typeSubs.unsubscribe();
   }
 
@@ -94,8 +96,13 @@ export class ModalAuthComponent implements OnInit, OnDestroy {
     );
   }
 
+  toggleState(dlgType: string) {
+    this.errorService.cleanAllError();
+    this.modalService.setType(dlgType);
+  }
+
   _sendAuthLink() {
-    this.authService.registration({
+    this.userService.registration({
       email: this.authForm.value.email as string,
       password: this.authForm.value.password as string
     }).subscribe();

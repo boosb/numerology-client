@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { ModalAuthComponent } from '../../components/modal-auth/modal-auth.component';
 import { RouterLink } from '@angular/router';
-import { CommonModule } from '@angular/common';
 import { ImgService } from '../../services/img.service';
 import { ModalService, TYPES } from '../../services/modal.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-main-page',
