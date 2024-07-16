@@ -1,8 +1,6 @@
 <button class="btn" (click)="modalService.showDlg(dlgTypes.registration)" *ngIf="!user">Регистрация</button>
 
 <button class="btn special-btn" *ngIf="user" (click)="onProfile()">
-    <!-- todo сюда впилим фото -->
-<!--  [src]="imgService.getDefaultUserAvatar()"  -->
     <img class="avatar" [src]="imgService.getDefaultUserAvatar()" alt="Avatar">
 
     {{ user.email }}
