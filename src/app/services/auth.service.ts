@@ -67,7 +67,7 @@ export class AuthService {
       );
   }
 
-  // todo чет вкинул метод, но не оч разобрался
+  // todo чет вкинул метод, но не оч разобрался (!)
   private startRefreshTokenTimer() {
     // parse json object from base64 encoded jwt token
     if(this.currentUser && this.currentUser.token) {

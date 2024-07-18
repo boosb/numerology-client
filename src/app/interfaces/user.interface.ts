@@ -1,8 +1,5 @@
 export interface IUser {
-
-    // main data
-    id: number // todo ВОПРОС! Вообще ИД не может быть пустым у юзера, но будет пустым только при создании юзера
-    // на данный момент создам другой интерфейс для создания и авторизации пользователя IAuthUser. Норм ли такой подход? 
+    id: number
 
     email: string
     password: string
@@ -10,12 +7,13 @@ export interface IUser {
     isConfirmed: boolean
     balance: number
 
+    // important fields
     name?: string
-    gender?: string // important field
-    dateBirth?: Date // important field
-    goodZodiacSigns?: string // important field
-    favoriteActivity?: string // important field
-    familyStatus?: string // important field
+    gender?: string
+    dateBirth?: Date
+    goodZodiacSigns?: string
+    favoriteActivity?: string
+    familyStatus?: string
 
     // second data
     timeBirth?: Date

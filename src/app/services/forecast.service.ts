@@ -17,8 +17,8 @@ export const forecastConst = {
   providedIn: 'root'
 })
 export class ForecastService {
-    // todo должны быть варианты "daily", "weekly", "no-data", "no-cash"
-    forecastType$ = new BehaviorSubject<string>(forecastConst.NO_CASH); // todo при разделении прогнозов данное поле может стать рудиментом
+    // TODO при разделении прогнозов данное поле может стать рудиментом (подумать как подправить логику)
+    forecastType$ = new BehaviorSubject<string>(forecastConst.NO_CASH);
 
     dailyForecast$ = new BehaviorSubject<IForecast|null>(null);
 
@@ -70,8 +70,6 @@ export class ForecastService {
         return this.forecastType === forecastConst.NO_CASH;
     }
 
-    // todo при покупке прогноза так же должен создаваться соотвествующий объект в БД, так что надо еще сюда добавить взаимодействие с беком
-    // todo так же нужно сохранять купленный прогноз на определеннное время. И выдавать его (уже сохраненный прогноз) без новой покупки.
     buyForecast(forecastType: string) {
         const { currentUser } = this.authService;
         if(!currentUser) {
@@ -130,7 +128,7 @@ export class ForecastService {
         };
 
         this.createForecast({
-            userId: currentUser.id, // todo убрать в интерфейсе ? (здесь выдает ошибку, поэтому пока что поставил)
+            userId: currentUser.id,
             forecastId: 1
         }).subscribe();
 
@@ -167,7 +165,7 @@ export class ForecastService {
         return this.http.post<IForecast>('http://localhost:3000/forecast', forecast, {withCredentials: true})
             .pipe(
                 map(forecast => this._parserForecasts([forecast]))
-                // todo сюда можно добавить обработку ошибок, пока нет необходимости
+                // todo сюда можно добавить обработку ошибок, пока нет необходимости (!)
             );
     }
 

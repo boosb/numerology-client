@@ -5,7 +5,7 @@ import { AuthService } from '../services/auth.service';
 
 @Injectable()
 export class RefreshInterceptor implements HttpInterceptor {
-    // todo ток если честно я хз как протестить данный функционал
+    // TODO ток если честно я хз как протестить данный функционал
 
     constructor(
         private authService: AuthService,
@@ -48,7 +48,7 @@ export class RefreshInterceptor implements HttpInterceptor {
       
                   if (error.status == '403') {
                     //this.eventBusService.emit(new EventData('logout', null));
-                    // todo тут при выпадении 403 ошибки надо выходить из системы
+                    // todo тут при выпадении 403 ошибки надо выходить из системы (!)
                   }
       
                   return throwError(() => error);
