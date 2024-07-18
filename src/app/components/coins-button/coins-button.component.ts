@@ -1,10 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { IUser } from '../../interfaces/user.interface';
+import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ImgService } from '../../services/img.service';
+import { Subscription } from 'rxjs';
+import { IUser } from '../../interfaces/user.interface';
 
 @Component({
   selector: 'app-coins-button',
@@ -13,12 +13,11 @@ import { ImgService } from '../../services/img.service';
   templateUrl: './coins-button.component.html',
   styleUrl: './coins-button.component.scss'
 })
-export class CoinsButtonComponent implements OnInit, OnDestroy {
-  // todo что касается юзера одинаково с main-button, хорошо бы отрефакторить в дальнейшем
+export class CoinsButtonComponent {
   private userSubs: Subscription;
 
   public user: IUser | null = null;
-
+  
   constructor(
     public imgService: ImgService,
     private authService: AuthService,
