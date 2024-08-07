@@ -56,7 +56,7 @@ export class AuthService {
   }
 
   refreshToken(): Observable<any> {
-    return this.http.post<any>('http://localhost:3000/auth/refresh', {}, {withCredentials: true})
+    return this.http.post<any>('http://46.19.67.196:3000/auth/refresh', {}, {withCredentials: true})
       .pipe(
         map(user => {
           this.user$.next(user);
