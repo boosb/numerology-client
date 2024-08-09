@@ -5,6 +5,7 @@ import { IUser } from '../interfaces/user.interface';
 import { AuthService } from './auth.service';
 import { HttpClient } from '@angular/common/http';
 import { IForecast } from '../interfaces/forecast.interface';
+import { environment } from '../../environments/environment';
 
 export const forecastConst = {
     DAILY: 'daily',
@@ -17,6 +18,8 @@ export const forecastConst = {
   providedIn: 'root'
 })
 export class ForecastService {
+    private apiUrl = environment.apiUrl;
+    
     // TODO при разделении прогнозов данное поле может стать рудиментом (подумать как подправить логику)
     forecastType$ = new BehaviorSubject<string>(forecastConst.NO_CASH);
 
@@ -162,7 +165,7 @@ export class ForecastService {
     }
 
     createForecast(forecast: IForecast) {
-        return this.http.post<IForecast>('http://localhost:3000/forecast', forecast, {withCredentials: true})
+        return this.http.post<IForecast>(`${this.apiUrl}/forecast`, forecast, {withCredentials: true})
             .pipe(
                 map(forecast => this._parserForecasts([forecast]))
                 // todo сюда можно добавить обработку ошибок, пока нет необходимости (!)
@@ -170,7 +173,7 @@ export class ForecastService {
     }
 
     getForecast(userId: number) {
-        return this.http.get<IForecast[]>(`http://localhost:3000/forecast/${userId}`)
+        return this.http.get<IForecast[]>(`${this.apiUrl}/forecast/${userId}`)
             .pipe(
                 map(forecasts => this._parserForecasts(forecasts))
             );
