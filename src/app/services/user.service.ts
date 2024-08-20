@@ -26,6 +26,7 @@ export class UserService {
   }
 
   registration(user: IAuthUser): Observable<any> {
+    console.log(user, ' >>>> user-test');
     return this.http.post<IUser>(`${this.apiUrl}/user`, user, {withCredentials: true}).pipe(
       map((user) => this.authService.setUser(user)),
       catchError(error => of(this.errorService.setServerErrorText(error.error.message)))
