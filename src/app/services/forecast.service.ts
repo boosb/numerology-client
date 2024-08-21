@@ -165,7 +165,7 @@ export class ForecastService {
     }
 
     createForecast(forecast: IForecast) {
-        return this.http.post<IForecast>(`api/${this.apiUrl}/forecast`, forecast, {withCredentials: true})
+        return this.http.post<IForecast>(`${this.apiUrl}/forecast`, forecast, {withCredentials: true})
             .pipe(
                 map(forecast => this._parserForecasts([forecast]))
                 // todo сюда можно добавить обработку ошибок, пока нет необходимости (!)
@@ -173,7 +173,7 @@ export class ForecastService {
     }
 
     getForecast(userId: number) {
-        return this.http.get<IForecast[]>(`api/${this.apiUrl}/forecast/${userId}`)
+        return this.http.get<IForecast[]>(`${this.apiUrl}/forecast/${userId}`)
             .pipe(
                 map(forecasts => this._parserForecasts(forecasts))
             );
