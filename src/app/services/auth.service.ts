@@ -38,7 +38,7 @@ export class AuthService {
   }
 
   login(user: IAuthUser): Observable<any> {
-    return this.http.post<IUser>(`${this.apiUrl}/auth/log-in`, user, {withCredentials: true}).pipe(
+    return this.http.post<IUser>(`api/${this.apiUrl}/auth/log-in`, user, {withCredentials: true}).pipe(
       map(user => {
         this.setUser(user);
         this.modalService.closeDlg();
@@ -49,7 +49,7 @@ export class AuthService {
   }
 
   logout(): Observable<any> {
-    return this.http.post<IUser>(`${this.apiUrl}/auth/log-out`, {}, {withCredentials: true}).pipe(
+    return this.http.post<IUser>(`api/${this.apiUrl}/auth/log-out`, {}, {withCredentials: true}).pipe(
       map(() => {
         this.setUser(null);
         this.router.navigateByUrl('/');
@@ -59,7 +59,7 @@ export class AuthService {
   }
 
   refreshToken(): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/auth/refresh`, {}, {withCredentials: true})
+    return this.http.post<any>(`api/${this.apiUrl}/auth/refresh`, {}, {withCredentials: true})
       .pipe(
         map(user => {
           this.user$.next(user);

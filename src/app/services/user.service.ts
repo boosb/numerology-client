@@ -20,7 +20,7 @@ export class UserService {
   ) {}
 
   updateUser(user: IUser): Observable<any> {
-    return this.http.patch<IUser>(`${this.apiUrl}/user/${ user.id }`, user, {withCredentials: true}).pipe(
+    return this.http.patch<IUser>(`api/${this.apiUrl}/user/${ user.id }`, user, {withCredentials: true}).pipe(
       map(user => this.authService.setUser(user))
     );
   }
