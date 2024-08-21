@@ -1,4 +1,4 @@
 export const environment = {
     production: true,
-    apiUrl: 'http://dailydestin.ru'
+    apiUrl: 'http://dailydestin.ru/api'
 };

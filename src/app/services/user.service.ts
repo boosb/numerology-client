@@ -20,14 +20,14 @@ export class UserService {
   ) {}
 
   updateUser(user: IUser): Observable<any> {
-    return this.http.patch<IUser>(`api/${this.apiUrl}/user/${ user.id }`, user, {withCredentials: true}).pipe(
+    return this.http.patch<IUser>(`${this.apiUrl}/user/${ user.id }`, user, {withCredentials: true}).pipe(
       map(user => this.authService.setUser(user))
     );
   }
 
   registration(user: IAuthUser): Observable<any> {
     console.log(user, ' >>>> user-test');
-    return this.http.post<IUser>(`api/${this.apiUrl}/user`, user, {withCredentials: true}).pipe(
+    return this.http.post<IUser>(`${this.apiUrl}/user`, user, {withCredentials: true}).pipe(
       map((user) => this.authService.setUser(user)),
       catchError(error => of(this.errorService.setServerErrorText(error.error.message)))
     );
