@@ -1,9 +1,9 @@
-<button class="btn" (click)="modalService.showDlg(dlgTypes.registration)" *ngIf="!user">Регистрация</button>
+<button class="btn" (click)="modalService.showDlg(dlgTypes.registration)" *ngIf="!isGoodUser">Регистрация</button>
 
-<button class="btn special-btn" *ngIf="user" (click)="onProfile()">
+<button class="btn special-btn" *ngIf="isGoodUser" (click)="onProfile()">
     <img class="avatar" [src]="imgService.getDefaultUserAvatar()" alt="Avatar">
 
-    {{ user.email }}
+    {{ user?.email }}
     
     <img 
         class="exit-icon" 

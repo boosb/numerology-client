@@ -70,6 +70,16 @@ export class AuthService {
       );
   }
 
+  confirmedEmail(token: string): Observable<any> {
+    return this.http.get<IUser>(`${this.apiUrl}/auth/confirmed?token=${token}`)
+      .pipe(
+        map(user => {
+          this.setUser(user);
+          this.router.navigateByUrl('/profile');
+        })
+      );
+  }
+
   // todo чет вкинул метод, но не оч разобрался (!)
   private startRefreshTokenTimer() {
     // parse json object from base64 encoded jwt token

@@ -21,6 +21,10 @@ export class MainButtonComponent implements OnInit, OnDestroy {
   public user: IUser | null = null;
 
   public dlgTypes = TYPES;
+  
+  get isGoodUser() {
+    return this.user && this.user.isConfirmed;
+  }
 
   constructor(
     public imgService: ImgService,
