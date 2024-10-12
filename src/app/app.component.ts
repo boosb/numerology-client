@@ -22,7 +22,8 @@ import { ImgService } from './services/img.service';
       MainPageComponent,
       SettingPageComponent,
       ForecastPageComponent,
-
+      RouterLink,
+      RouterOutlet
     ]
 })
 export class AppComponent {

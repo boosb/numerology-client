@@ -12,6 +12,7 @@ import { ForecastService } from './services/forecast.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideRouter(routes),
     importProvidersFrom(HttpClientModule),
     importProvidersFrom(FormsModule),
     importProvidersFrom(ReactiveFormsModule),
