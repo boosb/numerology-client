@@ -3,7 +3,7 @@ export interface IUser {
 
     email: string
     password: string
-    token?: string // access token
+    token: string // access token
     isConfirmed: boolean
     balance: number
 

@@ -33,6 +33,15 @@ export class AuthService {
     this.user$.next(user);
   }
 
+  get token() {
+    // @ts-ignore
+    return localStorage.getItem('token');
+  }
+
+  set token(token: string) {
+    localStorage.setItem('token', token);
+  }
+
   isLoggedIn() {
     return !!this.currentUser;
   }
@@ -41,6 +50,7 @@ export class AuthService {
     return this.http.post<IUser>(`${this.apiUrl}/auth/log-in`, user, {withCredentials: true}).pipe(
       map(user => {
         this.setUser(user);
+        this.token = user.token;
         this.modalService.closeDlg();
         this.router.navigateByUrl('/profile');
       }),
@@ -52,6 +62,7 @@ export class AuthService {
     return this.http.post<IUser>(`${this.apiUrl}/auth/log-out`, {}, {withCredentials: true}).pipe(
       map(() => {
         this.setUser(null);
+        this.token = '';
         this.router.navigateByUrl('/');
       }),
       catchError(error => of(this.errorService.setServerErrorText(error.error.message)))
@@ -59,15 +70,19 @@ export class AuthService {
   }
 
   refreshToken(): Observable<any> {
-    console.log(this.currentUser, ' >>>> user$')
+    console.log(this.token, ' >>>> user$')
     return this.http.post<any>(`${this.apiUrl}/auth/refresh`, {}, {withCredentials: true})
       .pipe(
         map(user => {
+          console.log(user, ' >>>> user')
           this.user$.next(user);
           this.startRefreshTokenTimer();
          // return user;
         }),
-
+        catchError(error =>{
+          console.log(error, ' >>>> error')
+          return  of(this.errorService.setServerErrorText(error.error.message))
+        })
       );
   }
 
