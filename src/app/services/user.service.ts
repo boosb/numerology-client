@@ -5,11 +5,14 @@ import { IUser } from '../interfaces/user.interface';
 import { AuthService } from './auth.service';
 import { IAuthUser } from '../interfaces/auth-user.interface';
 import { ErrorService } from './erros.service';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+  private apiUrl = environment.apiUrl;
+
   constructor(
     private http: HttpClient,
     private authService: AuthService,
@@ -17,13 +20,13 @@ export class UserService {
   ) {}
 
   updateUser(user: IUser): Observable<any> {
-    return this.http.patch<IUser>(`http://localhost:3000/user/${ user.id }`, user, {withCredentials: true}).pipe(
+    return this.http.patch<IUser>(`${this.apiUrl}/user/${ user.id }`, user, {withCredentials: true}).pipe(
       map(user => this.authService.setUser(user))
     );
   }
 
   registration(user: IAuthUser): Observable<any> {
-    return this.http.post<IUser>('http://localhost:3000/user', user, {withCredentials: true}).pipe(
+    return this.http.post<IUser>(`${this.apiUrl}/user`, user, {withCredentials: true}).pipe(
       map((user) => this.authService.setUser(user)),
       catchError(error => of(this.errorService.setServerErrorText(error.error.message)))
     );

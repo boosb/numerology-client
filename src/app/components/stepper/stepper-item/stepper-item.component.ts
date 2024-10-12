@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, Input, Output } from '@angular/core';
+import { StepperService } from '../../../services/stepper.service';
 
 interface ISize {
   width: number;
@@ -35,7 +36,16 @@ export class StepperItemComponent {
     };
   }
 
+  constructor(
+    private stepperService: StepperService
+  ) {}
+
   public getText() {
     this.itemClick.emit(this.text);
+  }
+
+  @HostListener('itemClick', ['$event'])
+  itemSelect(itemText: string) {
+    this.stepperService.nextStep(itemText);
   }
 }

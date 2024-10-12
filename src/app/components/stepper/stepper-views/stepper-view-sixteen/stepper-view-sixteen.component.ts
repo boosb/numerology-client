@@ -19,7 +19,6 @@ import { ErrorService } from '../../../../services/erros.service';
   ]
 })
 export class StepperViewSixteenComponent {
-  // todo ваще 4 и 16 шаг похожи, мб оформить наследование по типу StepperViewItemComponent (мб можно подогнать сюда шаги 2 и 3)
   private step: IStepperConfigItem = this.stepperService.getCurrentStep();
 
   form = new FormGroup({

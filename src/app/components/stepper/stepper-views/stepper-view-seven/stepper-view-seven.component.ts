@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { StepperItemComponent } from '../../stepper-item/stepper-item.component';
 import { IIconConfig } from '../../../../interfaces/icon-config.interface';
 import { IconConfig } from '../../icon.config';
-import { StepperViewItemComponent } from '../stepper-view-item/stepper-view-item.component';
+import { StepperService } from '../../../../services/stepper.service';
 
 @Component({
   selector: 'app-stepper-view-seven',
@@ -14,6 +14,6 @@ import { StepperViewItemComponent } from '../stepper-view-item/stepper-view-item
     '../../stepper.component.scss'
   ]
 })
-export class StepperViewSevenComponent extends StepperViewItemComponent {
+export class StepperViewSevenComponent {
   iconConfig: IIconConfig = IconConfig;
 }

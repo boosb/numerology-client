@@ -3,9 +3,6 @@ import { StepperItemComponent } from '../../stepper-item/stepper-item.component'
 import { IconConfig } from '../../icon.config';
 import { IIconConfig } from '../../../../interfaces/icon-config.interface';
 import { CommonModule } from '@angular/common';
-import { StepperService } from '../../../../services/stepper.service';
-import { IStepperConfigItem } from '../../../../interfaces/stepper-config-item.interface';
-import { StepperViewItemComponent } from '../stepper-view-item/stepper-view-item.component';
 
 @Component({
   selector: 'app-stepper-view-one',
@@ -20,6 +17,6 @@ import { StepperViewItemComponent } from '../stepper-view-item/stepper-view-item
     '../../stepper.component.scss'
   ]
 })
-export class StepperViewOneComponent extends StepperViewItemComponent {
+export class StepperViewOneComponent {
   iconConfig: IIconConfig = IconConfig;
 }

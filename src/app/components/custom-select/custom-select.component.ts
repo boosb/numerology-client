@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule],
   templateUrl: './custom-select.component.html',
   styleUrl: './custom-select.component.scss'
-}) // todo Нужен ли ?
+}) // todo Нужен ли (!) ?
 export class CustomSelectComponent implements OnInit {
   public config: any;
 

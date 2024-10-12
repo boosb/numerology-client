@@ -82,7 +82,7 @@ export class StepperComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   buyForecast() {
-    // todo пока что покупаем только "ежедневный" прогноз
+    // todo пока что покупаем только "ежедневный" прогноз (!)
     this.forecastService.buyForecast(forecastConst.DAILY);
     this.router.navigateByUrl('/forecast');
   }

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { CustomSelectComponent } from '../../../custom-select/custom-select.component';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IStepperConfigItem } from '../../../../interfaces/stepper-config-item.interface';
 import { StepperService } from '../../../../services/stepper.service';
@@ -10,8 +9,7 @@ import { ErrorService } from '../../../../services/erros.service';
   selector: 'app-stepper-view-three',
   standalone: true,
   imports: [
-    CommonModule,
-    CustomSelectComponent, 
+    CommonModule, 
     ReactiveFormsModule
   ],
   templateUrl: './stepper-view-three.component.html',

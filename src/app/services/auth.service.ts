@@ -6,11 +6,14 @@ import { Router } from '@angular/router';
 import { IAuthUser } from '../interfaces/auth-user.interface';
 import { ModalService } from './modal.service';
 import { ErrorService } from './erros.service';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  private apiUrl = environment.apiUrl;
+
   user$ = new BehaviorSubject<IUser|null>(null);
   
   refreshTokenTimeout: any;
@@ -35,7 +38,7 @@ export class AuthService {
   }
 
   login(user: IAuthUser): Observable<any> {
-    return this.http.post<IUser>('http://localhost:3000/auth/log-in', user, {withCredentials: true}).pipe(
+    return this.http.post<IUser>(`${this.apiUrl}/auth/log-in`, user, {withCredentials: true}).pipe(
       map(user => {
         this.setUser(user);
         this.modalService.closeDlg();
@@ -46,7 +49,7 @@ export class AuthService {
   }
 
   logout(): Observable<any> {
-    return this.http.post<IUser>('http://localhost:3000/auth/log-out', {}, {withCredentials: true}).pipe(
+    return this.http.post<IUser>(`${this.apiUrl}/auth/log-out`, {}, {withCredentials: true}).pipe(
       map(() => {
         this.setUser(null);
         this.router.navigateByUrl('/');
@@ -56,7 +59,7 @@ export class AuthService {
   }
 
   refreshToken(): Observable<any> {
-    return this.http.post<any>('http://localhost:3000/auth/refresh', {}, {withCredentials: true})
+    return this.http.post<any>(`${this.apiUrl}/auth/refresh`, {}, {withCredentials: true})
       .pipe(
         map(user => {
           this.user$.next(user);
@@ -67,7 +70,17 @@ export class AuthService {
       );
   }
 
-  // todo чет вкинул метод, но не оч разобрался
+  confirmedEmail(token: string): Observable<any> {
+    return this.http.get<IUser>(`${this.apiUrl}/auth/confirmed?token=${token}`)
+      .pipe(
+        map(user => {
+          this.setUser(user);
+          this.router.navigateByUrl('/profile');
+        })
+      );
+  }
+
+  // todo чет вкинул метод, но не оч разобрался (!)
   private startRefreshTokenTimer() {
     // parse json object from base64 encoded jwt token
     if(this.currentUser && this.currentUser.token) {

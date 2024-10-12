@@ -7,6 +7,8 @@ import { ProfilePageComponent } from './pages/profile-page/profile-page.componen
 import { AuthGuard } from './helpers/auth.guard';
 import { MainPageGuard } from './helpers/main-page.guard';
 import { BuyPageComponent } from './pages/buy-page/buy-page.component';
+import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
+import { ConfirmedPageComponent } from './pages/confirmed-page/confirmed-page.component';
 
 export const routes: Routes = [
     {
@@ -34,6 +36,12 @@ export const routes: Routes = [
         component: BuyPageComponent,
         canActivate: [AuthGuard]
     },
-
-    //todo добавить **
+    {
+        path: 'confirmed',
+        component: ConfirmedPageComponent,
+    },
+    {
+        path: '**',
+        component: NotFoundPageComponent
+    }
 ];

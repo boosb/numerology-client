@@ -1,4 +1,4 @@
-<button class="btn special-btn" *ngIf="user" (click)="onBuy()">
+<button class="btn special-btn" *ngIf="user && user.isConfirmed" (click)="onBuy()">
     <img 
         class="coins-icon" 
         [src]="imgService.getImg(imgService.paths['COINS'])" 

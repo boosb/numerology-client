@@ -1,4 +1,3 @@
-// todo вроде как правильно сделать конфиг на базе интерфейса
 interface ICustomSelectConfigItem {
     name: string;
     values: string[];

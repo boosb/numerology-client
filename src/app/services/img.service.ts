@@ -28,6 +28,8 @@ export class ImgService {
 
         EYE: 'assets/images/eye.svg',
         EYE_OFF: 'assets/images/eye-off.svg',
+
+        NOT_FOUND_PAGE: 'assets/images/not-found-img.svg',
     }
 
     private genders: any = {

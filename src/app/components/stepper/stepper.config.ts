@@ -181,7 +181,7 @@ export const StepperConfig: IStepperConfig = {
         fieldForUpdate: 'name',
         important: true
     },
-    // todo и тут еще надо впилить хитровыебанный лоудер. пока решил скипнуть лоудер
+    // todo и тут еще надо впилить лоудер. пока решил скипнуть лоудер (!)
     17: {
         id: 17,
         title: 'Ваша карта рождения готова',
