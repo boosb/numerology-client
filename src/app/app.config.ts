@@ -12,6 +12,30 @@ import { ForecastService } from './services/forecast.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-   
+    importProvidersFrom(HttpClientModule),
+    importProvidersFrom(FormsModule),
+    importProvidersFrom(ReactiveFormsModule),
+    provideHttpClient(
+      withInterceptorsFromDi()
+    ),
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: RefreshInterceptor,
+      multi: true,
+    },
+    { 
+      provide: APP_INITIALIZER, 
+      useFactory: appInitializer, 
+      multi: true, 
+      deps: [AuthService] 
+    },
+    AuthService,
+    UserService,
+    ForecastService
   ]
 };
