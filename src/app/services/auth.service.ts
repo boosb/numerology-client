@@ -58,18 +58,16 @@ export class AuthService {
     );
   }
 
-  refreshToken(): Observable<IUser> {
-    return this.http.post<IUser>(`${this.apiUrl}/auth/refresh`, {}, {withCredentials: true})
+  refreshToken(): Observable<any> {
+    console.log(this.currentUser, ' >>>> user$')
+    return this.http.post<any>(`${this.apiUrl}/auth/refresh`, {}, {withCredentials: true})
       .pipe(
         map(user => {
           this.user$.next(user);
           this.startRefreshTokenTimer();
-          return user;
+         // return user;
         }),
-        catchError(error => {
-          console.log(error, ' >>>> error');
-          return of(error.error.message)
-        })
+
       );
   }
 
