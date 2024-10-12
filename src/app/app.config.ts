@@ -29,7 +29,12 @@ export const appConfig: ApplicationConfig = {
       useClass: RefreshInterceptor,
       multi: true,
     },
-
+    { 
+      provide: APP_INITIALIZER, 
+      useFactory: appInitializer, 
+      multi: true, 
+      deps: [AuthService] 
+    },
     AuthService,
     UserService,
     ForecastService
