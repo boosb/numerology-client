@@ -15,15 +15,7 @@ import { ImgService } from './services/img.service';
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss',
     imports: [
-      CommonModule,
-      ModalAuthComponent, 
-      MainButtonComponent,
-      CoinsButtonComponent,
-      MainPageComponent,
-      SettingPageComponent,
-      ForecastPageComponent,
-      RouterLink,
-      RouterOutlet
+
     ]
 })
 export class AppComponent {
