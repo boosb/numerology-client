@@ -66,7 +66,10 @@ export class AuthService {
           this.startRefreshTokenTimer();
           return user;
         }),
-        catchError(error => of(error.error.message))
+        catchError(error => {
+          console.log(error, ' >>>> error');
+          return of(error.error.message)
+        })
       );
   }
 
