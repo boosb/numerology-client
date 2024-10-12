@@ -58,8 +58,8 @@ export class AuthService {
     );
   }
 
-  refreshToken(): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/auth/refresh`, {}, {withCredentials: true})
+  refreshToken(): Observable<IUser> {
+    return this.http.post<IUser>(`${this.apiUrl}/auth/refresh`, {}, {withCredentials: true})
       .pipe(
         map(user => {
           this.user$.next(user);
