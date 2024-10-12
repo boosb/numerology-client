@@ -2,14 +2,20 @@
   <div>
     <div class="header">
       <div class="header__logo">
+        <img [src]="imgService.getImg(imgService.paths['LOGO'])" alt="logo">
         <div>
           <div>Астро</div>
           <div>прогноз</div>
         </div>
       </div>
 
+      <div class="header__buttons">
+        <app-coins-button class="header__btn"></app-coins-button>
+        <app-main-button class="header__btn"></app-main-button>
+      </div>
     </div>
 
+    <router-outlet></router-outlet>
 
     <div class="footer">
       <div class="footer__copyright">© 2024 Астропрогноз</div>
