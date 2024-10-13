@@ -70,18 +70,16 @@ export class AuthService {
   }
 
   refreshToken(): Observable<any> {
-    console.log(this.token, ' >>>> user$')
     return this.http.post<any>(`${this.apiUrl}/auth/refresh`, {}, {withCredentials: true})
       .pipe(
         map(user => {
-          console.log(user, ' >>>> user')
           this.user$.next(user);
           this.startRefreshTokenTimer();
-         // return user;
+          return user;
         }),
-        catchError(error =>{
-          console.log(error, ' >>>> error')
-          return  of(this.errorService.setServerErrorText(error.error.message))
+        catchError(error => {
+          console.log(error, ' >>  errr')
+          return of(this.errorService.setServerErrorText(error.error.message))
         })
       );
   }
@@ -94,6 +92,10 @@ export class AuthService {
           this.router.navigateByUrl('/profile');
         })
       );
+  }
+
+  checkToken() {
+    
   }
 
   // todo чет вкинул метод, но не оч разобрался (!)
